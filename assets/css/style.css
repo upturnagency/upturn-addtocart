@@ -1,5 +1,7 @@
+/* Colours */
+/* generated with grunt-sass-globbing */
 .cross-sell-header {
-    width: 100%;
-    height: auto;
-    background-color: #ccc;
+  width: 100%;
+  height: auto;
+  background-color: red;
 }
