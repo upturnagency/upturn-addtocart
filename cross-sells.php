@@ -12,7 +12,6 @@
             <div class="cross-sell-header">
                 <?php
 
-                echo get_option( 'use-upturn-stylesheet' );
                 $args = array(
                     'p'         => $id,
                     'post_type' => 'product',

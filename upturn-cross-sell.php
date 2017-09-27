@@ -28,18 +28,19 @@ function my_custom_add_to_cart_redirect($id) {
     return $url;
 }
 
-function appeandStylesheet(){
+function appendStylesheet(){
     $plugin_url = plugin_dir_url( __FILE__ );
+    $slug = get_option( 'cross-sell-page' );
 
-    if(useUpturnStyle()){
-        wp_enqueue_style( 'style', $plugin_url . 'css/style.css' );
+    if(useUpturnStyle() && is_page($slug)){
+        wp_enqueue_style( 'style', $plugin_url . 'assets/css/style.css' );
     }
 }
 
-add_action( 'wp_enqueue_scripts', 'appeandStylesheet' );
+add_action( 'wp_enqueue_scripts', 'appendStylesheet' );
 
 function useUpturnStyle() {
-    $temp = do_action('before_sold_product');
+    $temp = get_option( 'use-upturn-stylesheet' );
 
    if ($temp == 'yes'){
        return true;
