@@ -55,7 +55,10 @@ function insert_page(){
 
 // Add Shortcode
 function add_to_cart_page() {
-	include( plugin_dir_path( __FILE__ ) . 'cross-sells.php');
+	ob_start();
+		include( plugin_dir_path( __FILE__ ) . 'cross-sells.php');
+	$content = ob_get_clean();
+	return $content;
 }
 add_shortcode( 'upturn_add_to_cart', 'add_to_cart_page' );
 

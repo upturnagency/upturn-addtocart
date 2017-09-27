@@ -43,21 +43,8 @@
                 </div>
             </div>
             <?php else: ?>
-                header(); 
-
-
 
             <?php endif;
-            global $woocommerce;
-            $items = $woocommerce->cart->get_cart();
-            $ids = array();
-
-            foreach($items as $item => $values) {
-                $_product = $values['data']->post;
-                $ids[] = $_product->ID;
-            }
-
-            $itemID = end($ids);
 
             do_action('before_cross_sell_page');
 
