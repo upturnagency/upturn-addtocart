@@ -106,6 +106,15 @@ function cross_sell_settings( $settings, $current_section ) {
             $postData[$post->post_name] = $post->post_title;
         }
 
+        // Use our stylesheet
+        $settings_slider[] = array(
+            'name'     => __( 'Use Upturn style', 'cross-sell' ),
+            'desc_tip' => __( '', 'cross-sell' ),
+            'id'       => 'use-upturn-stylesheet',
+            'type'    => 'checkbox',
+            'desc'     => __( 'Use Upturn style', 'cross-sell' )
+        );
+
         // Add custom page
         $settings_slider[] = array(
             'name'     => __( 'Cross sell page', 'cross-sell' ),
