@@ -7,6 +7,15 @@ $XL:    1400px;
 
 // media queries
 
+/* CSS Vertical Centering */
+@mixin valign {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 @mixin MQ($canvas) {
   @if $canvas == S {
     @media only screen and (min-width: $S) { @content; }
