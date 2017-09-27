@@ -28,8 +28,24 @@ function my_custom_add_to_cart_redirect($id) {
     return $url;
 }
 
-if(is_page($slug)){
-    add_filter( 'the_title', '__return_false' );
+function appeandStylesheet(){
+    $plugin_url = plugin_dir_url( __FILE__ );
+
+    if(useUpturnStyle()){
+        wp_enqueue_style( 'style', $plugin_url . 'css/style.css' );
+    }
+}
+
+add_action( 'wp_enqueue_scripts', 'appeandStylesheet' );
+
+function useUpturnStyle() {
+    $temp = do_action('before_sold_product');
+
+   if ($temp == 'yes'){
+       return true;
+   }
+   
+   return false;
 }
 
 function my_remove_title($title, $id) {

@@ -3,7 +3,7 @@
     <main class="cross-sell archive">
         <div class="cross-sell-wrap clearfix hpad wrap">
             <?php
-            do_action('before_sold_product');
+
             global $woocommerce;
 
             $id = $_GET['id'];
@@ -11,6 +11,8 @@
             if (isset($id) && is_numeric($_GET['id'])): ?>
             <div class="cross-sell-header">
                 <?php
+
+                echo get_option( 'use-upturn-stylesheet' );
                 $args = array(
                     'p'         => $id,
                     'post_type' => 'product',
