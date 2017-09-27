@@ -17,8 +17,10 @@ function my_custom_add_to_cart_redirect($id) {
     $product_id = apply_filters( 'woocommerce_add_to_cart_product_id', absint( $_REQUEST['add-to-cart'] ) );
     $rand = rand();
 
+    $slug = get_option( 'cross-sell-page' );
+
     if(isset($product_id)):
-        $url = get_home_url() . "/cross-sells/?id=" . $product_id . '&rand=' . $rand;
+        $url = get_home_url() . "/" . $slug . "/?id=" . $product_id . '&rand=' . $rand;
     else:
         $url = WC_Cart::get_cart_url();
     endif;
@@ -78,6 +80,27 @@ function cross_sell_settings( $settings, $current_section ) {
         $settings_slider = array();
         // Add Title to the Settings
         $settings_slider[] = array( 'name' => __( 'Woo cross sell settings', 'cross_sell' ), 'type' => 'title', 'desc' => __( 'The following options allow you to control your cross sells page', 'cross-sell' ), 'id' => 'cross-sell' );
+
+        $args = array('post_type' => 'page', 'post_status' => 'publish');
+        $query = new WP_Query($args);
+        $posts = $query->posts;
+        $postData = array(
+            'default' => 'Default',
+        );
+
+        foreach ($posts as $post){
+            $postData[$post->post_name] = $post->post_title;
+        }
+
+        // Add custom page
+        $settings_slider[] = array(
+            'name'     => __( 'Cross sell page', 'cross-sell' ),
+            'desc_tip' => __( '', 'cross-sell' ),
+            'id'       => 'cross-sell-page',
+            'type'    => 'select',
+            'options' => $postData,
+            'desc'     => __( 'Costume page for cross-sell', 'cross-sell' ),
+        );
 
         // Add first checkbox option
         $settings_slider[] = array(

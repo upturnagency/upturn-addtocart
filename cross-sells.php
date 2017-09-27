@@ -41,6 +41,37 @@
 
             <?php endif;
 
+            $args = array(
+                'post_type' => 'page',
+                'post_status' => 'publish'
+            );
+
+            $query = new WP_Query($args);
+
+            $posts = $query->posts;
+
+            $postData = array(
+                    'default' => 'Default',
+            );
+
+            foreach ($posts as $post){
+                //__( 'Position 4', 'cross-sell' )
+
+                $postData[$post->post_name] = "__( '" . $post->post_title . "' , 'cross-sell' )";
+            }
+
+            echo '<pre>';
+            print_r($postData);
+            echo '</pre>';
+
+
+            echo '<pre>';
+            print_r($query);
+            echo '</pre>';
+
+
+
+
             do_action('before_cross_sell_page');
 
             for($i = 1; $i <= 4; $i++){
