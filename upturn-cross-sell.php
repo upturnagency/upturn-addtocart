@@ -18,7 +18,7 @@ function my_custom_add_to_cart_redirect($id) {
     $rand = rand();
 
     if(isset($product_id)):
-        $url = get_home_url() . "/cross-sale/?id=" . $product_id . '&rand=' . $rand;
+        $url = get_home_url() . "/cross-sells/?id=" . $product_id . '&rand=' . $rand;
     else:
         $url = WC_Cart::get_cart_url();
     endif;
@@ -36,6 +36,28 @@ function cross_sell_tab( $sections ) {
     return $sections;
 
 }
+
+register_activation_hook( __FILE__, 'insert_page' );
+
+function insert_page(){
+	// Create post object
+	$my_post = array(
+		'post_title'    => 'Cross sells',
+		'post_content'  => '[upturn_add_to_cart]',
+		'post_status'   => 'publish',
+		'post_author'   => get_current_user_id(),
+		'post_type'     => 'page',
+	);
+
+	// Insert the post into the database
+	wp_insert_post( $my_post, '' );
+}
+
+// Add Shortcode
+function add_to_cart_page() {
+	include( plugin_dir_path( __FILE__ ) . 'cross-sells.php');
+}
+add_shortcode( 'upturn_add_to_cart', 'add_to_cart_page' );
 
 /**
  * Add settings to the specific section we created before

@@ -3,7 +3,7 @@
  * Template Name: Cross sells
  */
 
-do_action('upturn_header'); ?>
+?>
     <main class="cross-sell archive">
         <div class="cross-sell-wrap clearfix hpad wrap">
             <?php
@@ -82,4 +82,3 @@ do_action('upturn_header'); ?>
             ?>
         </div>
     </main>
-<?php do_action('upturn_footer');
