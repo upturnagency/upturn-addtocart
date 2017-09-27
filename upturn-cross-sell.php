@@ -13,7 +13,7 @@ Text Domain: upturn-cross-sell
  * Redirect users after add to cart.
  */
 
-function my_custom_add_to_cart_redirect($id) {
+function upturn_add_to_cart_redirect($id) {
     $product_id = apply_filters( 'woocommerce_add_to_cart_product_id', absint( $_REQUEST['add-to-cart'] ) );
     $rand = rand();
 
@@ -27,6 +27,7 @@ function my_custom_add_to_cart_redirect($id) {
 
     return $url;
 }
+add_filter( 'woocommerce_add_to_cart_redirect', 'upturn_add_to_cart_redirect' );
 
 function appendStylesheet(){
     $plugin_url = plugin_dir_url( __FILE__ );
@@ -48,9 +49,6 @@ function useUpturnStyle() {
    
    return false;
 }
-
-add_filter( 'woocommerce_add_to_cart_redirect', 'my_custom_add_to_cart_redirect' );
-
 
 add_filter( 'woocommerce_get_sections_products', 'cross_sell_tab' );
 function cross_sell_tab( $sections ) {
@@ -100,7 +98,7 @@ function cross_sell_settings( $settings, $current_section ) {
     if ( $current_section == 'cross_sell' ) {
         $settings_slider = array();
         // Add Title to the Settings
-        $settings_slider[] = array( 'name' => __( 'Woo cross sell settings', 'cross_sell' ), 'type' => 'title', 'desc' => __( 'The following options allow you to control your cross sells page', 'cross-sell' ), 'id' => 'cross-sell' );
+        $settings_slider[] = array( 'name' => __( 'WooCommerce cross sell settings', 'cross_sell' ), 'type' => 'title', 'desc' => __( 'The following options allow you to control your cross sells page', 'cross-sell' ), 'id' => 'cross-sell' );
 
         $args = array('post_type' => 'page', 'post_status' => 'publish');
         $query = new WP_Query($args);
@@ -129,7 +127,7 @@ function cross_sell_settings( $settings, $current_section ) {
             'id'       => 'cross-sell-page',
             'type'    => 'select',
             'options' => $postData,
-            'desc'     => __( 'Costume page for cross-sell', 'cross-sell' ),
+            'desc'     => __( 'Custom page for cross-sell', 'cross-sell' ),
         );
 
         // Add first checkbox option

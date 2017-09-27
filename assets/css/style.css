@@ -1,6 +1,9 @@
 /* Colours */
 /* CSS Vertical Centering */
 /* generated with grunt-sass-globbing */
+.cross-sell h1, .cross-sell h2, .cross-sell h3, .cross-sell h4 {
+  margin-top: 0;
+}
 .cross-sell .clearfix {
   content: "";
   display: table;
