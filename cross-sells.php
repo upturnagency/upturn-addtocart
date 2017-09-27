@@ -1,4 +1,5 @@
-<?php ?>
+<?php
+    ?>
     <main class="cross-sell archive">
         <div class="cross-sell-wrap clearfix hpad wrap">
             <?php
