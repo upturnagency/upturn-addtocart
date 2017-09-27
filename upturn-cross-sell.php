@@ -49,16 +49,6 @@ function useUpturnStyle() {
    return false;
 }
 
-function my_remove_title($title, $id) {
-    // remove title from all Pages
-    $slug = get_option( 'cross-sell-page' );
-    if (is_page($slug)) {
-        return '';
-    }
-    return $title;
-}
-add_filter('the_title', 'my_remove_title',2, 10);
-
 add_filter( 'woocommerce_add_to_cart_redirect', 'my_custom_add_to_cart_redirect' );
 
 
