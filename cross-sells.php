@@ -1,7 +1,12 @@
 <?php
     ?>
+    <style>
+        header h1{
+            display: none;
+        }
+    </style>
     <main class="cross-sell archive">
-        <div class="cross-sell-wrap clearfix hpad wrap">
+        <div class="cross-sell-wrap">
             <?php
 
             global $woocommerce;
@@ -9,7 +14,7 @@
             $id = $_GET['id'];
 
             if (isset($id) && is_numeric($_GET['id'])): ?>
-            <div class="cross-sell-header">
+            <div class="cross-sell-header clearfix cf">
                 <?php
 
                 $args = array(
@@ -19,24 +24,34 @@
                 $loop = new WP_Query( $args );
 
                 $i = 0;
-
+                ?>
+                <div class="item-info">
+                <?php
                 while ( $loop->have_posts() && $i < 1) : $loop->the_post(); global $product;
 
                     $i++;
                     $image = wp_get_attachment_image_src( get_post_thumbnail_id( $loop->post->ID ), 'thumbnail' );?>
-                    <h1><?php echo $loop->post->post_title; ?></h1>
-                    <img src="<?php  echo $image[0]; ?>" data-id="<?php echo $loop->post->ID; ?>" style="padding-top: 20px;">
-
+                    <img src="<?php  echo $image[0]; ?>" data-id="<?php echo $loop->post->ID; ?>" class="product-image">
+                    <div class="item-info--text">
+                    <span><strong><?php echo $loop->post->post_title;?></strong><?php echo __('&nbsp;er lagt i handlekurven', 'cross-sell'); ?></span>
+                    </div>
                 <?php endwhile; ?>
 
-                <div class="item-info">
+
 
                 </div>
-                <div class="item-prossed">
-                    <span>Handlekurv-sum er <?php echo $woocommerce->cart->get_cart_total(); ?></span>
-                    <a href="<?php echo get_home_url(); ?>">Handle mer</a>
-                    <a href="<?php echo $woocommerce->cart->get_cart_url(); ?>" class="button">Handlekurven</a>
-                    <a href="<?php echo $woocommerce->cart->get_checkout_url(); ?>" class="button">Gå til kassen</a>
+                <div class="actions">
+                    <div class="info">
+                        <?php
+                        echo '<strong><span class="dashicons dashicons-yes"></span>' . __('Cart', 'cross-sell') . '</strong>&nbsp;' . $woocommerce->cart->get_cart_total();
+                        echo '&nbsp;('.sprintf ( _n( '%d item', '%d items', WC()->cart->get_cart_contents_count() ), WC()->cart->get_cart_contents_count() ).')';
+                        do_action('before_cross_sell_actions');
+                        ?>
+                    </div>
+                    <div class="buttons">
+                        <a href="<?php echo $woocommerce->cart->get_cart_url(); ?>" class="button">Handlekurven</a>
+                        <a href="<?php echo $woocommerce->cart->get_checkout_url(); ?>" class="button">Gå til kassen</a>
+                    </div>
                 </div>
             </div>
             <?php else: ?>

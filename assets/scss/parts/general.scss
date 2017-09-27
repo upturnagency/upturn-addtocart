@@ -1,7 +1,48 @@
 .cross-sell {
+  clearfix {
+    content: "";
+    display: table;
+    clear: both;
+  }
   &-header {
     width: 100%;
     height: auto;
-    background-color: red;
+    background-color: #f5f5f5;
+    border: 1px solid #eee;
+    margin-top: 20px;
+    border-radius: 5px;
+
+    h1,h2,h3,h4{
+      margin-top: 0;
+    }
+    img{
+      float: left;
+      height: 175px;
+      width: auto;
+      margin: 5px;
+    }
+    .item-info{
+      width: 50%;
+      background: #fafafa;
+      height: 100%;
+      float: left;
+      border-right: 1px solid #eee;
+
+      &--text{
+        float: left;
+        padding: 10px;
+      }
+    }
+    .actions{
+      width: 50%;
+      float: right;
+      padding: 10px;
+
+      .buttons{
+        float: left;
+        bottom: 0;
+        margin-top: 20px;
+      }
+    }
   }
 }
