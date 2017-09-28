@@ -1,5 +1,8 @@
 .cross-sell {
-  clearfix {
+  h1,h2,h3,h4{
+    margin-top: 0;
+  }
+  .clearfix {
     content: "";
     display: table;
     clear: both;
@@ -17,31 +20,59 @@
     }
     img{
       float: left;
-      height: 175px;
+      height: 100px;
       width: auto;
       margin: 5px;
     }
     .item-info{
-      width: 50%;
       background: #fafafa;
       height: 100%;
       float: left;
       border-right: 1px solid #eee;
+      width: 100%;
+      @media screen and (min-width: 1024px){
+        width: 50%;
+      }
 
       &--text{
         float: left;
-        padding: 10px;
+        padding: 30px 10px;
+        width: calc(100% - 120px);
+
+        .product{
+          margin-top: 7px;
+          clear: none;
+          @media screen and (min-width: 1024px) {
+            vertical-align: 10px;
+          }
+        }
+
+        i.check{
+          content: "";
+          background: url(../img/success.svg);
+          height: 50px;
+          display: inline-block;
+          width: 50px;
+          margin-right: 20px;
+          float: left;
+        }
       }
     }
     .actions{
-      width: 50%;
-      float: right;
       padding: 10px;
+      @media screen and (min-width: 1024px){
+        width: 50%;
+        float: right;
+        clear: none;
+      }
 
       .buttons{
-        float: left;
         bottom: 0;
-        margin-top: 20px;
+        margin-top: 15px;
+        @media screen and (min-width: 1024px) {
+          float: left;
+          margin-top: 20px;
+          }
       }
     }
   }
