@@ -39,4 +39,4 @@ Thumbs.db
 # CUSTOM STUFF #
 #####################
 /assets/node_modules
-/assets/.sass-cache/
+/assets/.sass-cache
