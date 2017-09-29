@@ -82,3 +82,27 @@
     margin-top: 20px;
   }
 }
+
+ul.products {
+  width: 100%;
+}
+ul.products li.product {
+  float: left;
+  width: -webkit-calc(49% - 2rem);
+  width: calc(49% - 2rem);
+  margin: 0 1rem;
+  padding: 0;
+  position: relative;
+  margin-left: 0;
+  display: none !important;
+}
+@media screen and (min-width: 765px) {
+  ul.products li.product {
+    width: -webkit-calc(16.66666% - .84rem) !important;
+    width: calc(16.66666% - .84rem) !important;
+    margin: 0 1rem 2.992em 0;
+  }
+  ul.products li.product:nth-child(6) {
+    margin: 0 0 2.992em 0;
+  }
+}
