@@ -1,62 +1,153 @@
-<?php
-    ?>
-    <style>
-        header h1{
-            display: none;
-        }
-    </style>
-    <main class="cross-sell archive">
-        <div class="cross-sell-wrap">
-            <?php
+ <main class="cross-sell archive">
+	    <?php
 
-            global $woocommerce;
+	    global $woocommerce;
 
-            $id = $_GET['id'];
+	    $id = $_GET['id'];
+	    $time = $_GET['t'];
+	    $expire_time = get_option('upturn_expire_time');
+	    $timeleft = $time + $expire_time;
+	    ?>
+     <script type="text/javascript">
+         function startTimer(duration, display) {
+             var timer = duration, minutes, seconds;
+             setInterval(function () {
+                 minutes = parseInt(timer / 60, 10)
+                 seconds = parseInt(timer % 60, 10);
 
-            if (isset($id) && is_numeric($_GET['id'])): ?>
-            <div class="cross-sell-header clearfix cf">
-                <?php
+                 minutes = minutes < 10 ? "0" + minutes : minutes;
+                 seconds = seconds < 10 ? "0" + seconds : seconds;
 
-                $args = array(
-                    'p'         => $id,
-                    'post_type' => 'product',
-                );
-                $loop = new WP_Query( $args );
+                 display.textContent = minutes + " <?php echo __('minutes', 'cross-sells'); ?> " + seconds + " <?php echo __('seconds', 'cross-sells'); ?>" + ".";
 
-                $i = 0;
-                ?>
+                 if (--timer < 0) {
+                     timer = duration;
+                 }
+             }, 1000);
+         }
+
+         window.onload = function () {
+             var fiveMinutes = <?php echo $timeleft; ?> - <?php echo time(); ?>,
+                 display = document.querySelector('#countdown');
+             startTimer(fiveMinutes, display);
+         };
+     </script>
+     <?php
+
+	    if (isset($id) && is_numeric($_GET['id'])): ?>
+            <div class="cross-sell-header top clearfix cf">
+			    <?php
+
+			    $args = array(
+				    'p'         => $id,
+				    'post_type' => 'product',
+			    );
+			    $loop = new WP_Query( $args );
+
+			    $i = 0;
+			    ?>
+                <div class="added-to-cart">
+				    <?php
+				    while ( $loop->have_posts() && $i < 1) : $loop->the_post(); global $product;
+					    $i++;
+					    $image = wp_get_attachment_image_src( get_post_thumbnail_id( $loop->post->ID ), 'thumbnail' );?>
+                        <i class="check"></i><h3><?php echo $loop->post->post_title;?><?php echo __('added to cart', 'cross-sell'); ?></h3>
+				    <?php endwhile; ?>
+                </div>
+                <div class="cart clearfix">
+		            <?php
+		            echo '<strong>' . __('Cart total:', 'cross-sell') . '</strong>&nbsp;' . $woocommerce->cart->get_cart_total();
+		            echo '&nbsp;('.sprintf ( _n( '%d item', '%d items', WC()->cart->get_cart_contents_count() ), WC()->cart->get_cart_contents_count() ).')';
+		            do_action('before_cross_sell_actions');
+		            ?>
+                </div>
+            </div>
+            <div class="cross-sell-header bottom clearfix cf">
+			    <?php
+
+			    $args = array(
+				    'p'         => $id,
+				    'post_type' => 'product',
+			    );
+			    $loop = new WP_Query( $args );
+
+			    $i = 0;
+			    ?>
                 <div class="item-info">
-                <?php
-                while ( $loop->have_posts() && $i < 1) : $loop->the_post(); global $product;
+				    <?php
+				    while ( $loop->have_posts() && $i < 1) : $loop->the_post(); global $product;
 
-                    $i++;
-                    $image = wp_get_attachment_image_src( get_post_thumbnail_id( $loop->post->ID ), 'thumbnail' );?>
-                    <img src="<?php  echo $image[0]; ?>" data-id="<?php echo $loop->post->ID; ?>" class="product-image">
-                    <div class="item-info--text">
-                        <i class="check"></i><span class="product clearfix"><strong><?php echo $loop->post->post_title;?></strong><?php echo __('&nbsp;added to cart', 'cross-sell'); ?></span>
-                    </div>
-                <?php endwhile; ?>
+					    $i++;
+					    $image = wp_get_attachment_image_src( get_post_thumbnail_id( $loop->post->ID ), 'thumbnail' );?>
+                        <img src="<?php  echo $image[0]; ?>" data-id="<?php echo $loop->post->ID; ?>" class="product-image">
+                        <div class="item-info--text">
+                            <span class="product clearfix"><strong><?php echo $loop->post->post_title;?></strong><?php echo __('&nbsp;added to cart. ', 'cross-sell'); echo '<br/>' . __("We'll reserve it for ", "cross-sells"); ?><span id="countdown"><?php echo __('checking...', 'cross-sells'); ?></span></span></span>
+                        </div>
+				    <?php endwhile; ?>
 
 
 
                 </div>
                 <div class="actions clearfix">
-                    <div class="info clearfix">
-                        <?php
-                        echo '<strong>' . __('Cart', 'cross-sell') . '</strong>&nbsp;' . $woocommerce->cart->get_cart_total();
-                        echo '&nbsp;('.sprintf ( _n( '%d item', '%d items', WC()->cart->get_cart_contents_count() ), WC()->cart->get_cart_contents_count() ).')';
-                        do_action('before_cross_sell_actions');
-                        ?>
-                    </div>
+                    <?php
+                    // Get Free Shipping Methods for Rest of the World Zone & populate array $min_amounts
+
+                    $default_zone = new WC_Shipping_Zone(0);
+                    $default_methods = $default_zone->get_shipping_methods();
+
+                    foreach( $default_methods as $key => $value ) {
+	                    if ( $value->id === "free_shipping" ) {
+		                    if ( $value->min_amount > 0 ) $min_amounts[] = $value->min_amount;
+	                    }
+                    }
+
+                    // Get Free Shipping Methods for all other ZONES & populate array $min_amounts
+
+                    $delivery_zones = WC_Shipping_Zones::get_zones();
+
+                    foreach ( $delivery_zones as $key => $delivery_zone ) {
+	                    foreach ( $delivery_zone['shipping_methods'] as $key => $value ) {
+		                    if ( $value->id === "free_shipping" ) {
+			                    if ( $value->min_amount > 0 ) $min_amounts[] = $value->min_amount;
+		                    }
+	                    }
+                    }
+
+                    // Find lowest min_amount
+
+                    if ( is_array($min_amounts) ) {
+
+	                    $min_amount = min($min_amounts);
+
+                        // Get Cart Subtotal inc. Tax excl. Shipping
+
+	                    $current = WC()->cart->subtotal;
+
+                        // If Subtotal < Min Amount Echo Notice
+                        // and add "Continue Shopping" button
+
+	                    if ( $current < $min_amount ) {
+		                    $added_text = esc_html__('Get free shipping if you order ', 'woocommerce' ) . wc_price( $min_amount - $current ) . esc_html__(' more!', 'woocommerce' );
+
+	                    }else{
+		                    $added_text = esc_html__('You get free shipping on your order! ', 'woocommerce' );
+                        }
+	                    print_r($added_text);
+
+                    }
+
+                    ?>
                     <div class="buttons">
                         <a href="<?php echo $woocommerce->cart->get_cart_url(); ?>" class="button btn cart"><?php echo __('Go to cart', 'cross-sell'); ?></a>
                         <a href="<?php echo $woocommerce->cart->get_checkout_url(); ?>" class="button btn alt checkout"><?php echo __('Checkout', 'cross-sell'); ?></a>
                     </div>
                 </div>
             </div>
-            <?php else: ?>
-                <h1>This isn't the page for you.</h1>
-            <?php endif;
+	    <?php else: ?>
+            <h1>This isn't the page for you.</h1>
+	    <?php endif; ?>
+        <div class="cross-sell-wrap">
+            <?php
 
             do_action('before_cross_sell_page');
 
