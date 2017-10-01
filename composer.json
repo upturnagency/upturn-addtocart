@@ -1,0 +1,12 @@
+{
+  "name": "upturnagency/upturn-addtocart",
+  "type": "wordpress-plugin",
+  "require": {
+      "composer/installers": "*"
+  },
+  "description": "",
+  "extra": {
+    "installer-name": "upturn-addtocart"
+  },
+  "minimum-stability": "dev"
+}
