@@ -13,6 +13,8 @@ Text Domain: upturn-cross-sell
  * Redirect users after add to cart.
  */
 
+add_filter( 'wc_add_to_cart_message_html', '__return_null' );
+
 function upturn_add_to_cart_redirect($id) {
     $product_id = apply_filters( 'woocommerce_add_to_cart_product_id', absint( $_REQUEST['add-to-cart'] ) );
     $rand = rand();

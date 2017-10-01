@@ -13,11 +13,20 @@ h1 {
 .cross-sell i.check {
   content: "";
   background: url(../img/success.svg);
-  height: 50px;
+  height: 40px;
   display: inline-block;
-  width: 50px;
-  margin-right: 20px;
+  width: 100%;
+  margin: 15px 0;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   float: left;
+}
+@media screen and (min-width: 1024px) {
+  .cross-sell i.check {
+    margin: 10px 10px 10px 10px;
+    width: 40px;
+  }
 }
 .cross-sell-header {
   width: 100%;
@@ -61,6 +70,15 @@ h1 {
     width: 50%;
   }
 }
+.cross-sell-header .item-info h3, .cross-sell-header .added-to-cart h3 {
+  margin-top: 15px;
+  text-align: center;
+}
+@media screen and (min-width: 1024px) {
+  .cross-sell-header .item-info h3, .cross-sell-header .added-to-cart h3 {
+    text-align: left;
+  }
+}
 .cross-sell-header .item-info--text, .cross-sell-header .added-to-cart--text {
   float: left;
   padding: 0px 10px;
@@ -89,13 +107,13 @@ h1 {
   bottom: 0;
   margin-top: 15px;
   width: 100%;
-  position: absolute;
-  bottom: 5px;
 }
 @media screen and (min-width: 1024px) {
   .cross-sell-header .actions .buttons, .cross-sell-header .cart .buttons {
     float: left;
     margin-top: 20px;
+    position: absolute;
+    bottom: 5px;
   }
 }
 .cross-sell-header .actions .buttons .button, .cross-sell-header .cart .buttons .button {
@@ -104,6 +122,14 @@ h1 {
 }
 .cross-sell-header .actions .buttons .button.cart, .cross-sell-header .cart .buttons .button.cart {
   margin-right: 10px;
+}
+.cross-sell-header div.cart {
+  display: none;
+}
+@media screen and (min-width: 1024px) {
+  .cross-sell-header div.cart {
+    display: block;
+  }
 }
 
 /*# sourceMappingURL=general.css.map */

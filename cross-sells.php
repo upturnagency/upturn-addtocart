@@ -7,32 +7,43 @@
 	    $time = $_GET['t'];
 	    $expire_time = get_option('upturn_expire_time');
 	    $timeleft = $time + $expire_time;
+	    $current = time();
+
+	    if(!empty($expire_time)):
 	    ?>
-     <script type="text/javascript">
-         function startTimer(duration, display) {
-             var timer = duration, minutes, seconds;
-             setInterval(function () {
-                 minutes = parseInt(timer / 60, 10)
-                 seconds = parseInt(timer % 60, 10);
+            <script type="text/javascript">
+             function startTimer(duration, display) {
+                 var timer = duration, minutes, seconds;
+                 setInterval(function () {
+                     minutes = parseInt(timer / 60, 10)
+                     seconds = parseInt(timer % 60, 10);
 
-                 minutes = minutes < 10 ? "0" + minutes : minutes;
-                 seconds = seconds < 10 ? "0" + seconds : seconds;
+                     minutes = minutes < 10 ? "0" + minutes : minutes;
+                     seconds = seconds < 10 ? "0" + seconds : seconds;
 
-                 display.textContent = minutes + " <?php echo __('minutes', 'cross-sells'); ?> " + seconds + " <?php echo __('seconds', 'cross-sells'); ?>" + ".";
+                     display.textContent = minutes + " <?php echo __('minutes', 'cross-sells'); ?> " + seconds + " <?php echo __('seconds', 'cross-sells'); ?>" + ".";
 
-                 if (--timer < 0) {
-                     timer = duration;
-                 }
-             }, 1000);
-         }
+                     if (--timer < 0) {
+                         timer = duration;
+                     }
+                 }, 1000);
+             }
 
-         window.onload = function () {
-             var fiveMinutes = <?php echo $timeleft; ?> - <?php echo time(); ?>,
-                 display = document.querySelector('#countdown');
-             startTimer(fiveMinutes, display);
-         };
-     </script>
-     <?php
+             window.onload = function () {
+                 var timeLeft = <?php echo $timeleft; ?> - <?php echo time(); ?>,
+                     display = document.querySelector('#countdown');
+                 <?php if($timeleft - $current > 1): ?>
+                 startTimer(timeLeft, display);
+                 <?php else: ?>
+                 var elem = document.getElementById('cart-countdown');
+                 elem.parentNode.removeChild(elem);
+                 return false;
+
+                 <?php endif; ?>
+             };
+            </script>
+         <?php
+         endif;
 
 	    if (isset($id) && is_numeric($_GET['id'])): ?>
             <div class="cross-sell-header top clearfix cf">
@@ -51,7 +62,7 @@
 				    while ( $loop->have_posts() && $i < 1) : $loop->the_post(); global $product;
 					    $i++;
 					    $image = wp_get_attachment_image_src( get_post_thumbnail_id( $loop->post->ID ), 'thumbnail' );?>
-                        <i class="check"></i><h3><?php echo $loop->post->post_title;?><?php echo __('added to cart', 'cross-sell'); ?></h3>
+                        <i class="check"></i><h3><?php echo $loop->post->post_title;?> <?php echo __('added to cart', 'cross-sell'); ?></h3>
 				    <?php endwhile; ?>
                 </div>
                 <div class="cart clearfix">
@@ -81,7 +92,16 @@
 					    $image = wp_get_attachment_image_src( get_post_thumbnail_id( $loop->post->ID ), 'thumbnail' );?>
                         <img src="<?php  echo $image[0]; ?>" data-id="<?php echo $loop->post->ID; ?>" class="product-image">
                         <div class="item-info--text">
-                            <span class="product clearfix"><strong><?php echo $loop->post->post_title;?></strong><?php echo __('&nbsp;added to cart. ', 'cross-sell'); echo '<br/>' . __("We'll reserve it for ", "cross-sells"); ?><span id="countdown"><?php echo __('checking...', 'cross-sells'); ?></span></span></span>
+                            <span class="product clearfix"><strong><?php echo $loop->post->post_title;?></strong>
+                                <?php
+                                if(!empty($expire_time)):
+                                    echo '<br/><span id="cart-countdown">' . __("We'll reserve it for ", "cross-sells"); ?>
+                                    <span id="countdown"><?php echo __('checking...', 'cross-sells'); ?></span></span>
+                                <?php
+                                endif;
+                                ?>
+                            </span>
+                            </span>
                         </div>
 				    <?php endwhile; ?>
 
