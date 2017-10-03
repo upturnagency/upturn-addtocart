@@ -13,14 +13,17 @@ Text Domain: upturn-cross-sell
  * Redirect users after add to cart.
  */
 
+add_filter( 'wc_add_to_cart_message_html', '__return_null' );
+
 function upturn_add_to_cart_redirect($id) {
     $product_id = apply_filters( 'woocommerce_add_to_cart_product_id', absint( $_REQUEST['add-to-cart'] ) );
     $rand = rand();
+    $time = time();
 
     $slug = get_option( 'cross-sell-page' );
 
     if(isset($product_id)):
-        $url = get_home_url() . "/" . $slug . "/?id=" . $product_id . '&rand=' . $rand;
+        $url = get_home_url() . "/" . $slug . "/?id=" . $product_id . '&r=' . $rand . '&t=' . $time ;
     else:
         $url = WC_Cart::get_cart_url();
     endif;
@@ -193,6 +196,13 @@ function cross_sell_settings( $settings, $current_section ) {
             ),
             'desc'     => __( 'Enable sales items', 'cross-sell' ),
         );
+	    $settings_slider[] = array(
+		    'name'     => __( 'Cart expire time', 'cross-sell' ),
+		    'desc_tip' => __( '', 'cross-sell' ),
+		    'id'       => 'upturn_expire_time',
+		    'type'    => 'number',
+		    'desc'     => __( 'minutes.', 'cross-sell' ),
+	    );
 
         $settings_slider[] = array( 'type' => 'sectionend', 'id' => 'wcslider' );
         return $settings_slider;
