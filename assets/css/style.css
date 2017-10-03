@@ -94,7 +94,6 @@ ul.products li.product {
   padding: 0;
   position: relative;
   margin-left: 0;
-  display: none !important;
 }
 @media screen and (min-width: 765px) {
   ul.products li.product {
