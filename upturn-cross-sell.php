@@ -142,7 +142,7 @@ function cross_sell_settings( $settings, $current_section ) {
             'desc_tip' => __( 'Number of products you want to display per row', 'cross-sell' ),
             'id'       => 'cross-sell-nr-of-products',
             'type'     => 'number',
-            'desc'     => __( 'Set number of products. Default is 6 products per r', 'cross-sell' ),
+            'desc'     => __( 'Set number of products.', 'cross-sell' ),
         );
 
         // Add first checkbox option

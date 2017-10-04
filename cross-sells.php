@@ -170,7 +170,8 @@
 
             do_action('before_cross_sell_page');
 
-            $product_size = get_option('cross-sell-nr-of-products');
+            $get_products_per_row = get_option('cross-sell-nr-of-products');
+            $products_per_row = !empty( $get_products_per_row ) ? $get_products_per_row : 3 ;
 
             for($i = 1; $i <= 4; $i++){
 
@@ -178,13 +179,13 @@
                 do_action($location);
 
                 if ( $i == get_option( 'cross-sell-products' ) ){
-                    upturn_cross_sell( $product_size );
+                    upturn_cross_sell( $products_per_row );
                 } else if ( $i == get_option( 'best-sellers-site-wide' ) ){
-                    upturn_best_sellers_site_wide( $product_size );
+                    upturn_best_sellers_site_wide( $products_per_row );
                 } else if ( $i == get_option( 'new-products' ) ){
-                    upturn_new_products( $product_size );
+                    upturn_new_products( $products_per_row );
                 } else if ( $i == get_option( 'sales-items' ) ){
-                    upturn_sales_items( $product_size );
+                    upturn_sales_items( $products_per_row );
                 }
             }
 
