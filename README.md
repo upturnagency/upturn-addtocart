@@ -1,6 +1,10 @@
 # Add To Cart plugin for WooCommerce by Upturn Agency
 This plugin redirects the user to a page that shows cross sell products, bestsellers, news and products on sale.
 
+## Features
+### Display a countdown
+You can display a reservation countdown below the product name to rush the customers to place their order. You can set the number of minutes to count down from in the plugin settings.
+
 ## Install instructions
 1. Upload the plugin zip to your WordPress installation
 2. Set your preferred settings under WooCommerce -> Settings -> Products -> Cross sells
