@@ -40,3 +40,4 @@ Thumbs.db
 #####################
 /assets/node_modules
 /assets/.sass-cache
+.idea
