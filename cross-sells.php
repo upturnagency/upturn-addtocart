@@ -61,7 +61,7 @@
 				    while ( $loop->have_posts() && $i < 1) : $loop->the_post(); global $product;
 					    $i++;
 					    $image = wp_get_attachment_image_src( get_post_thumbnail_id( $loop->post->ID ), 'thumbnail' );?>
-                        <i class="check"></i><h3><?php echo $loop->post->post_title;?> <?php echo __('added to cart', 'cross-sell'); ?></h3>
+                    <i class="check"></i><h3><a href="<?php the_permalink(); ?>"><?php echo $loop->post->post_title;?></a> <?php echo __('added to cart', 'cross-sell'); ?></h3>
 				    <?php endwhile; ?>
                 </div>
                 <div class="cart clearfix">
