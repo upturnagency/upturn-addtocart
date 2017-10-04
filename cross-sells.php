@@ -157,11 +157,11 @@
                     ?>
                     <div class="buttons">
                       <?php
-                      if ( get_option( 'displayGoToCartButton' ) == 'yes' ) : ?>
+                      if ( get_option( 'upturn-displayGoToCartButton' ) == 'yes' ) : ?>
                         <a href="<?php echo $woocommerce->cart->get_cart_url(); ?>" class="button btn cart"><?php echo __('Go to cart', 'cross-sell'); ?></a>
                       <?php endif;
-                      
-                      if ( get_option( 'displayCheckoutButton' ) == 'yes' ) : ?>
+
+                      if ( get_option( 'upturn-displayCheckoutButton' ) == 'yes' ) : ?>
                         <a href="<?php echo $woocommerce->cart->get_checkout_url(); ?>" class="button btn alt checkout"><?php echo __('Checkout', 'cross-sell'); ?></a>
                       <?php endif; ?>
                     </div>
@@ -175,8 +175,23 @@
 
             do_action('before_cross_sell_page');
 
-            $get_products_per_row = get_option('cross-sell-nr-of-products');
+            $get_products_per_row = get_option('upturn-products-per-row');
             $products_per_row = !empty( $get_products_per_row ) ? $get_products_per_row : 3 ;
+
+            $query_args = array(
+                'posts_per_page'    => 8,
+                'no_found_rows'     => 1,
+                'post_status'       => 'publish',
+                'post_type'         => 'product',
+                'meta_query'        => WC()->query->get_meta_query(),
+                'post__in'          => array_merge( array( 0 ), wc_get_product_ids_on_sale() )
+            );
+            $products = new WP_Query( $query_args );
+            $posts = $products->posts;
+            $sales_count = 0;
+            foreach ($posts as $post) {
+              $sales_count++;
+            }
 
             for($i = 1; $i <= 4; $i++){
 
@@ -190,7 +205,9 @@
                 } else if ( $i == get_option( 'new-products' ) ){
                     upturn_new_products( $products_per_row );
                 } else if ( $i == get_option( 'sales-items' ) ){
-                    upturn_sales_items( $products_per_row );
+                    if($sales_count > 0){
+                        upturn_sales_items( $products_per_row );
+                    }
                 }
             }
 
