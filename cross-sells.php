@@ -1,4 +1,4 @@
- <main class="cross-sell archive">
+ <div class="cross-sell archive">
 	    <?php
 
 	    global $woocommerce;
@@ -190,4 +190,4 @@
 
             ?>
         </div>
-    </main>
+    </div>

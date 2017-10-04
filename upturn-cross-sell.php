@@ -6,7 +6,7 @@ Description:
 Author: Upturn Agency
 Version: 0.1
 Author URI: https://upturn.agency
-Text Domain: upturn-cross-sell
+Text Domain: cross-sells
 Domain Path: /lang
 */
 
