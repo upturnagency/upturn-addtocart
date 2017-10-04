@@ -152,13 +152,18 @@
 		                    $added_text = esc_html__('You get free shipping on your order! ', 'woocommerce' );
                         }
 	                    print_r($added_text);
-
                     }
 
                     ?>
                     <div class="buttons">
+                      <?php
+                      if ( get_option( 'displayGoToCartButton' ) == 'yes' ) : ?>
                         <a href="<?php echo $woocommerce->cart->get_cart_url(); ?>" class="button btn cart"><?php echo __('Go to cart', 'cross-sell'); ?></a>
+                      <?php endif;
+                      
+                      if ( get_option( 'displayCheckoutButton' ) == 'yes' ) : ?>
                         <a href="<?php echo $woocommerce->cart->get_checkout_url(); ?>" class="button btn alt checkout"><?php echo __('Checkout', 'cross-sell'); ?></a>
+                      <?php endif; ?>
                     </div>
                 </div>
             </div>

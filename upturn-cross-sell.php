@@ -126,6 +126,24 @@ function cross_sell_settings( $settings, $current_section ) {
             'desc'     => __( 'Use Upturn style', 'cross-sell' )
         );
 
+        // Use our stylesheet
+        $settings_slider[] = array(
+            'name'     => __( 'Display go to cart button', 'cross-sell' ),
+            'desc_tip' => __( '', 'cross-sell' ),
+            'id'       => 'displayGoToCartButton',
+            'type'    => 'checkbox',
+            'desc'     => __( 'Display go to cart button on cross sells page', 'cross-sell' )
+        );
+
+        // Use our stylesheet
+        $settings_slider[] = array(
+            'name'     => __( 'Display checkout button', 'cross-sell' ),
+            'desc_tip' => __( '', 'cross-sell' ),
+            'id'       => 'displayCheckoutButton',
+            'type'    => 'checkbox',
+            'desc'     => __( 'Display checkout button on cross sells page', 'cross-sell' )
+        );
+
         // Add custom page
         $settings_slider[] = array(
             'name'     => __( 'Cross sell page', 'cross-sell' ),
