@@ -1,15 +1,18 @@
 h1{
   display: none;
 }
+
 .cross-sell {
   h1,h2,h3,h4{
     margin-top: 0;
   }
+
   .clearfix {
     content: "";
     display: table;
     clear: both;
   }
+
   i.check{
     content: "";
     background: url(../img/success.svg);
@@ -55,7 +58,7 @@ h1{
       border-top: 0;
       position: sticky;
       top: 0;
-      z-index: 1;
+      z-index: 11;
     }
     .item-info,.added-to-cart{
       background: #fafafa;

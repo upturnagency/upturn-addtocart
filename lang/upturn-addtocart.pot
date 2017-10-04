@@ -1,0 +1,181 @@
+# Copyright (C) 2017 Upturn Agency
+# This file is distributed under the same license as the Upturn Add To Cart page package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Upturn Add To Cart page 0.1\n"
+"Report-Msgid-Bugs-To: "
+"https://wordpress.org/support/plugin/upturn-cross-sell\n"
+"POT-Creation-Date: 2017-10-04 15:35:57+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+"X-Generator: grunt-wp-i18n1.0.0\n"
+
+#: cross-sells.php:24
+msgid "minutes"
+msgstr ""
+
+#: cross-sells.php:24
+msgid "seconds"
+msgstr ""
+
+#: cross-sells.php:64
+msgid "added to cart"
+msgstr ""
+
+#: cross-sells.php:69
+msgid "Cart total:"
+msgstr ""
+
+#: cross-sells.php:70
+msgid "%d item"
+msgid_plural "%d items"
+msgstr[0] ""
+msgstr[1] ""
+
+#: cross-sells.php:97
+msgid "We'll reserve it for "
+msgstr ""
+
+#: cross-sells.php:98
+msgid "checking..."
+msgstr ""
+
+#: cross-sells.php:149
+msgid "Get free shipping if you order "
+msgstr ""
+
+#: cross-sells.php:149
+msgid " more!"
+msgstr ""
+
+#: cross-sells.php:152
+msgid "You get free shipping on your order! "
+msgstr ""
+
+#: cross-sells.php:160
+msgid "Go to cart"
+msgstr ""
+
+#: cross-sells.php:161
+msgid "Checkout"
+msgstr ""
+
+#: upturn-cross-sell.php:61
+msgid "Cross sells"
+msgstr ""
+
+#: upturn-cross-sell.php:106
+msgid "WooCommerce cross sell settings"
+msgstr ""
+
+#: upturn-cross-sell.php:106
+msgid "The following options allow you to control your cross sells page"
+msgstr ""
+
+#: upturn-cross-sell.php:121 upturn-cross-sell.php:125
+msgid "Use Upturn style"
+msgstr ""
+
+#: upturn-cross-sell.php:130
+msgid "Cross sell page"
+msgstr ""
+
+#: upturn-cross-sell.php:135
+msgid "Custom page for cross-sell"
+msgstr ""
+
+#: upturn-cross-sell.php:140
+msgid "Cross sell products"
+msgstr ""
+
+#: upturn-cross-sell.php:145 upturn-cross-sell.php:161
+#: upturn-cross-sell.php:177 upturn-cross-sell.php:193
+msgid "Disabled"
+msgstr ""
+
+#: upturn-cross-sell.php:146 upturn-cross-sell.php:162
+#: upturn-cross-sell.php:178 upturn-cross-sell.php:194
+msgid "Position 1"
+msgstr ""
+
+#: upturn-cross-sell.php:147 upturn-cross-sell.php:163
+#: upturn-cross-sell.php:179 upturn-cross-sell.php:195
+msgid "Position 2"
+msgstr ""
+
+#: upturn-cross-sell.php:148 upturn-cross-sell.php:164
+#: upturn-cross-sell.php:180 upturn-cross-sell.php:196
+msgid "Position 3"
+msgstr ""
+
+#: upturn-cross-sell.php:149 upturn-cross-sell.php:165
+#: upturn-cross-sell.php:181 upturn-cross-sell.php:197
+msgid "Position 4"
+msgstr ""
+
+#: upturn-cross-sell.php:151
+msgid "Enable cross sell products"
+msgstr ""
+
+#: upturn-cross-sell.php:156
+msgid "Best sellers site wide"
+msgstr ""
+
+#: upturn-cross-sell.php:167
+msgid "Enable best sellers site wide"
+msgstr ""
+
+#: upturn-cross-sell.php:172
+msgid "News"
+msgstr ""
+
+#: upturn-cross-sell.php:183
+msgid "Enable news on cross sell"
+msgstr ""
+
+#: upturn-cross-sell.php:188
+msgid "Sales items"
+msgstr ""
+
+#: upturn-cross-sell.php:199
+msgid "Enable sales items"
+msgstr ""
+
+#: upturn-cross-sell.php:202
+msgid "Cart expire time"
+msgstr ""
+
+#: upturn-cross-sell.php:206
+msgid "minutes."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Upturn Add To Cart page"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "upturn.agency"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Upturn Agency"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://upturn.agency"
+msgstr ""

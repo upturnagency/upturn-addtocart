@@ -6,15 +6,16 @@ Description:
 Author: Upturn Agency
 Version: 0.1
 Author URI: https://upturn.agency
-Text Domain: upturn-cross-sell
+Text Domain: cross-sells
+Domain Path: /lang
 */
 
-/**
- * Redirect users after add to cart.
- */
 
+/** REMOVING THE ADD TO CART NOTICE SINCE WE DON'T NEED IT */
 add_filter( 'wc_add_to_cart_message_html', '__return_null' );
 
+
+/** Redirect users after add to cart */
 function upturn_add_to_cart_redirect($id) {
     $product_id = apply_filters( 'woocommerce_add_to_cart_product_id', absint( $_REQUEST['add-to-cart'] ) );
     $rand = rand();
@@ -116,7 +117,7 @@ function cross_sell_settings( $settings, $current_section ) {
 
         // Use our stylesheet
         $settings_slider[] = array(
-            'name'     => __( 'Use Upturn style', 'cross-sell' ),
+            'name'     => __( 'Use plugin styling', 'cross-sell' ),
             'desc_tip' => __( '', 'cross-sell' ),
             'id'       => 'use-upturn-stylesheet',
             'type'    => 'checkbox',
