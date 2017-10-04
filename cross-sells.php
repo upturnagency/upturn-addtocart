@@ -12,35 +12,34 @@
 	    if(!empty($expire_time)):
 	    ?>
             <script type="text/javascript">
-             function startTimer(duration, display) {
-                 var timer = duration, minutes, seconds;
-                 setInterval(function () {
-                     minutes = parseInt(timer / 60, 10)
-                     seconds = parseInt(timer % 60, 10);
+                function startTimer(duration, display) {
+                    var timer = duration, minutes, seconds;
+                    setInterval(function () {
+                        minutes = parseInt(timer / 60, 10)
+                        seconds = parseInt(timer % 60, 10);
 
-                     minutes = minutes < 10 ? "0" + minutes : minutes;
-                     seconds = seconds < 10 ? "0" + seconds : seconds;
+                        minutes = minutes < 10 ? "0" + minutes : minutes;
+                        seconds = seconds < 10 ? "0" + seconds : seconds;
 
-                     display.textContent = minutes + " <?php echo __('minutes', 'cross-sells'); ?> " + seconds + " <?php echo __('seconds', 'cross-sells'); ?>" + ".";
+                        display.textContent = minutes + " <?php echo __('minutes', 'cross-sells'); ?> " + seconds + " <?php echo __('seconds', 'cross-sells'); ?>" + ".";
 
-                     if (--timer < 0) {
-                         timer = duration;
-                     }
-                 }, 1000);
-             }
+                        if (--timer < 0) {
+                            timer = duration;
+                        }
+                    }, 1000);
+                }
 
-             window.onload = function () {
-                 var timeLeft = <?php echo $timeleft; ?> - <?php echo time(); ?>,
-                     display = document.querySelector('#countdown');
-                 <?php if($timeleft - $current > 1): ?>
-                 startTimer(timeLeft, display);
-                 <?php else: ?>
-                 var elem = document.getElementById('cart-countdown');
-                 elem.parentNode.removeChild(elem);
-                 return false;
-
-                 <?php endif; ?>
-             };
+                jQuery(function ($) {
+                    var timeLeft = <?php echo $timeleft; ?> - <?php echo time(); ?>,
+                        display = document.querySelector('#countdown');
+                        <?php if($timeleft - $current > 1): ?>
+                            startTimer(timeLeft, display);
+                        <?php else: ?>
+                            var elem = document.getElementById('cart-countdown');
+                            elem.parentNode.removeChild(elem);
+                        return false;
+                        <?php endif; ?>
+                });
             </script>
          <?php
          endif;
