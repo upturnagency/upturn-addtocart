@@ -178,21 +178,6 @@
             $get_products_per_row = get_option('upturn-products-per-row');
             $products_per_row = !empty( $get_products_per_row ) ? $get_products_per_row : 3 ;
 
-            $query_args = array(
-                'posts_per_page'    => 8,
-                'no_found_rows'     => 1,
-                'post_status'       => 'publish',
-                'post_type'         => 'product',
-                'meta_query'        => WC()->query->get_meta_query(),
-                'post__in'          => array_merge( array( 0 ), wc_get_product_ids_on_sale() )
-            );
-            $products = new WP_Query( $query_args );
-            $posts = $products->posts;
-            $sales_count = 0;
-            foreach ($posts as $post) {
-              $sales_count++;
-            }
-
             for($i = 1; $i <= 4; $i++){
 
                 $location = "before_location_" . $i;
@@ -205,7 +190,7 @@
                 } else if ( $i == get_option( 'new-products' ) ){
                     upturn_new_products( $products_per_row );
                 } else if ( $i == get_option( 'sales-items' ) ){
-                    if($sales_count > 0){
+                    if(!empty(wc_get_product_ids_on_sale())){
                         upturn_sales_items( $products_per_row );
                     }
                 }
