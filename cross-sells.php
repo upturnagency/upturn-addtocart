@@ -21,7 +21,7 @@
                         minutes = minutes < 10 ? "0" + minutes : minutes;
                         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-                        display.textContent = minutes + " <?php echo __('minutes', 'cross-sells'); ?> " + seconds + " <?php echo __('seconds', 'cross-sells'); ?>" + ".";
+                        display.textContent = minutes + " <?php echo __('minutes', 'cross-sell'); ?> " + seconds + " <?php echo __('seconds', 'cross-sells'); ?>" + ".";
 
                         if (--timer < 0) {
                             timer = duration;
@@ -94,8 +94,8 @@
                             <span class="product clearfix"><strong><?php echo $loop->post->post_title;?></strong>
                                 <?php
                                 if(!empty($expire_time)):
-                                    echo '<br/><span id="cart-countdown">' . __("We'll reserve it for ", "cross-sells"); ?>
-                                    <span id="countdown"><?php echo __('checking...', 'cross-sells'); ?></span></span>
+                                    echo '<br/><span id="cart-countdown">' . __("We'll reserve it for ", "cross-sell"); ?>
+                                    <span id="countdown"><?php echo __('checking...', 'cross-sell'); ?></span></span>
                                 <?php
                                 endif;
                                 ?>
@@ -174,7 +174,7 @@
 
             for($i = 1; $i <= 4; $i++){
 
-                $location = "before_location_" . $i;
+                $location = "before_cross_sell_location_" . $i;
                 do_action($location);
 
                 if ( $i == get_option( 'cross-sell-products' ) ){
