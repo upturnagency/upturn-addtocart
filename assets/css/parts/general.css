@@ -2,13 +2,14 @@ h1 {
   display: none;
 }
 
-.cross-sell h1, .cross-sell h2, .cross-sell h3, .cross-sell h4 {
-  margin-top: 0;
-}
-.cross-sell .clearfix {
+.clearfix {
   content: "";
   display: table;
   clear: both;
+}
+
+.cross-sell h1, .cross-sell h2, .cross-sell h3, .cross-sell h4 {
+  margin-top: 0;
 }
 .cross-sell i.check {
   content: "";

@@ -1,14 +1,16 @@
 h1{
   display: none;
 }
+
+.clearfix {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 .cross-sell {
   h1,h2,h3,h4{
     margin-top: 0;
-  }
-  .clearfix {
-    content: "";
-    display: table;
-    clear: both;
   }
   i.check{
     content: "";
