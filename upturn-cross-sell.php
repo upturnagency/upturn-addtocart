@@ -9,12 +9,14 @@ Author URI: https://upturn.agency
 Text Domain: upturn-cross-sell
 */
 
+
+/** REMOVING THE ADD TO CART NOTICE SINCE WE DON'T NEED IT */
+add_filter( 'wc_add_to_cart_message_html', '__return_null' );
+
+
 /**
  * Redirect users after add to cart.
  */
-
-add_filter( 'wc_add_to_cart_message_html', '__return_null' );
-
 function upturn_add_to_cart_redirect($id) {
     $product_id = apply_filters( 'woocommerce_add_to_cart_product_id', absint( $_REQUEST['add-to-cart'] ) );
     $rand = rand();
