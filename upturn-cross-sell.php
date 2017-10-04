@@ -167,7 +167,7 @@ function cross_sell_settings( $settings, $current_section ) {
         $cross_sells_settings[] = array(
             'name'     => __( 'Cross sell products', 'cross-sell' ),
             'desc_tip' => __( '', 'cross-sell' ),
-            'id'       => 'cross-sell-products',
+            'id'       => 'upturn-cross-sell-products',
             'type'     => 'select',
             'options'  => array(
                 'false' => __( 'Disabled', 'cross-sell' ),
@@ -183,7 +183,7 @@ function cross_sell_settings( $settings, $current_section ) {
         $cross_sells_settings[] = array(
             'name'     => __( 'Best sellers site wide', 'cross-sell' ),
             'desc_tip' => __( '', 'cross-sell' ),
-            'id'       => 'best-sellers-site-wide',
+            'id'       => 'upturn-best-sellers-site-wide',
             'type'    => 'select',
             'options' => array(
                 'false' => __( 'Disabled', 'cross-sell' ),
@@ -199,7 +199,7 @@ function cross_sell_settings( $settings, $current_section ) {
         $cross_sells_settings[] = array(
             'name'     => __( 'News', 'cross-sell' ),
             'desc_tip' => __( '', 'cross-sell' ),
-            'id'       => 'new-products',
+            'id'       => 'upturn-new-products',
             'type'    => 'select',
             'options' => array(
                 'false' => __( 'Disabled', 'cross-sell' ),
@@ -215,7 +215,7 @@ function cross_sell_settings( $settings, $current_section ) {
         $cross_sells_settings[] = array(
             'name'     => __( 'Sales items', 'cross-sell' ),
             'desc_tip' => __( '', 'cross-sell' ),
-            'id'       => 'sales-items',
+            'id'       => 'upturn-sales-items',
             'type'    => 'select',
             'options' => array(
                 'false' => __( 'Disabled', 'cross-sell' ),
@@ -228,7 +228,7 @@ function cross_sell_settings( $settings, $current_section ) {
         );
 	    $cross_sells_settings[] = array(
 		    'name'     => __( 'Cart expire time', 'cross-sell' ),
-		    'desc_tip' => __( '', 'cross-sell' ),
+		    'desc_tip' => __( 'You can leave this blank if you dont want a cart countdown', 'cross-sell' ),
 		    'id'       => 'upturn_expire_time',
 		    'type'    => 'number',
 		    'desc'     => __( 'minutes.', 'cross-sell' ),
@@ -252,19 +252,19 @@ function upturn_cross_sell( $size ) {
 }
 
 function upturn_best_sellers_site_wide( $size ){
-    echo '<h2>Our best sellers</h2>';
+    echo "<h2>" . __( 'Our best sellers', 'cross-sell' ) . "</h2>";
     $shortcode = '[best_selling_products columns="' . $size . '" per_page="' . $size . '"]';
     echo do_shortcode($shortcode);
 }
 
 function upturn_new_products( $size ){
-    echo '<h2>New products</h2>';
+    echo "<h2>" . __( 'New products', 'cross-sell' ) . "</h2>";
     $shortcode = '[recent_products columns="' . $size . '" per_page="' . $size . '"]';
     echo do_shortcode($shortcode);
 }
 
 function upturn_sales_items( $size ){
-    echo '<h2>Sales items</h2>';
+    echo "<h2>" . __( 'Sales items', 'cross-sell' ) . "</h2>";
     $shortcode = '[sale_products columns="' . $size . '" per_page="' . $size . '"]';
     echo do_shortcode($shortcode);
 }
