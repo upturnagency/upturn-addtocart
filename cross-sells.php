@@ -5,7 +5,7 @@
 
 	    $id = $_GET['id'];
 	    $time = $_GET['t'];
-	    $expire_time = get_option('upturn_expire_time');
+	    $expire_time = get_option('upturn_expire_time') * 60;
 	    $timeleft = $time + $expire_time;
 	    $current = time();
 
