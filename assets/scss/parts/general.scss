@@ -28,9 +28,11 @@ body, .site, #page {
     background-position: center;
     background-repeat: no-repeat;
     float: left;
-    @media screen and (min-width: 1024px){
+    @media screen and (min-width: 992px){
       margin: 10px 10px 10px 10px;
-      width: 40px;
+      width: 35px;
+      height: 35px;
+      position: absolute;
     }
   }
   &-header {
@@ -61,24 +63,30 @@ body, .site, #page {
       margin-top: 0;
       border-top: 0;
       position: sticky;
-      top: 0;
+      top: -1px;
       z-index: 11;
+      margin-bottom: 10px;
     }
-    .item-info,.added-to-cart{
+    .item-info, .added-to-cart{
       background: #fafafa;
       height: 100%;
       float: left;
       border-right: 1px solid #eee;
       width: 100%;
-      @media screen and (min-width: 1024px){
+      @media screen and (min-width: 992px){
         width: 50%;
       }
 
       h3{
         margin-top: 15px;
         text-align: center;
-        @media screen and (min-width: 1024px){
+        @media screen and (min-width: 992px){
           text-align: left;
+          margin-top: 10px;
+          margin-bottom: 10px;
+          padding-left: 55px;
+          padding-right: 10px;
+          line-height: 35px;
         }
       }
 
@@ -90,7 +98,7 @@ body, .site, #page {
         .product{
           margin-top: 7px;
           clear: none;
-          @media screen and (min-width: 1024px) {
+          @media screen and (min-width: 992px) {
             vertical-align: 10px;
           }
         }
@@ -98,7 +106,7 @@ body, .site, #page {
     }
     .actions,.cart{
       padding: 10px;
-      @media screen and (min-width: 1024px){
+      @media screen and (min-width: 992px){
         width: 50%;
         float: right;
         clear: none;
@@ -108,7 +116,7 @@ body, .site, #page {
         bottom: 0;
         margin-top: 15px;
         width: 100%;
-        @media screen and (min-width: 1024px) {
+        @media screen and (min-width: 992px) {
           float: left;
           margin-top: 20px;
           position: absolute;
@@ -127,7 +135,7 @@ body, .site, #page {
     }
     div.cart{
       display: none;
-      @media screen and (min-width: 1024px){
+      @media screen and (min-width: 992px){
         display: block;
       }
     }
