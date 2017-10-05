@@ -6,8 +6,7 @@ h1 {
 }
 
 body, .site, #page {
-  overflow: initial !important;
-  overflow-x: initial !important;
+  overflow: initial;
 }
 
 .cross-sell h1, .cross-sell h2, .cross-sell h3, .cross-sell h4 {
