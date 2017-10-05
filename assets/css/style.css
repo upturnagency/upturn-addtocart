@@ -5,6 +5,11 @@ h1 {
   display: none;
 }
 
+body, .site, #page {
+  overflow: initial !important;
+  overflow-x: initial !important;
+}
+
 .cross-sell h1, .cross-sell h2, .cross-sell h3, .cross-sell h4 {
   margin-top: 0;
 }
