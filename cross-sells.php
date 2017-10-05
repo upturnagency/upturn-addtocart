@@ -72,7 +72,10 @@
 		            ?>
                 </div>
             </div>
-            <div class="cross-sell-header bottom clearfix cf">
+            <?php
+            $class = ( get_option('upturn-useStickyHeader') != 'no' ) ? 'sticky-header' : '';
+            ?>
+            <div class="cross-sell-header bottom <?php echo $class; ?> clearfix cf">
 			    <?php
 
 			    $args = array(

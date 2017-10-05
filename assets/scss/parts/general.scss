@@ -62,10 +62,14 @@ body, .site, #page {
     &.bottom{
       margin-top: 0;
       border-top: 0;
-      position: sticky;
-      top: -1px;
+      position: relative;
       z-index: 11;
       margin-bottom: 10px;
+
+      &.sticky-header {
+        top: -1px;
+        position: sticky;
+      }
     }
     .item-info, .added-to-cart{
       background: #fafafa;

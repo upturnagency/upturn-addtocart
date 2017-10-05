@@ -63,11 +63,14 @@ body, .site, #page {
 .cross-sell-header.bottom {
   margin-top: 0;
   border-top: 0;
-  position: -webkit-sticky;
-  position: sticky;
-  top: -1px;
+  position: relative;
   z-index: 11;
   margin-bottom: 10px;
+}
+.cross-sell-header.bottom.sticky-header {
+  top: -1px;
+  position: -webkit-sticky;
+  position: sticky;
 }
 .cross-sell-header .item-info, .cross-sell-header .added-to-cart {
   background: #fafafa;

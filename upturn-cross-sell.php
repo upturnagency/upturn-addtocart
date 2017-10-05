@@ -128,6 +128,15 @@ function cross_sell_settings( $settings, $current_section ) {
 
         // Use our stylesheet
         $cross_sells_settings[] = array(
+            'name'     => __( 'Use sticky header', 'cross-sell' ),
+            'desc_tip' => __( '', 'cross-sell' ),
+            'id'       => 'upturn-useStickyHeader',
+            'type'    => 'checkbox',
+            'desc'     => __( 'Use sticky header on cross sell headeren', 'cross-sell' )
+        );
+
+        // Use our stylesheet
+        $cross_sells_settings[] = array(
             'name'     => __( 'Display go to cart button', 'cross-sell' ),
             'desc_tip' => __( '', 'cross-sell' ),
             'id'       => 'upturn-displayGoToCartButton',
