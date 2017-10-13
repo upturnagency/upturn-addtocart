@@ -72,7 +72,10 @@
 		            ?>
                 </div>
             </div>
-            <div class="cross-sell-header bottom clearfix cf">
+            <?php
+            $class = ( get_option('upturn-useStickyHeader') != 'no' ) ? 'sticky-header' : '';
+            ?>
+            <div class="cross-sell-header bottom <?php echo $class; ?> clearfix cf">
 			    <?php
 
 			    $args = array(
@@ -152,13 +155,18 @@
 		                    $added_text = esc_html__('You get free shipping on your order! ', 'woocommerce' );
                         }
 	                    print_r($added_text);
-
                     }
 
                     ?>
                     <div class="buttons">
+                      <?php
+                      if ( get_option( 'upturn-displayGoToCartButton' ) == 'yes' ) : ?>
                         <a href="<?php echo $woocommerce->cart->get_cart_url(); ?>" class="button btn cart"><?php echo __('Go to cart', 'cross-sell'); ?></a>
+                      <?php endif;
+
+                      if ( get_option( 'upturn-displayCheckoutButton' ) == 'yes' ) : ?>
                         <a href="<?php echo $woocommerce->cart->get_checkout_url(); ?>" class="button btn alt checkout"><?php echo __('Checkout', 'cross-sell'); ?></a>
+                      <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -170,21 +178,24 @@
 
             do_action('before_cross_sell_page');
 
-            $product_size = get_option('cross-sell-nr-of-products');
+            $get_products_per_row = get_option('upturn-products-per-row');
+            $products_per_row = !empty( $get_products_per_row ) ? $get_products_per_row : 3 ;
 
             for($i = 1; $i <= 4; $i++){
 
                 $location = "before_cross_sell_location_" . $i;
                 do_action($location);
 
-                if ( $i == get_option( 'cross-sell-products' ) ){
-                    upturn_cross_sell( $product_size );
-                } else if ( $i == get_option( 'best-sellers-site-wide' ) ){
-                    upturn_best_sellers_site_wide( $product_size );
-                } else if ( $i == get_option( 'new-products' ) ){
-                    upturn_new_products( $product_size );
-                } else if ( $i == get_option( 'sales-items' ) ){
-                    upturn_sales_items( $product_size );
+                if ( $i == get_option( 'upturn-cross-sell-products' ) ){
+                    upturn_cross_sell( $products_per_row );
+                } else if ( $i == get_option( 'upturn-best-sellers-site-wide' ) ){
+                    upturn_best_sellers_site_wide( $products_per_row );
+                } else if ( $i == get_option( 'upturn-new-products' ) ){
+                    upturn_new_products( $products_per_row );
+                } else if ( $i == get_option( 'upturn-sales-items' ) ){
+                    if(!empty(wc_get_product_ids_on_sale())){
+                        upturn_sales_items( $products_per_row );
+                    }
                 }
             }
 

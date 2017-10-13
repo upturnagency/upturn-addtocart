@@ -2,6 +2,10 @@ h1 {
   display: none;
 }
 
+body, .site, #page {
+  overflow: initial;
+}
+
 .cross-sell h1, .cross-sell h2, .cross-sell h3, .cross-sell h4 {
   margin-top: 0;
 }
@@ -22,10 +26,12 @@ h1 {
   background-repeat: no-repeat;
   float: left;
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 992px) {
   .cross-sell i.check {
     margin: 10px 10px 10px 10px;
-    width: 40px;
+    width: 35px;
+    height: 35px;
+    position: absolute;
   }
 }
 .cross-sell-header {
@@ -54,9 +60,13 @@ h1 {
 .cross-sell-header.bottom {
   margin-top: 0;
   border-top: 0;
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 11;
+  margin-bottom: 10px;
+}
+.cross-sell-header.bottom.sticky-header {
+  top: -1px;
+  position: sticky;
 }
 .cross-sell-header .item-info, .cross-sell-header .added-to-cart {
   background: #fafafa;
@@ -65,7 +75,7 @@ h1 {
   border-right: 1px solid #eee;
   width: 100%;
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 992px) {
   .cross-sell-header .item-info, .cross-sell-header .added-to-cart {
     width: 50%;
   }
@@ -74,9 +84,14 @@ h1 {
   margin-top: 15px;
   text-align: center;
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 992px) {
   .cross-sell-header .item-info h3, .cross-sell-header .added-to-cart h3 {
     text-align: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 55px;
+    padding-right: 10px;
+    line-height: 35px;
   }
 }
 .cross-sell-header .item-info--text, .cross-sell-header .added-to-cart--text {
@@ -88,7 +103,7 @@ h1 {
   margin-top: 7px;
   clear: none;
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 992px) {
   .cross-sell-header .item-info--text .product, .cross-sell-header .added-to-cart--text .product {
     vertical-align: 10px;
   }
@@ -96,7 +111,7 @@ h1 {
 .cross-sell-header .actions, .cross-sell-header .cart {
   padding: 10px;
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 992px) {
   .cross-sell-header .actions, .cross-sell-header .cart {
     width: 50%;
     float: right;
@@ -108,7 +123,7 @@ h1 {
   margin-top: 15px;
   width: 100%;
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 992px) {
   .cross-sell-header .actions .buttons, .cross-sell-header .cart .buttons {
     float: left;
     margin-top: 20px;
@@ -126,7 +141,7 @@ h1 {
 .cross-sell-header div.cart {
   display: none;
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 992px) {
   .cross-sell-header div.cart {
     display: block;
   }

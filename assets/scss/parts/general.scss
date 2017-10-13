@@ -2,6 +2,10 @@ h1{
   display: none;
 }
 
+body, .site, #page {
+  overflow: initial;
+}
+
 .cross-sell {
   h1,h2,h3,h4{
     margin-top: 0;
@@ -24,9 +28,11 @@ h1{
     background-position: center;
     background-repeat: no-repeat;
     float: left;
-    @media screen and (min-width: 1024px){
+    @media screen and (min-width: 992px){
       margin: 10px 10px 10px 10px;
-      width: 40px;
+      width: 35px;
+      height: 35px;
+      position: absolute;
     }
   }
   &-header {
@@ -56,25 +62,35 @@ h1{
     &.bottom{
       margin-top: 0;
       border-top: 0;
-      position: sticky;
-      top: 0;
+      position: relative;
       z-index: 11;
+      margin-bottom: 10px;
+
+      &.sticky-header {
+        top: -1px;
+        position: sticky;
+      }
     }
-    .item-info,.added-to-cart{
+    .item-info, .added-to-cart{
       background: #fafafa;
       height: 100%;
       float: left;
       border-right: 1px solid #eee;
       width: 100%;
-      @media screen and (min-width: 1024px){
+      @media screen and (min-width: 992px){
         width: 50%;
       }
 
       h3{
         margin-top: 15px;
         text-align: center;
-        @media screen and (min-width: 1024px){
+        @media screen and (min-width: 992px){
           text-align: left;
+          margin-top: 10px;
+          margin-bottom: 10px;
+          padding-left: 55px;
+          padding-right: 10px;
+          line-height: 35px;
         }
       }
 
@@ -86,7 +102,7 @@ h1{
         .product{
           margin-top: 7px;
           clear: none;
-          @media screen and (min-width: 1024px) {
+          @media screen and (min-width: 992px) {
             vertical-align: 10px;
           }
         }
@@ -94,7 +110,7 @@ h1{
     }
     .actions,.cart{
       padding: 10px;
-      @media screen and (min-width: 1024px){
+      @media screen and (min-width: 992px){
         width: 50%;
         float: right;
         clear: none;
@@ -104,7 +120,7 @@ h1{
         bottom: 0;
         margin-top: 15px;
         width: 100%;
-        @media screen and (min-width: 1024px) {
+        @media screen and (min-width: 992px) {
           float: left;
           margin-top: 20px;
           position: absolute;
@@ -123,7 +139,7 @@ h1{
     }
     div.cart{
       display: none;
-      @media screen and (min-width: 1024px){
+      @media screen and (min-width: 992px){
         display: block;
       }
     }
