@@ -32,19 +32,19 @@ function upturn_add_to_cart_redirect($id) {
 }
 add_filter( 'woocommerce_add_to_cart_redirect', 'upturn_add_to_cart_redirect' );
 
-function appendStylesheet(){
+function appendStylesheetATC(){
     $plugin_url = plugin_dir_url( __FILE__ );
     $slug = get_option( 'cross-sell-page' );
 
     if(useUpturnStyle() && is_page($slug)){
         wp_enqueue_style( 'upturn-addtocart-style', $plugin_url . 'assets/css/style.css' );
-        wp_enqueue_style( 'custom-user-style', $plugin_url . 'assets/css/custom.css' );
+        wp_enqueue_style( 'custom-addto-cart-user-style', $plugin_url . 'assets/css/custom.css' );
     } else {
-        wp_enqueue_style( 'custom-user-style', $plugin_url . 'assets/css/custom.css' );
+        wp_enqueue_style( 'custom-addto-cart-user-style', $plugin_url . 'assets/css/custom.css' );
     }
 }
 
-add_action( 'wp_enqueue_scripts', 'appendStylesheet' );
+add_action( 'wp_enqueue_scripts', 'appendStylesheetATC' );
 
 function useUpturnStyle() {
     $temp = get_option( 'use-upturn-stylesheet' );
