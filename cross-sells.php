@@ -166,6 +166,10 @@
 
                       if ( get_option( 'upturn-displayCheckoutButton' ) == 'yes' ) : ?>
                         <a href="<?php echo $woocommerce->cart->get_checkout_url(); ?>" class="button btn alt checkout"><?php echo __('Checkout', 'cross-sell'); ?></a>
+                      <?php endif;
+
+                      if ( get_option( 'upturn-displayGoToShopButton' ) == 'yes' ) : ?>
+                        <a href="<?php echo get_permalink( woocommerce_get_page_id('shop')); ?>" class="button btn black alt gotoshop"><?php echo __('Go to shop', 'cross-sell'); ?></a>
                       <?php endif; ?>
                     </div>
                 </div>

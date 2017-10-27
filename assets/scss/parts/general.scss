@@ -130,8 +130,14 @@ body, .site, #page {
         .button{
           width: auto;
           float: left;
+          padding: 10px;
+          margin-bottom: 10px;
 
           &.cart{
+            margin-right: 10px;
+          }
+
+          &.checkout {
             margin-right: 10px;
           }
         }
