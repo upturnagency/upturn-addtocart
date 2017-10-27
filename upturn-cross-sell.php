@@ -135,7 +135,7 @@ function cross_sell_settings( $settings, $current_section ) {
             'desc'     => __( 'Use sticky header on cross sell headeren', 'cross-sell' )
         );
 
-        // Use our stylesheet
+        // Display go to cart button on cross sells page
         $cross_sells_settings[] = array(
             'name'     => __( 'Display go to cart button', 'cross-sell' ),
             'desc_tip' => __( '', 'cross-sell' ),
@@ -144,13 +144,22 @@ function cross_sell_settings( $settings, $current_section ) {
             'desc'     => __( 'Display go to cart button on cross sells page', 'cross-sell' )
         );
 
-        // Use our stylesheet
+        // Display checkout button on cross sells page
         $cross_sells_settings[] = array(
             'name'     => __( 'Display checkout button', 'cross-sell' ),
             'desc_tip' => __( '', 'cross-sell' ),
             'id'       => 'upturn-displayCheckoutButton',
             'type'    => 'checkbox',
             'desc'     => __( 'Display checkout button on cross sells page', 'cross-sell' )
+        );
+
+        // Display shop more button on cross sells page
+        $cross_sells_settings[] = array(
+            'name'     => __( 'Display go to shop button', 'cross-sell' ),
+            'desc_tip' => __( '', 'cross-sell' ),
+            'id'       => 'upturn-displayGoToShopButton',
+            'type'    => 'checkbox',
+            'desc'     => __( 'Display go to shop button on cross sells page', 'cross-sell' )
         );
 
         // Add custom page
