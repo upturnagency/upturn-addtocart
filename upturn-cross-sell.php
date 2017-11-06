@@ -263,27 +263,27 @@ function cross_sell_settings( $settings, $current_section ) {
     }
 }
 
-function upturn_cross_sell( $size ) {
+function upturn_cross_sell( $size, $gender ) {
     echo '<div class="woocommerce columns-' . $size . '">';
         woocommerce_cross_sell_display($size, $size, "rand");
     echo '</div>';
 }
 
-function upturn_best_sellers_site_wide( $size ){
+function upturn_best_sellers_site_wide( $size, $gender ){
     echo "<h2>" . __( 'Our best sellers', 'cross-sell' ) . "</h2>";
-    $shortcode = '[best_selling_products columns="' . $size . '" per_page="' . $size . '"]';
+    $shortcode = '[best_selling_products columns="' . $size . '" per_page="' . $size . '" category="'.$gender.'"]';
     echo do_shortcode($shortcode);
 }
 
-function upturn_new_products( $size ){
+function upturn_new_products( $size, $gender ){
     echo "<h2>" . __( 'New products', 'cross-sell' ) . "</h2>";
-    $shortcode = '[recent_products columns="' . $size . '" per_page="' . $size . '"]';
+    $shortcode = '[recent_products columns="' . $size . '" per_page="' . $size . '" category="'.$gender.'"]';
     echo do_shortcode($shortcode);
 }
 
-function upturn_sales_items( $size ){
+function upturn_sales_items( $size, $gender ){
     echo "<h2>" . __( 'Sales items', 'cross-sell' ) . "</h2>";
-    $shortcode = '[sale_products columns="' . $size . '" per_page="' . $size . '"]';
+    $shortcode = '[sale_products columns="' . $size . '" per_page="' . $size . '" category="'.$gender.'"]';
     echo do_shortcode($shortcode);
 }
 

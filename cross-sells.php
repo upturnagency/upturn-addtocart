@@ -184,6 +184,19 @@
 
             $get_products_per_row = get_option('upturn-products-per-row');
             $products_per_row = !empty( $get_products_per_row ) ? $get_products_per_row : 3 ;
+            $men = get_option('upturn-parent-category-men');
+            $women = get_option('upturn-parent-category-women');
+            $gender = $GLOBALS['upturn_gender'];
+
+            if ( $gender == '1' ) {
+	            $cat = get_term_by('slug', $men, 'product_cat');
+	            $catid = $cat->term_id;
+	            $catname = $men;
+            } elseif ( $gender == '2' ) {
+	            $cat = get_term_by('slug', $women, 'product_cat');
+	            $catid = $cat->term_id;
+	            $catname = $women;
+            }
 
             for($i = 1; $i <= 4; $i++){
 
@@ -191,14 +204,14 @@
                 do_action($location);
 
                 if ( $i == get_option( 'upturn-cross-sell-products' ) ){
-                    upturn_cross_sell( $products_per_row );
+                    upturn_cross_sell( $products_per_row, $catname );
                 } else if ( $i == get_option( 'upturn-best-sellers-site-wide' ) ){
-                    upturn_best_sellers_site_wide( $products_per_row );
+                    upturn_best_sellers_site_wide( $products_per_row, $catname );
                 } else if ( $i == get_option( 'upturn-new-products' ) ){
-                    upturn_new_products( $products_per_row );
+                    upturn_new_products( $products_per_row, $catname );
                 } else if ( $i == get_option( 'upturn-sales-items' ) ){
                     if(!empty(wc_get_product_ids_on_sale())){
-                        upturn_sales_items( $products_per_row );
+                        upturn_sales_items( $products_per_row, $catname );
                     }
                 }
             }
