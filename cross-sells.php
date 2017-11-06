@@ -9,6 +9,20 @@
 	    $timeleft = $time + $expire_time;
 	    $current = time();
 
+	    $men = get_option('upturn-parent-category-men');
+	    $women = get_option('upturn-parent-category-women');
+	    $gender = $GLOBALS['upturn_gender'];
+
+	    if ( $gender == '1' ) {
+		    $cat = get_term_by('slug', $men, 'product_cat');
+		    $catid = $cat->term_id;
+		    $catname = $men;
+	    } elseif ( $gender == '2' ) {
+		    $cat = get_term_by('slug', $women, 'product_cat');
+		    $catid = $cat->term_id;
+		    $catname = $women;
+	    }
+
 	    if(!empty($expire_time)):
 	    ?>
             <script type="text/javascript">
@@ -169,7 +183,7 @@
                       <?php endif;
 
                       if ( get_option( 'upturn-displayGoToShopButton' ) == 'yes' ) : ?>
-                        <a href="<?php echo get_permalink( woocommerce_get_page_id('shop')); ?>" class="button btn black alt gotoshop"><?php echo __('Go to shop', 'cross-sell'); ?></a>
+                        <a href="<?php echo get_category_link( $catid ); ?>" class="button btn black alt gotoshop"><?php echo __('Go to shop', 'cross-sell'); ?></a>
                       <?php endif; ?>
                     </div>
                 </div>
@@ -184,19 +198,7 @@
 
             $get_products_per_row = get_option('upturn-products-per-row');
             $products_per_row = !empty( $get_products_per_row ) ? $get_products_per_row : 3 ;
-            $men = get_option('upturn-parent-category-men');
-            $women = get_option('upturn-parent-category-women');
-            $gender = $GLOBALS['upturn_gender'];
 
-            if ( $gender == '1' ) {
-	            $cat = get_term_by('slug', $men, 'product_cat');
-	            $catid = $cat->term_id;
-	            $catname = $men;
-            } elseif ( $gender == '2' ) {
-	            $cat = get_term_by('slug', $women, 'product_cat');
-	            $catid = $cat->term_id;
-	            $catname = $women;
-            }
 
             for($i = 1; $i <= 4; $i++){
 
