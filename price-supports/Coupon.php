@@ -15,6 +15,7 @@ interface Coupon {
   public function getCondition();
 
   //Initiating coupon in woocommerce
+  public function setCouponCode();
   public function setCoupon();
 }
 ?>

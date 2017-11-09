@@ -18,9 +18,9 @@
   	return $array;
   }
 
-  $price = new Price(23);
-  $product = new Product(20);
-  $product2 = new Product(10);
+  $price = new Price(23, 15);
+  $product = new Product(20, 15, 3233);
+  $product2 = new Product(10, 15, 3423);
 
   $items = array($product, $price);
 

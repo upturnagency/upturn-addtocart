@@ -5,8 +5,11 @@ class Price implements Coupon {
   private $discount = null;
   private $coupon_code = null;
 
-  function __construct($condition) {
+  function __construct($condition, $discount) {
     $this->condition = $condition;
+    $this->discount = $discount;
+
+    //setCouponCode();
   }
 
   public function getButtonState(){
@@ -29,12 +32,30 @@ class Price implements Coupon {
     return $this->condition;
   }
 
-  public function setCouponCode($coupon_code){
-    $this->coupon_code = $coupon_code;
+  public function setCouponCode(){
+    $this->coupon_code = "Hello";
   }
 
   public function setCoupon(){
+    $coupon = array(
+    	'post_title' => $this->coupon_code,
+    	'post_content' => '',
+    	'post_status' => 'publish',
+    	'post_author' => 1,
+    	'post_type'		=> 'shop_coupon'
+    );
 
+    $new_coupon_id = wp_insert_post( $coupon );
+
+    update_post_meta( $new_coupon_id, 'discount_type', 'fixed_cart' );
+    update_post_meta( $new_coupon_id, 'coupon_amount', $this->discount );
+    update_post_meta( $new_coupon_id, 'individual_use', 'no' );
+    update_post_meta( $new_coupon_id, 'product_ids', '' );
+    update_post_meta( $new_coupon_id, 'exclude_product_ids', '' );
+    update_post_meta( $new_coupon_id, 'usage_limit', '' );
+    update_post_meta( $new_coupon_id, 'expiry_date', '' ); // set to an hour!
+    update_post_meta( $new_coupon_id, 'apply_before_tax', 'yes' );
+    update_post_meta( $new_coupon_id, 'free_shipping', 'no' );
   }
 }
 ?>
