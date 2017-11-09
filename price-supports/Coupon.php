@@ -12,7 +12,6 @@ interface Coupon {
   public function getType();
 
   //Used to set price condition of cart.
-  public function setCondition($condition);
   public function getCondition();
 
   //Initiating coupon in woocommerce
