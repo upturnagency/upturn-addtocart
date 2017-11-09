@@ -5,10 +5,17 @@
   require 'price-supports/Price.php';
   require 'price-supports/Product.php';
 
+  $price = new Price(23);
+  $product = new Product(20);
+  $product2 = new Product(10);
 
-  $price = new Price("test");
-  echo $price->rendurHTML();
+  $items = array($price, $product);
 
-  $product = new Product("Hello");
-  echo $product->rendurHTML();
+  $items[] = $product2;
+
+  
+
+  foreach($items as $item){
+    echo $item->rendurHTML();
+  }
 ?>

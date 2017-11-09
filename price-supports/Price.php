@@ -30,5 +30,9 @@ class Price implements Coupon {
   public function getCondition(){
     return $this->condition;
   }
+
+  public function setCoupon(){
+    
+  }
 }
 ?>
