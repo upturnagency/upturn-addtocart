@@ -1,29 +1,34 @@
 <?php
 class Price implements Coupon {
-  $button = true;
-  $condition;
+  private $buttonIsActive = true;
+  private $condition = null;
 
-  public function getButtonState(){
-    return $this.button;
+  function __construct($condition) {
+    $this->condition = $condition;
   }
 
-  public function setButtonState($bool){
-    $this.button = $bool;
+  public function getButtonState(){
+    return $this->buttonIsActive;
+  }
+
+  public function setButtonState($buttonIsActive){
+    $this->buttonIsActive = $buttonIsActive;
   }
 
   public function rendurHTML(){
-    echo '<h1> hello world! </h1>';
+    return '<h2>' . $this->condition . '</h2>';
   }
 
   public function getType(){
     return 'Price';
   }
 
-  public function setCondition($var){
-    $this.condition = $var;
+  public function setCondition($condition){
+    $this->condition = $condition;
   }
 
   public function getCondition(){
-    return $this.condition;
+    return $this->condition;
   }
 }
+?>

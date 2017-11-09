@@ -191,9 +191,9 @@
 	    <?php else: ?>
             <h1>This isn't the page for you.</h1>
 	    <?php endif; ?>
+        <?php do_action('coupon_factory'); ?>
         <div class="cross-sell-wrap">
             <?php
-
             do_action('before_cross_sell_page');
 
             $get_products_per_row = get_option('upturn-products-per-row');

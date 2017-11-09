@@ -1,10 +1,9 @@
 <?php
 
 interface Coupon {
-
   // Used to disable and able buttons when others are pressed
+  public function setButtonState($condition);
   public function getButtonState();
-  public function setButtonState();
 
   //Used to rendur HTML to the page for every item.
   public function rendurHTML();
@@ -13,6 +12,7 @@ interface Coupon {
   public function getType();
 
   //Used to set price condition of cart.
-  public function setCondition();
+  public function setCondition($condition);
   public function getCondition();
 }
+?>

@@ -100,7 +100,6 @@ add_action('init', 'add_to_cart_shortcode');
  */
 add_filter( 'woocommerce_get_settings_products', 'cross_sell_settings', 10, 2 );
 function cross_sell_settings( $settings, $current_section ) {
-
     if ( $current_section == 'cross_sell' ) {
         $cross_sells_settings = array();
         // Add Title to the Settings
@@ -244,23 +243,54 @@ function cross_sell_settings( $settings, $current_section ) {
             ),
             'desc'     => __( 'Enable sales items', 'cross-sell' ),
         );
-	    $cross_sells_settings[] = array(
-		    'name'     => __( 'Cart expire time', 'cross-sell' ),
-		    'desc_tip' => __( 'You can leave this blank if you dont want a cart countdown', 'cross-sell' ),
-		    'id'       => 'upturn_expire_time',
-		    'type'    => 'number',
-		    'desc'     => __( 'minutes.', 'cross-sell' ),
-	    );
+  	    $cross_sells_settings[] = array(
+  		    'name'     => __( 'Cart expire time', 'cross-sell' ),
+  		    'desc_tip' => __( 'You can leave this blank if you dont want a cart countdown', 'cross-sell' ),
+  		    'id'       => 'upturn_expire_time',
+  		    'type'    => 'number',
+  		    'desc'     => __( 'minutes.', 'cross-sell' ),
+  	    );
+
+        $cross_sells_settings[] = array(
+          'name'     => __( 'Use coupon factory', 'cross-sell' ),
+          'desc_tip' => __( 'Go to Coupon Factory in the admin panel on the left. This requires ACF!', 'cross-sell' ),
+          'id'       => 'upturn-couponFactory',
+          'type'    => 'checkbox',
+          'desc'     => __( 'Use coupon factory on cross sell page', 'cross-sell' )
+        );
 
         $cross_sells_settings[] = array( 'type' => 'sectionend', 'id' => 'wcslider' );
         return $cross_sells_settings;
-
-        /**
-         * If not, return the standard settings
-         **/
     } else {
         return $settings;
     }
+}
+
+add_action('acf/init', 'init_coupon_page');
+function init_coupon_page(){
+  if ( function_exists( 'acf_add_options_page' )) {
+    if(get_option('upturn-couponFactory') != 'no'){
+      $coupon_options = 'coupon_factory_options';
+      acf_add_options_page(
+        [
+          'page_title' => __( 'Coupon Factory', 'cross-sell' ),
+          'menu_title' => __( 'Coupon Factory', 'cross-sell' ),
+          'desc'       => 'This is a test',
+          'menu_slug'  => $coupon_options,
+          'capability' => 'edit_posts',
+          'icon_url'   => 'dashicons-welcome-view-site',
+          'redirect'   => false,
+        ]
+      );
+    }
+  }
+}
+
+add_action('coupon_factory', 'require_coupon_factory_file');
+function require_coupon_factory_file(){
+  if(get_option('upturn-couponFactory') != 'no'){
+      require_once 'coupon-factory.php';
+  }
 }
 
 function upturn_cross_sell( $size, $gender ) {
