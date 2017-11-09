@@ -1,9 +1,10 @@
 <?php
 class Price implements Coupon {
   $button = true;
+  $condition;
 
   public function getButtonState(){
-    require $button;
+    return $this.button;
   }
 
   public function setButtonState($bool){
@@ -16,5 +17,13 @@ class Price implements Coupon {
 
   public function getType(){
     return 'Price';
+  }
+
+  public function setCondition($var){
+    $this.condition = $var;
+  }
+
+  public function getCondition(){
+    return $this.condition;
   }
 }

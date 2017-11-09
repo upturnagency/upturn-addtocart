@@ -2,6 +2,7 @@
 
 class Product implements Coupon {
   $button = true;
+  $condition;
 
   public function getButtonState(){
     require $button;
@@ -17,5 +18,13 @@ class Product implements Coupon {
 
   public function getType(){
     return 'Product';
+  }
+
+  public function setCondition( $var ){
+    $this.condition = $var;
+  }
+
+  public function getCondition(){
+    return $this.condition;
   }
 }
