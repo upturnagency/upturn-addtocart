@@ -1,3 +1,48 @@
-
+.coupon-factory {
+  display: block;
+}
+.coupon-factory ul {
+  list-style: none;
+  padding: 0;
+}
+.coupon-factory ul li {
+  width: auto;
+  display: inline-block;
+  text-align: center;
+}
+.coupon-factory ul li a {
+  text-decoration: none;
+  color: black;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.coupon-factory ul li.canNotBeUsed {
+  opacity: 0.6;
+}
+.coupon-factory ul li.canNotBeUsed a {
+  pointer-events: none;
+  cursor: default;
+}
+.coupon-factory ul li.cf-discount {
+  vertical-align: top;
+  padding: 1rem;
+  margin-right: 1rem;
+  border-radius: 15px;
+  min-width: 230px;
+  background-color: #cfcfcf;
+}
+.coupon-factory ul li.cf-discount strong {
+  font-size: 2.5rem;
+  margin: 0.5rem 0;
+  display: block;
+  margin-bottom: 15px;
+  color: red;
+}
+.coupon-factory ul li.cf-discount span {
+  margin-top: 5px;
+  width: 100%;
+  display: block;
+}
 
 /*# sourceMappingURL=coupon-factory.css.map */

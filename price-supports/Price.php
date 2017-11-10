@@ -24,12 +24,12 @@ class Price implements Coupon {
     $active = $this->buttonIsActive ? 'active' : '';
 
     if($this->condition > $cart){
-      $have_enought_text = 'Du mangler ' . ($this->condition - $cart) . 'kr </br>for å få avslaget.';
+      $have_enought_text = 'Du mangler <b>' . ($this->condition - $cart) . 'kr</b>.';
     } else {
       $have_enought_text = 'Klikk for å aktivere';
     }
 
-    $HTML = '<li class="' . $active . $class . '"><a href="#">' .
+    $HTML = '<li class="' . $active . $class . ' cf-discount"><a href="#">' .
               '<strong>' . $this->discount . '%</strong> avslag på ordren din' .
               '<span>' . $have_enought_text . '</span>' .
             '</a></li>';

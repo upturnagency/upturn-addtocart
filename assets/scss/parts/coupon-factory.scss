@@ -1,0 +1,58 @@
+.coupon-factory {
+  display: block;
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      width: auto;
+      display: inline-block;
+      text-align: center;
+
+      a {
+        text-decoration: none;
+        color: black;
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      &.canNotBeUsed {
+        opacity: 0.6;
+
+        a {
+         pointer-events: none;
+         cursor: default;
+        }
+      }
+
+      &.cf-discount {
+        vertical-align: top;
+        padding: 1rem;
+        margin-right: 1rem;
+        border-radius: 15px;
+        min-width: 230px;
+        background-color: #cfcfcf;
+
+        strong {
+          font-size: 2.5rem;
+          margin: 0.5rem 0;
+          display: block;
+          margin-bottom: 15px;
+          color: red;
+        }
+
+        span {
+          margin-top: 5px;
+          width: 100%;
+          display: block;
+        }
+      }
+
+      &.cf-product {
+
+      }
+    }
+  }
+}

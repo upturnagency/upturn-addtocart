@@ -26,12 +26,12 @@ class Product implements Coupon {
     $product = wc_get_product( $this->product_id );
 
     if($this->condition > $cart){
-      $have_enought_text = 'Du mangler ' . ($this->condition - $cart) . 'kr for å motta dette produktet.';
+      $have_enought_text = 'Du mangler <b>' . ($this->condition - $cart) . 'kr</b>';
     } else {
       $have_enought_text = 'Klikk for å aktivere';
     }
 
-    $HTML = '<li class="' . $active .  $class . '"><a href="#">' .
+    $HTML = '<li class="' . $active .  $class . ' cf-product"><a href="#">' .
               'Få en ' . $product->get_title() . ' gratis.' .
               '<img src="' . $image[0] . '" data-id="' . $this->product_id . '">' .
               '<strong>Original pris: ' . $product->get_price_html() . '.</strong>' .
