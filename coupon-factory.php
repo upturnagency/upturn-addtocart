@@ -1,4 +1,8 @@
 <?php
+  // Woocommerce variables
+  global $woocommerce;
+  $cart_total = $woocommerce->cart->total;
+
   // Interface for coupon
   require 'price-supports/Coupon.php';
   // Classes for coupons
@@ -18,17 +22,25 @@
   	return $array;
   }
 
-  $price = new Price(23, 15);
-  $product = new Product(20, 15, 3233);
-  $product2 = new Product(10, 15, 3423);
+  // Object arrays for price and product
+  $product_coupons = $discount_coupons = array();
 
-  $items = array($product, $price);
+  // Checks if there are any product or discount coupons intitated
+  if( have_rows('cf_price_reduction', 'options') || have_rows('cf_product_reduction', 'options')):
+    while ( have_rows('cf_price_reduction', 'options') ) : the_row();
+      $condition = get_sub_field('cf_price_cart_total');
+      $discount = get_sub_field('cf_price_cart_reduction');
 
-  $items[] = $product2;
+      $discount_coupons[] = new Price($condition, $discount);
+    endwhile;
 
-  $sorted = bubble_sort_coupons($items);
+    while ( have_rows('cf_product_reduction', 'options') ) : the_row();
+      $condition = get_sub_field('cf_product_cart_total');
+      $product_id = get_sub_field('cf_product_selector');
 
-  foreach($sorted as $item){
-    echo $item->rendurHTML();
-  }
+      $product_coupons[] = new Product($condition, $product_id);
+    endwhile;
+  endif;
+
+
 ?>

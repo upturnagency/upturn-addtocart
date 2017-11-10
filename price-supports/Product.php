@@ -1,18 +1,16 @@
 <?php
 
 class Product implements Coupon {
-  private $buttonIsActive = true;
-  private $condition = null;
-  private $discount = null;
-  private $product_id = null;
-  private $coupon_code = null;
+  private $buttonIsActive = false;
+  private $condition;
+  //private $discount = null;
+  private $product_id;
+  private $coupon_code;
 
-  function __construct($condition, $discount, $product_id) {
+  function __construct($condition, $product_id) {
     $this->condition = $condition;
-    $this->discount = $discount;
+    //$this->discount = $discount;
     $this->product_id = $product_id;
-
-    //setCouponCode();
   }
 
   public function getButtonState(){
@@ -51,7 +49,7 @@ class Product implements Coupon {
     $new_coupon_id = wp_insert_post( $coupon );
 
     update_post_meta( $new_coupon_id, 'discount_type', 'percent_product' );
-    update_post_meta( $new_coupon_id, 'coupon_amount', $this->discount );
+    update_post_meta( $new_coupon_id, 'coupon_amount', 100 );
     update_post_meta( $new_coupon_id, 'individual_use', 'no' );
     update_post_meta( $new_coupon_id, 'product_ids', $this->product_id );
     update_post_meta( $new_coupon_id, 'exclude_product_ids', '' );

@@ -1,15 +1,14 @@
 <?php
 class Price implements Coupon {
-  private $buttonIsActive = true;
-  private $condition = null;
-  private $discount = null;
-  private $coupon_code = null;
+  private $buttonIsActive = false;
+  private $condition;
+  private $discount;
+  private $coupon_code;
+  private $internal_id;
 
   function __construct($condition, $discount) {
     $this->condition = $condition;
     $this->discount = $discount;
-
-    //setCouponCode();
   }
 
   public function getButtonState(){
