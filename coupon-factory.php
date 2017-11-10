@@ -2,10 +2,10 @@
   // Woocommerce variables
   global $woocommerce;
   $cart_total = $woocommerce->cart->subtotal;
-  //WC()->cart->subtotal;
 
   // Interface for coupon
   require 'price-supports/Coupon.php';
+
   // Classes for coupons
   require 'price-supports/Price.php';
   require 'price-supports/Product.php';
@@ -21,6 +21,17 @@
   		}
   	} while($swapped);
   	return $array;
+  }
+
+  function generateCouponCode() {
+    $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+
+    $coupongString = 'CF_';
+    for ($i = 0; $i < 15; $i++) {
+        $coupongString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $coupongString;
   }
 
   // Object arrays for price and product
@@ -51,11 +62,10 @@
       echo '<h4>Discount coupons</h4>';
       echo '<ul class="coupon-factory-discount">';
         foreach($discount_coupons as $coupon){
-          echo $coupon->rendurHTML($coupon->getCondition() < $cart_total);
+          echo $coupon->rendurHTML($cart_total);
 
           if($coupon->getButtonState() && $amount < 2){
-            $code = $product_coupons[0]->generateCouponCode();
-            $isset = $product_coupons[0]->setCoupon($code);
+            $isset = $product_coupons[0]->setCoupon(generateCouponCode());
 
             if($isset){
               $id = $product_coupons[0]->getProductId();
@@ -72,11 +82,10 @@
       echo '<h4>Product coupons</h4>';
       echo '<ul class="coupon-factory-products">';
         foreach($product_coupons as $coupon){
-          echo $coupon->rendurHTML($coupon->getCondition() < $cart_total);
+          echo $coupon->rendurHTML($cart_total);
 
           if($coupon->getButtonState() && $amount < 2){
-            $code = $product_coupons[0]->generateCouponCode();
-            $isset = $product_coupons[0]->setCoupon($code);
+            $isset = $product_coupons[0]->setCoupon(generateCouponCode());
 
             if($isset){
               $id = $product_coupons[0]->getProductId();

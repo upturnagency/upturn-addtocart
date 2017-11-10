@@ -19,18 +19,22 @@ class Price implements Coupon {
     $this->buttonIsActive = $buttonIsActive;
   }
 
-  public function rendurHTML($bool){
-    $class = $bool ? '' : 'canNotBeUsed';
+  public function rendurHTML($cart){
+    $class = $this->condition > $cart ? '' : 'canNotBeUsed';
     $active = $this->buttonIsActive ? 'active' : '';
-    $HTML = '<li class="' . $active . $class . '"><a href="#">' .
-              'Coupon for <strong>' . $this->discount . '%</strong> on your cart' .
+
+    if($this->condition > $cart){
+      $have_enought_text = 'Du mangler ' . ($this->condition - $cart) . 'kr for å motta denne kupongen.';
+    } else {
+      $have_enought_text = 'Klikk for å aktivere';
+    }
+
+    $HTML = '<li class="' . $active . " " .  $class . '"><a href="#">' .
+              'Kupong for <strong>' . $this->discount . '%</strong> på kassen din' .
+              '<span>' . $have_enought_text . '</span>' .
             '</a></li>';
 
     return $HTML;
-  }
-
-  public function getType(){
-    return 'Price';
   }
 
   public function getDiscountAmount(){
@@ -39,11 +43,6 @@ class Price implements Coupon {
 
   public function getCondition(){
     return $this->condition;
-  }
-
-  public function generateCouponCode(){
-    //TODO: implement random generator for coupon code. Add prefix so they are easily recodnisable.
-    return 'This-is-a-test-coupon-for-yall-one';
   }
 
   public function setCoupon($name){

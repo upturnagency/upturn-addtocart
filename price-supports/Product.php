@@ -18,16 +18,27 @@ class Product implements Coupon {
     $this->buttonIsActive = $buttonIsActive;
   }
 
-  public function rendurHTML($bool){
+  public function rendurHTML($cart){
     //TODO: implement HTML for product
-    $HTML = '<li>' .
-              $this->condition .
-            '</li>';
-    return $HTML;
-  }
+    $image = wp_get_attachment_image_src( get_post_thumbnail_id( $this->product_id ), 'thumbnail' );
+    $class = $this->condition > $cart ? '' : 'canNotBeUsed';
+    $active = $this->buttonIsActive ? 'active' : '';
+    $product = wc_get_product( $this->product_id );
 
-  public function getType(){
-    return 'Product';
+    if($this->condition > $cart){
+      $have_enought_text = 'Du mangler ' . ($this->condition - $cart) . 'kr for å motta dette produktet.';
+    } else {
+      $have_enought_text = 'Klikk for å aktivere';
+    }
+
+    $HTML = '<li class="' . $active . " " .  $class . '"><a href="#">' .
+              'Få en ' . $product->get_title() . ' gratis.' .
+              '<img src="' . $image[0] . '" data-id="' . $this->product_id . '">' .
+              '<strong>Original pris: ' . $product->get_price_html() . '.</strong>' .
+              '<span>' . $have_enought_text . '</span>' .
+            '</a></li>';
+
+    return $HTML;
   }
 
   public function getCondition(){
@@ -36,11 +47,6 @@ class Product implements Coupon {
 
   public function getProductId(){
     return $this->product_id;
-  }
-
-  public function generateCouponCode(){
-    //TODO: implement random generator for coupon code
-    return 'heeloThisisAdiscountCode';
   }
 
   public function setCoupon($name){
@@ -60,6 +66,7 @@ class Product implements Coupon {
     update_post_meta( $new_coupon_id, 'product_ids', $this->product_id );
     update_post_meta( $new_coupon_id, 'exclude_product_ids', '' );
     update_post_meta( $new_coupon_id, 'usage_limit', 1 );
+    update_post_meta( $new_coupon_id, 'limit_usage_to_x_items', 1 );
     update_post_meta( $new_coupon_id, 'expiry_date', '' ); // set to an hour!
     update_post_meta( $new_coupon_id, 'apply_before_tax', 'yes' );
     update_post_meta( $new_coupon_id, 'free_shipping', 'no' );

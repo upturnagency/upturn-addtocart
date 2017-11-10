@@ -6,16 +6,12 @@ interface Coupon {
   public function getButtonState();
 
   //Used to rendur HTML to the page for every item.
-  public function rendurHTML($bool);
-
-  //Used to initiate type of coupon.
-  public function getType();
+  public function rendurHTML($cart);
 
   //Used to set price condition of cart.
   public function getCondition();
 
   //Initiating coupon in woocommerce
-  public function generateCouponCode();
   public function setCoupon($name);
 }
 ?>
