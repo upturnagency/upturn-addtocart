@@ -56,6 +56,29 @@
   // TODO: Implement AJAX.
   ?>
   <div class="coupon-factory"><?php
+
+    $coupons_in_cart = $woocommerce->cart->get_coupons();
+    $count = 0;
+    $coupons_to_handle = array();
+    foreach($coupons_in_cart as $cartCoup){
+      if(substr( $cartCoup->code, 0, 3) == "cf_"){
+        $count++;
+        $coupons_to_handle[] = $cartCoup->code;
+      }
+    }
+
+    if(count($coupons_to_handle) > 1){
+      $trace = 0;
+      foreach($coupons_to_handle as $code){
+        if ($trace == 0){
+          $trace++;
+          continue;
+        } else {
+          $woocommerce->cart->remove_coupon( $code );
+        }
+      }
+    }
+
     $amount = 0;
 
     if(count($discount_coupons) > 0){
@@ -63,18 +86,18 @@
       echo '<ul class="coupon-factory-discount">';
         $discount_coupons = bubble_sort_coupons($discount_coupons);
         foreach($discount_coupons as $coupon){
-          echo $coupon->rendurHTML($cart_total);
-
-          if($coupon->getButtonState() && $amount < 2){
-            $isset = $product_coupons[0]->setCoupon(generateCouponCode());
+          if($coupon->getButtonState() && $amount < 1){
+            $code = generateCouponCode();
+            $isset = $coupon->setCoupon( $code );
 
             if($isset){
-              $id = $product_coupons[0]->getProductId();
-              $woocommerce->cart->add_to_cart( $id );
               $woocommerce->cart->add_discount( $code );
             }
+            echo 'innside';
             $amount++;
           }
+
+          echo $coupon->rendurHTML($cart_total);
         }
       echo '</ul>';
     }
@@ -84,18 +107,19 @@
       echo '<ul class="coupon-factory-products">';
         $product_coupons = bubble_sort_coupons($product_coupons);
         foreach($product_coupons as $coupon){
-          echo $coupon->rendurHTML($cart_total);
-
-          if($coupon->getButtonState() && $amount < 2){
-            $isset = $product_coupons[0]->setCoupon(generateCouponCode());
+          if($coupon->getButtonState() && $amount < 1){
+            $code = generateCouponCode();
+            $isset = $coupon->setCoupon( $code );
 
             if($isset){
-              $id = $product_coupons[0]->getProductId();
+              $id = $coupon->getProductId();
               $woocommerce->cart->add_to_cart( $id );
               $woocommerce->cart->add_discount( $code );
             }
             $amount++;
           }
+
+          echo $coupon->rendurHTML($cart_total);
         }
       echo '</ul>';
     }?>
