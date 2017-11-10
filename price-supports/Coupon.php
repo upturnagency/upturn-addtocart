@@ -8,7 +8,7 @@ interface Coupon {
   //Used to rendur HTML to the page for every item.
   public function rendurHTML($cart);
 
-  //Used to set price condition of cart.
+  //Used to get price condition of cart.
   public function getCondition();
 
   //Initiating coupon in woocommerce

@@ -1,44 +1,22 @@
 <?php
 
 class Product implements Coupon {
-  private $buttonIsActive = false;
+  private $buttonIsActive;
   private $condition;
   private $product_id;
 
   function __construct($condition, $product_id) {
     $this->condition = $condition;
     $this->product_id = $product_id;
-  }
-
-  public function getButtonState(){
-    return $this->buttonIsActive;
+    $this->buttonIsActive = false;
   }
 
   public function setButtonState($buttonIsActive){
     $this->buttonIsActive = $buttonIsActive;
   }
 
-  public function rendurHTML($cart){
-    //TODO: implement HTML for product
-    $image = wp_get_attachment_image_src( get_post_thumbnail_id( $this->product_id ), 'thumbnail' );
-    $class = $this->condition < $cart ? '' : 'canNotBeUsed';
-    $active = $this->buttonIsActive ? 'active' : '';
-    $product = wc_get_product( $this->product_id );
-
-    if($this->condition > $cart){
-      $have_enought_text = 'Du mangler <b>' . ($this->condition - $cart) . 'kr</b>';
-    } else {
-      $have_enought_text = 'Klikk for å aktivere';
-    }
-
-    $HTML = '<li class="' . $active .  $class . ' cf-product"><a href="#">' .
-              'Få ' . $product->get_title() . ' gratis.' .
-              '<img src="' . $image[0] . '" data-id="' . $this->product_id . '">' .
-              '<strong>Original pris: ' . $product->get_price_html() . '.</strong>' .
-              '<span>' . $have_enought_text . '</span>' .
-            '</a></li>';
-
-    return $HTML;
+  public function getButtonState(){
+    return $this->buttonIsActive;
   }
 
   public function getCondition(){
@@ -78,6 +56,28 @@ class Product implements Coupon {
     else :
       return false;
     endif;
+  }
+
+  public function rendurHTML($cart){
+    $image = wp_get_attachment_image_src( get_post_thumbnail_id( $this->product_id ), 'thumbnail' );
+    $class = $this->condition < $cart ? '' : 'canNotBeUsed';
+    $active = $this->buttonIsActive ? 'active' : '';
+    $product = wc_get_product( $this->product_id );
+
+    if($this->condition > $cart){
+      $have_enought_text = 'Du mangler <b>' . ($this->condition - $cart) . 'kr</b>';
+    } else {
+      $have_enought_text = 'Klikk for å aktivere';
+    }
+
+    $HTML = '<li class="' . $active .  $class . ' cf-product"><a href="#">' .
+              'Få ' . $product->get_title() . ' gratis.' .
+              '<img src="' . $image[0] . '" data-id="' . $this->product_id . '">' .
+              '<strong>Original pris: ' . $product->get_price_html() . '.</strong>' .
+              '<span>' . $have_enought_text . '</span>' .
+            '</a></li>';
+
+    return $HTML;
   }
 }
 ?>

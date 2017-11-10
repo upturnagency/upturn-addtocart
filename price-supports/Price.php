@@ -3,7 +3,6 @@ class Price implements Coupon {
   private $buttonIsActive;
   private $condition;
   private $discount;
-  private $internal_id;
 
   function __construct($condition, $discount) {
     $this->condition = $condition;
@@ -11,30 +10,12 @@ class Price implements Coupon {
     $this->buttonIsActive = false;
   }
 
-  public function getButtonState(){
-    return $this->buttonIsActive;
-  }
-
   public function setButtonState($buttonIsActive){
     $this->buttonIsActive = $buttonIsActive;
   }
 
-  public function rendurHTML($cart){
-    $class = $this->condition < $cart ? '' : 'canNotBeUsed';
-    $active = $this->buttonIsActive ? 'active' : '';
-
-    if($this->condition > $cart){
-      $have_enought_text = 'Du mangler <b>' . ($this->condition - $cart) . 'kr</b>.';
-    } else {
-      $have_enought_text = 'Klikk for å aktivere';
-    }
-
-    $HTML = '<li class="' . $active . $class . ' cf-discount"><a href="#">' .
-              '<strong>' . $this->discount . '%</strong> avslag på ordren din.' .
-              '<span>' . $have_enought_text . '</span>' .
-            '</a></li>';
-
-    return $HTML;
+  public function getButtonState(){
+    return $this->buttonIsActive;
   }
 
   public function getDiscountAmount(){
@@ -73,7 +54,24 @@ class Price implements Coupon {
     else :
       return false;
     endif;
+  }
 
+  public function rendurHTML($cart){
+    $class = $this->condition < $cart ? '' : 'canNotBeUsed';
+    $active = $this->buttonIsActive ? 'active' : '';
+
+    if($this->condition > $cart){
+      $have_enought_text = 'Du mangler <b>' . ($this->condition - $cart) . 'kr</b>.';
+    } else {
+      $have_enought_text = 'Klikk for å aktivere';
+    }
+
+    $HTML = '<li class="' . $active . $class . ' cf-discount"><a href="#">' .
+              '<strong>' . $this->discount . '%</strong> avslag på ordren din.' .
+              '<span>' . $have_enought_text . '</span>' .
+            '</a></li>';
+
+    return $HTML;
   }
 }
 ?>
