@@ -18,7 +18,8 @@ class Product implements Coupon {
     $this->buttonIsActive = $buttonIsActive;
   }
 
-  public function rendurHTML(){
+  public function rendurHTML($bool){
+    //TODO: implement HTML for product
     $HTML = '<li>' .
               $this->condition .
             '</li>';
@@ -38,6 +39,7 @@ class Product implements Coupon {
   }
 
   public function generateCouponCode(){
+    //TODO: implement random generator for coupon code
     return 'heeloThisisAdiscountCode';
   }
 

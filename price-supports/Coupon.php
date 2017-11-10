@@ -6,7 +6,7 @@ interface Coupon {
   public function getButtonState();
 
   //Used to rendur HTML to the page for every item.
-  public function rendurHTML();
+  public function rendurHTML($bool);
 
   //Used to initiate type of coupon.
   public function getType();

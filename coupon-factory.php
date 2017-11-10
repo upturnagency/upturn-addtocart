@@ -31,22 +31,18 @@
     while ( have_rows('cf_price_reduction', 'options') ) : the_row();
       $condition = get_sub_field('cf_price_cart_total');
       $discount = get_sub_field('cf_price_cart_reduction');
-
-      if($condition < $cart_total){
-          $discount_coupons[] = new Price($condition, $discount);
-      }
+      $discount_coupons[] = new Price($condition, $discount);
     endwhile;
 
     while ( have_rows('cf_product_reduction', 'options') ) : the_row();
       $condition = get_sub_field('cf_product_cart_total');
       $product_id = get_sub_field('cf_product_selector');
-
-      if($condition < $cart_total){
-          $product_coupons[] = new Product($condition, $product_id);
-      }
+      $product_coupons[] = new Product($condition, $product_id);
     endwhile;
   endif;
+
   //Ajax should start here!
+  // TODO: Implement AJAX.
   ?>
   <div class="coupon-factory"><?php
     $amount = 0;
@@ -55,8 +51,8 @@
       echo '<h4>Discount coupons</h4>';
       echo '<ul class="coupon-factory-discount">';
         foreach($discount_coupons as $coupon){
-          echo $coupon->rendurHTML();
-          
+          echo $coupon->rendurHTML($coupon->getCondition() < $cart_total);
+
           if($coupon->getButtonState() && $amount < 2){
             $code = $product_coupons[0]->generateCouponCode();
             $isset = $product_coupons[0]->setCoupon($code);
@@ -76,7 +72,7 @@
       echo '<h4>Product coupons</h4>';
       echo '<ul class="coupon-factory-products">';
         foreach($product_coupons as $coupon){
-          echo $coupon->rendurHTML();
+          echo $coupon->rendurHTML($coupon->getCondition() < $cart_total);
 
           if($coupon->getButtonState() && $amount < 2){
             $code = $product_coupons[0]->generateCouponCode();

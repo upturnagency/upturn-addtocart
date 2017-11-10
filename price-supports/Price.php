@@ -19,9 +19,10 @@ class Price implements Coupon {
     $this->buttonIsActive = $buttonIsActive;
   }
 
-  public function rendurHTML(){
+  public function rendurHTML($bool){
+    $class = $bool ? '' : 'canNotBeUsed';
     $active = $this->buttonIsActive ? 'active' : '';
-    $HTML = '<li class="' . $active . '"><a href="#">' .
+    $HTML = '<li class="' . $active . $class . '"><a href="#">' .
               'Coupon for <strong>' . $this->discount . '%</strong> on your cart' .
             '</a></li>';
 
@@ -41,6 +42,7 @@ class Price implements Coupon {
   }
 
   public function generateCouponCode(){
+    //TODO: implement random generator for coupon code. Add prefix so they are easily recodnisable.
     return 'This-is-a-test-coupon-for-yall-one';
   }
 
