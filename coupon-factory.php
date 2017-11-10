@@ -49,11 +49,25 @@
   //Ajax should start here!
   ?>
   <div class="coupon-factory"><?php
+    $amount = 0;
+
     if(count($discount_coupons) > 0){
       echo '<h4>Discount coupons</h4>';
       echo '<ul class="coupon-factory-discount">';
         foreach($discount_coupons as $coupon){
           echo $coupon->rendurHTML();
+          
+          if($coupon->getButtonState() && $amount < 2){
+            $code = $product_coupons[0]->generateCouponCode();
+            $isset = $product_coupons[0]->setCoupon($code);
+
+            if($isset){
+              $id = $product_coupons[0]->getProductId();
+              $woocommerce->cart->add_to_cart( $id );
+              $woocommerce->cart->add_discount( $code );
+            }
+            $amount++;
+          }
         }
       echo '</ul>';
     }
@@ -63,6 +77,18 @@
       echo '<ul class="coupon-factory-products">';
         foreach($product_coupons as $coupon){
           echo $coupon->rendurHTML();
+
+          if($coupon->getButtonState() && $amount < 2){
+            $code = $product_coupons[0]->generateCouponCode();
+            $isset = $product_coupons[0]->setCoupon($code);
+
+            if($isset){
+              $id = $product_coupons[0]->getProductId();
+              $woocommerce->cart->add_to_cart( $id );
+              $woocommerce->cart->add_discount( $code );
+            }
+            $amount++;
+          }
         }
       echo '</ul>';
     }?>

@@ -1,14 +1,14 @@
 <?php
 class Price implements Coupon {
-  private $buttonIsActive = false;
+  private $buttonIsActive;
   private $condition;
   private $discount;
-  private $coupon_code;
   private $internal_id;
 
   function __construct($condition, $discount) {
     $this->condition = $condition;
     $this->discount = $discount;
+    $this->buttonIsActive = false;
   }
 
   public function getButtonState(){
@@ -20,9 +20,11 @@ class Price implements Coupon {
   }
 
   public function rendurHTML(){
-    $HTML = '<li>' .
-              $this->condition .
-            '</li>';
+    $active = $this->buttonIsActive ? 'active' : '';
+    $HTML = '<li class="' . $active . '"><a href="#">' .
+              'Coupon for <strong>' . $this->discount . '%</strong> on your cart' .
+            '</a></li>';
+
     return $HTML;
   }
 
@@ -38,13 +40,13 @@ class Price implements Coupon {
     return $this->condition;
   }
 
-  public function setCouponCode(){
-    $this->coupon_code = "Hello";
+  public function generateCouponCode(){
+    return 'This-is-a-test-coupon-for-yall-one';
   }
 
-  public function setCoupon(){
+  public function setCoupon($name){
     $coupon = array(
-    	'post_title' => $this->coupon_code,
+    	'post_title' => $name,
     	'post_content' => '',
     	'post_status' => 'publish',
     	'post_author' => 1,
@@ -53,15 +55,24 @@ class Price implements Coupon {
 
     $new_coupon_id = wp_insert_post( $coupon );
 
-    update_post_meta( $new_coupon_id, 'discount_type', 'fixed_cart' );
+    update_post_meta( $new_coupon_id, 'discount_type', 'percent' );
     update_post_meta( $new_coupon_id, 'coupon_amount', $this->discount );
     update_post_meta( $new_coupon_id, 'individual_use', 'no' );
     update_post_meta( $new_coupon_id, 'product_ids', '' );
     update_post_meta( $new_coupon_id, 'exclude_product_ids', '' );
-    update_post_meta( $new_coupon_id, 'usage_limit', '' );
+    update_post_meta( $new_coupon_id, 'usage_limit', 1 );
     update_post_meta( $new_coupon_id, 'expiry_date', '' ); // set to an hour!
     update_post_meta( $new_coupon_id, 'apply_before_tax', 'yes' );
     update_post_meta( $new_coupon_id, 'free_shipping', 'no' );
+
+    $coupon_post = get_post($new_coupon_id);
+
+    if(!empty($coupon_post)) :
+      return true;
+    else :
+      return false;
+    endif;
+
   }
 }
 ?>
