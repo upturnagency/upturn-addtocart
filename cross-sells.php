@@ -191,7 +191,11 @@
 	    <?php else: ?>
             <h1>This isn't the page for you.</h1>
 	    <?php endif; ?>
-        <?php do_action('coupon_factory'); ?>
+        <?php
+          if(get_option('upturn-couponFactory') != 'no'){
+              require 'coupon-factory.php';
+          }
+        ?>
         <div class="cross-sell-wrap">
             <?php
             do_action('before_cross_sell_page');

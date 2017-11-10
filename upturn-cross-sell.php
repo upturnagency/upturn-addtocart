@@ -286,13 +286,6 @@ function init_coupon_page(){
   }
 }
 
-add_action('coupon_factory', 'require_coupon_factory_file');
-function require_coupon_factory_file(){
-  if(get_option('upturn-couponFactory') != 'no'){
-      require_once 'coupon-factory.php';
-  }
-}
-
 function upturn_cross_sell( $size, $gender ) {
     echo '<div class="woocommerce columns-' . $size . '">';
         woocommerce_cross_sell_display($size, $size, "rand");

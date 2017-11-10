@@ -22,7 +22,10 @@ class Product implements Coupon {
   }
 
   public function rendurHTML(){
-    return '<h2>' . $this->condition . '</h2>';
+    $HTML = '<li>' .
+              $this->condition .
+            '</li>';
+    return $HTML;
   }
 
   public function getType(){
@@ -31,6 +34,10 @@ class Product implements Coupon {
 
   public function getCondition(){
     return $this->condition;
+  }
+
+  public function getProductId(){
+    return $this->product_id;
   }
 
   public function setCouponCode(){

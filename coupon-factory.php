@@ -1,7 +1,8 @@
 <?php
   // Woocommerce variables
   global $woocommerce;
-  $cart_total = $woocommerce->cart->total;
+  $cart_total = $woocommerce->cart->subtotal;
+  //WC()->cart->subtotal;
 
   // Interface for coupon
   require 'price-supports/Coupon.php';
@@ -31,16 +32,39 @@
       $condition = get_sub_field('cf_price_cart_total');
       $discount = get_sub_field('cf_price_cart_reduction');
 
-      $discount_coupons[] = new Price($condition, $discount);
+      if($condition < $cart_total){
+          $discount_coupons[] = new Price($condition, $discount);
+      }
     endwhile;
 
     while ( have_rows('cf_product_reduction', 'options') ) : the_row();
       $condition = get_sub_field('cf_product_cart_total');
       $product_id = get_sub_field('cf_product_selector');
 
-      $product_coupons[] = new Product($condition, $product_id);
+      if($condition < $cart_total){
+          $product_coupons[] = new Product($condition, $product_id);
+      }
     endwhile;
   endif;
+  //Ajax should start here!
+  ?>
+  <div class="coupon-factory"><?php
+    if(count($discount_coupons) > 0){
+      echo '<h4>Discount coupons</h4>';
+      echo '<ul class="coupon-factory-discount">';
+        foreach($discount_coupons as $coupon){
+          echo $coupon->rendurHTML();
+        }
+      echo '</ul>';
+    }
 
-
-?>
+    if(count($product_coupons) > 0){
+      echo '<h4>Product coupons</h4>';
+      echo '<ul class="coupon-factory-products">';
+        foreach($product_coupons as $coupon){
+          echo $coupon->rendurHTML();
+        }
+      echo '</ul>';
+    }?>
+  </div>
+<?php ?>

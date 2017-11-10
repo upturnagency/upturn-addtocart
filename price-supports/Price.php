@@ -20,11 +20,18 @@ class Price implements Coupon {
   }
 
   public function rendurHTML(){
-    return '<h2>' . $this->condition . '</h2>';
+    $HTML = '<li>' .
+              $this->condition .
+            '</li>';
+    return $HTML;
   }
 
   public function getType(){
     return 'Price';
+  }
+
+  public function getDiscountAmount(){
+    return $this->discount;
   }
 
   public function getCondition(){
