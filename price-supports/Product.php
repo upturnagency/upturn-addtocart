@@ -21,7 +21,7 @@ class Product implements Coupon {
   public function rendurHTML($cart){
     //TODO: implement HTML for product
     $image = wp_get_attachment_image_src( get_post_thumbnail_id( $this->product_id ), 'thumbnail' );
-    $class = $this->condition > $cart ? '' : 'canNotBeUsed';
+    $class = $this->condition < $cart ? '' : 'canNotBeUsed';
     $active = $this->buttonIsActive ? 'active' : '';
     $product = wc_get_product( $this->product_id );
 
@@ -31,7 +31,7 @@ class Product implements Coupon {
       $have_enought_text = 'Klikk for å aktivere';
     }
 
-    $HTML = '<li class="' . $active . " " .  $class . '"><a href="#">' .
+    $HTML = '<li class="' . $active .  $class . '"><a href="#">' .
               'Få en ' . $product->get_title() . ' gratis.' .
               '<img src="' . $image[0] . '" data-id="' . $this->product_id . '">' .
               '<strong>Original pris: ' . $product->get_price_html() . '.</strong>' .

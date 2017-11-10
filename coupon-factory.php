@@ -59,7 +59,7 @@
     $amount = 0;
 
     if(count($discount_coupons) > 0){
-      echo '<h4>Discount coupons</h4>';
+      echo '<h4>Kasse kuponger</h4>';
       echo '<ul class="coupon-factory-discount">';
         foreach($discount_coupons as $coupon){
           echo $coupon->rendurHTML($cart_total);
@@ -79,7 +79,7 @@
     }
 
     if(count($product_coupons) > 0){
-      echo '<h4>Product coupons</h4>';
+      echo '<h4>Gratis produkter</h4>';
       echo '<ul class="coupon-factory-products">';
         foreach($product_coupons as $coupon){
           echo $coupon->rendurHTML($cart_total);

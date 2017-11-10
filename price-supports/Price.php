@@ -20,7 +20,7 @@ class Price implements Coupon {
   }
 
   public function rendurHTML($cart){
-    $class = $this->condition > $cart ? '' : 'canNotBeUsed';
+    $class = $this->condition < $cart ? '' : 'canNotBeUsed';
     $active = $this->buttonIsActive ? 'active' : '';
 
     if($this->condition > $cart){
@@ -29,7 +29,7 @@ class Price implements Coupon {
       $have_enought_text = 'Klikk for å aktivere';
     }
 
-    $HTML = '<li class="' . $active . " " .  $class . '"><a href="#">' .
+    $HTML = '<li class="' . $active . $class . '"><a href="#">' .
               'Kupong for <strong>' . $this->discount . '%</strong> på kassen din' .
               '<span>' . $have_enought_text . '</span>' .
             '</a></li>';
