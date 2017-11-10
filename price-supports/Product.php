@@ -32,7 +32,7 @@ class Product implements Coupon {
     }
 
     $HTML = '<li class="' . $active .  $class . ' cf-product"><a href="#">' .
-              'Få en ' . $product->get_title() . ' gratis.' .
+              'Få ' . $product->get_title() . ' gratis.' .
               '<img src="' . $image[0] . '" data-id="' . $this->product_id . '">' .
               '<strong>Original pris: ' . $product->get_price_html() . '.</strong>' .
               '<span>' . $have_enought_text . '</span>' .

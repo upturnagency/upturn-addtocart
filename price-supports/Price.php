@@ -30,7 +30,7 @@ class Price implements Coupon {
     }
 
     $HTML = '<li class="' . $active . $class . ' cf-discount"><a href="#">' .
-              '<strong>' . $this->discount . '%</strong> avslag på ordren din' .
+              '<strong>' . $this->discount . '%</strong> avslag på ordren din.' .
               '<span>' . $have_enought_text . '</span>' .
             '</a></li>';
 
