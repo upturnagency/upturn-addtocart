@@ -286,6 +286,12 @@ function init_coupon_page(){
   }
 }
 
+add_filter('acf/settings/load_json', 'my_acf_json_load_point');
+function my_acf_json_load_point( $paths ) {
+  $paths[] = plugin_dir_path( __FILE__ ) . '/acf-json';
+  return $paths;
+}
+
 function upturn_cross_sell( $size, $gender ) {
     echo '<div class="woocommerce columns-' . $size . '">';
         woocommerce_cross_sell_display($size, $size, "rand");
