@@ -89,8 +89,8 @@ class Product implements Coupon {
               '<img src="' . $image[0] . '" data-id="' . $this->product_id . '">' .
               '<div class="cf-product-info">' .
                 '<span>' . $itemInfo . '</span>' .
-                '<span>' . $product->get_title() . '<span>' .
-                '<span>' . $product->get_price_html() . '<span>' .
+                '<span>' . $product->get_title() . '</span>' .
+                '<span>' . $product->get_price_html() . '</span>' .
               '</div>' .
             '</a></li>';
 

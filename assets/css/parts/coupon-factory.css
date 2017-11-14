@@ -4,108 +4,206 @@
 .coupon-factory ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
-.coupon-factory ul li {
+.coupon-factory-discount {
+  display: none;
+}
+.coupon-factory-products {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 2px solid #eee;
+  padding: 2rem 0;
+  float: left;
+  margin-bottom: 20px;
+}
+.coupon-factory-products h4 {
+  display: block;
+  text-align: center;
+  padding-bottom: 2rem;
+  font-size: 1.5rem;
+}
+.coupon-factory-products-list {
   width: auto;
-  display: inline-block;
+  display: block;
   text-align: center;
 }
-.coupon-factory ul li a {
-  text-decoration: none;
-  color: black;
-  width: 100%;
-  height: 100%;
-  display: block;
+.coupon-factory-products-list .cf-product {
+  width: 23%;
+  margin: 0 1%;
+  display: inline-block;
+  position: relative;
 }
-.coupon-factory ul li.canNotBeUsed {
-  opacity: 0.6;
+.coupon-factory-products-list .cf-product.canNotBeUsed {
+  opacity: 0.7;
 }
-.coupon-factory ul li.canNotBeUsed a {
+.coupon-factory-products-list .cf-product.canNotBeUsed a {
   pointer-events: none;
   cursor: default;
 }
-.coupon-factory ul li.cf-discount {
-  vertical-align: top;
-  padding: 1rem;
-  border-radius: 15px;
-  border: 1px solid #ccc;
-  text-align: center;
-  margin: 0 2.5%;
-  width: 45%;
-  margin-bottom: 1rem;
+.coupon-factory-products-list .cf-product a {
+  color: black;
 }
-@media screen and (min-width: 768px) {
-  .coupon-factory ul li.cf-discount {
-    width: 30%;
-    margin: 0 1.5%;
-  }
+.coupon-factory-products-list .cf-product a:hover {
+  text-decoration: none;
 }
-@media screen and (min-width: 992px) {
-  .coupon-factory ul li.cf-discount {
-    min-width: 230px;
-    max-width: 300px;
-    width: auto;
-    margin: 0;
-    margin-right: 1rem;
-  }
-}
-.coupon-factory ul li.cf-discount strong {
-  font-size: 2.5rem;
-  margin: 0.5rem 0;
+.coupon-factory-products-list .cf-product a > span {
   display: block;
-  margin-bottom: 15px;
-  color: red;
-}
-.coupon-factory ul li.cf-discount span {
-  margin-top: 5px;
   width: 100%;
-  display: block;
-}
-.coupon-factory ul li.cf-product {
-  vertical-align: top;
-  padding: 1rem;
-  border-radius: 15px;
-  border: 1px solid #ccc;
   text-align: center;
-  margin: 0 2.5%;
-  width: 45%;
-  margin-bottom: 1rem;
+  padding-bottom: 1rem;
 }
-@media screen and (min-width: 768px) {
-  .coupon-factory ul li.cf-product {
-    width: 30%;
-    margin: 0 1.5%;
-  }
-}
-@media screen and (min-width: 992px) {
-  .coupon-factory ul li.cf-product {
-    min-width: 200px;
-    max-width: 300px;
-    width: auto;
-    margin: 0;
-    margin-right: 1rem;
-  }
-}
-.coupon-factory ul li.cf-product a {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-.coupon-factory ul li.cf-product a img {
+.coupon-factory-products-list .cf-product a img {
   display: block;
   width: 180px;
   height: auto;
   margin: 0 auto;
 }
-.coupon-factory ul li.cf-product a strong {
+.coupon-factory-products-list .cf-product-lock {
+  display: block;
+  background-color: #f5f5f5;
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  left: 50%;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  margin-top: 10px;
+}
+.coupon-factory-products-list .cf-product-lock span {
+  width: 40px;
+  height: 40px;
+  background: url(../img/hengelaas.svg);
+  background-size: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
   display: block;
 }
-.coupon-factory ul li.active {
-  border-color: #66B410;
+.coupon-factory-products-list .cf-product-info > span {
+  display: block;
+  width: 100%;
+  text-align: center;
 }
-.coupon-factory ul li.active a {
-  pointer-events: none;
-  cursor: default;
-}
+
+/*.coupon-factory {
+  display: block;
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      width: auto;
+      display: inline-block;
+      text-align: center;
+
+      a {
+        text-decoration: none;
+        color: black;
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      &.canNotBeUsed {
+        opacity: 0.6;
+
+        a {
+         pointer-events: none;
+         cursor: default;
+        }
+      }
+
+      &.cf-discount {
+        vertical-align: top;
+        padding: 1rem;
+        border-radius: 15px;
+        border: 1px solid #ccc;
+        text-align: center;
+        margin: 0 2.5%;
+        width: 45%;
+        margin-bottom: 1rem;
+
+        @media screen and (min-width: 768px){
+          width: 30%;
+          margin: 0 1.5%;
+        }
+
+        @media screen and (min-width: 992px){
+          min-width: 230px;
+          max-width: 300px;
+          width: auto;
+          margin: 0;
+          margin-right: 1rem;
+        }
+
+        strong {
+          font-size: 2.5rem;
+          margin: 0.5rem 0;
+          display: block;
+          margin-bottom: 15px;
+          color: red;
+        }
+
+        span {
+          margin-top: 5px;
+          width: 100%;
+          display: block;
+        }
+      }
+
+      &.cf-product {
+        vertical-align: top;
+        padding: 1rem;
+        border-radius: 15px;
+        border: 1px solid #ccc;
+        text-align: center;
+        margin: 0 2.5%;
+        width: 45%;
+        margin-bottom: 1rem;
+
+        @media screen and (min-width: 768px){
+          width: 30%;
+          margin: 0 1.5%;
+        }
+
+        @media screen and (min-width: 992px){
+          min-width: 200px;
+          max-width: 300px;
+          width: auto;
+          margin: 0;
+          margin-right: 1rem;
+        }
+
+        a{
+          width: 100%;
+          height: 100%;
+          display: block;
+
+          img {
+            display: block;
+            width: 180px;
+            height: auto;
+            margin: 0 auto;
+          }
+
+          strong{
+            display: block;
+          }
+        }
+      }
+
+      &.active {
+        border-color: #66B410;
+
+        a {
+         pointer-events: none;
+         cursor: default;
+        }
+      }
+    }
+  }
+}*/
 
 /*# sourceMappingURL=coupon-factory.css.map */

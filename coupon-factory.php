@@ -82,47 +82,49 @@
     $amount = 0;
 
     if(count($discount_coupons) > 0){
-      echo '<h4>Kasse kuponger</h4>';
-      echo '<ul class="coupon-factory-discount">';
-        $discount_coupons = bubble_sort_coupons($discount_coupons);
-        foreach($discount_coupons as $coupon){
-          if($coupon->getButtonState() && $amount < 1){
-            $code = generateCouponCode();
-            $isset = $coupon->setCoupon( $code );
+      echo '<div class="coupon-factory-discount">';
+        echo '<h4>Kasse kuponger</h4>';
+        echo '<ul class="coupon-factory-discount-list">';
+          $discount_coupons = bubble_sort_coupons($discount_coupons);
+          foreach($discount_coupons as $coupon){
+            if($coupon->getButtonState() && $amount < 1){
+              $code = generateCouponCode();
+              $isset = $coupon->setCoupon( $code );
 
-            if($isset){
-              $woocommerce->cart->add_discount( $code );
+              if($isset){
+                $woocommerce->cart->add_discount( $code );
+              }
+              echo 'innside';
+              $amount++;
             }
-            echo 'innside';
-            $amount++;
-          }
 
-          echo $coupon->rendurHTML($cart_total);
-        }
-      echo '</ul>';
+            echo $coupon->rendurHTML($cart_total);
+          }
+        echo '</ul></div>';
     }
 
     if(count($product_coupons) > 0){
-      echo '<h4>Kjøp for litt til - få gratis produkt!</h4>';
-      echo '<ul class="coupon-factory-products">';
-        $product_coupons = bubble_sort_coupons($product_coupons);
-        foreach($product_coupons as $coupon){
-          if($coupon->getButtonState() && $amount < 1){
-            $code = generateCouponCode();
-            $isset = $coupon->setCoupon( $code );
+      echo '<div class="coupon-factory-products">';
+        echo '<h4>Kjøp for litt til - få gratis produkt!</h4>';
+        echo '<ul class="coupon-factory-products-list">';
+          $product_coupons = bubble_sort_coupons($product_coupons);
+          foreach($product_coupons as $coupon){
+            if($coupon->getButtonState() && $amount < 1){
+              $code = generateCouponCode();
+              $isset = $coupon->setCoupon( $code );
 
-            if($isset){
-              $id = $coupon->getProductId();
-              $woocommerce->cart->add_to_cart( $id );
-              $woocommerce->cart->add_discount( $code );
+              if($isset){
+                $id = $coupon->getProductId();
+                $woocommerce->cart->add_to_cart( $id );
+                $woocommerce->cart->add_discount( $code );
+              }
+              $amount++;
             }
-            $amount++;
-          }
 
-          $brand = $coupon->getBrand();
-          echo $coupon->rendurHTML($cart_total, $brand);
-        }
-      echo '</ul>';
+            $brand = $coupon->getBrand();
+            echo $coupon->rendurHTML($cart_total, $brand);
+          }
+      echo '</ul></div>';
     }?>
   </div>
 <?php ?>
