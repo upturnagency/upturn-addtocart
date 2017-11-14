@@ -79,11 +79,13 @@ class Product implements Coupon {
     if($this->condition > $cart){
       $have_enought_text = 'Kjøp for kr. <b>' . ($this->condition - $cart) . '</b> mer';
       $lock_image = '<div class="cf-product-lock"><span class="cf-product-lock-image"></span></div>';
-    } else {
-      $atagClass = 'runFunction';
     }
 
-    $HTML = '<li class="' . $active .  $class . ' cf-product"><a href="#0" class="' . $atagClass . '">' .
+    if($this->buttonIsActive){
+      $lock_image = '<div class="cf-product-lock"><span class="cf-product-lock-image"></span></div>';
+    }
+
+    $HTML = '<li class="' . $active .  $class . ' cf-product">' .
               '<span>' . $have_enought_text . '</span>' .
               $lock_image .
               '<img src="' . $image[0] . '" data-id="' . $this->product_id . '">' .
@@ -92,7 +94,7 @@ class Product implements Coupon {
                 '<span>' . $product->get_title() . '</span>' .
                 do_shortcode('[add_to_cart id="' . $this->product_id . '"]') .
               '</div>' .
-            '</a></li>';
+            '</li>';
 
     return $HTML;
   }

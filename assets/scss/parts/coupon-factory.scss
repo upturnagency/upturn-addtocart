@@ -50,34 +50,33 @@
 
         &.canNotBeUsed {
           opacity: 0.7;
-
-          a {
-           pointer-events: none;
-           cursor: default;
+          .cf-product-info{
+            .product {
+              a {
+                visibility: hidden !important;
+                &:hover {
+                  pointer-events: none !important;
+                  cursor: default !important;
+                }
+              }
+            }
           }
         }
 
-        a {
-          color: black;
-
-          &:hover {
-            text-decoration: none;
-          }
-
-          & > span {
-            display: block;
-            width: 100%;
-            text-align: center;
-            padding-bottom: 1rem;
-          }
-
-          img {
-            display: block;
-            width: 180px;
-            height: auto;
-            margin: 0 auto;
-          }
+        & > span {
+          display: block;
+          width: 100%;
+          text-align: center;
+          padding-bottom: 1rem;
         }
+
+        img {
+          display: block;
+          width: 180px;
+          height: auto;
+          margin: 0 auto;
+        }
+
 
         &-lock {
           display: block;
@@ -101,11 +100,31 @@
           }
         }
 
+        &.active {
+          .cf-product-lock {
+            span {
+              background: url(../img/success.svg);
+            }
+          }
+        }
+
         &-info {
           & > span {
             display: block;
             width: 100%;
+            margin-top: 7px;
             text-align: center;
+          }
+
+          .product {
+            border: none !important;
+            padding: 0 !important;
+
+            & > span {
+              display: block;
+              text-align: center;
+              margin: 7px 0;
+            }
           }
         }
       }

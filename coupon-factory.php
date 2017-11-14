@@ -38,7 +38,8 @@
   $product_coupons = $discount_coupons = array();
 
   // Checks if there are any product or discount coupons intitated
-  if( have_rows('cf_price_reduction', 'options') || have_rows('cf_product_reduction', 'options')):
+  /*have_rows('cf_price_reduction', 'options') || vv under*/
+  if( have_rows('cf_product_reduction', 'options')):
     /*while ( have_rows('cf_price_reduction', 'options') ) : the_row();
       $condition = get_sub_field('cf_price_cart_total');
       $discount = get_sub_field('cf_price_cart_reduction');
@@ -54,7 +55,7 @@
 
   $product_coupons = bubble_sort_coupons($product_coupons);
   ?>
-  
+
   <div class="coupon-factory"><?php
     $coupons_in_cart = $woocommerce->cart->get_coupons();
     $count = 0;
@@ -72,9 +73,11 @@
       $cf_id = $_GET['id'];
       foreach($product_coupons as $product){
         if($product->getProductId() == $cf_id){
+          if($cart_total >= $product->getCondition()){
             $product->setButtonState(true);
             $newProduct = true;
             break;
+          }
         }
       }
     }
@@ -95,8 +98,6 @@
               $isset = $coupon->setCoupon( $code );
 
               if($isset){
-                $id = $coupon->getProductId();
-                $woocommerce->cart->add_to_cart( $id );
                 $woocommerce->cart->add_discount( $code );
               }
             }

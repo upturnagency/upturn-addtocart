@@ -53,23 +53,20 @@
 .coupon-factory-products-list .cf-product.canNotBeUsed {
   opacity: 0.7;
 }
-.coupon-factory-products-list .cf-product.canNotBeUsed a {
-  pointer-events: none;
-  cursor: default;
+.coupon-factory-products-list .cf-product.canNotBeUsed .cf-product-info .product a {
+  visibility: hidden !important;
 }
-.coupon-factory-products-list .cf-product a {
-  color: black;
+.coupon-factory-products-list .cf-product.canNotBeUsed .cf-product-info .product a:hover {
+  pointer-events: none !important;
+  cursor: default !important;
 }
-.coupon-factory-products-list .cf-product a:hover {
-  text-decoration: none;
-}
-.coupon-factory-products-list .cf-product a > span {
+.coupon-factory-products-list .cf-product > span {
   display: block;
   width: 100%;
   text-align: center;
   padding-bottom: 1rem;
 }
-.coupon-factory-products-list .cf-product a img {
+.coupon-factory-products-list .cf-product img {
   display: block;
   width: 180px;
   height: auto;
@@ -97,10 +94,23 @@
   background-repeat: no-repeat;
   display: block;
 }
+.coupon-factory-products-list .cf-product.active .cf-product-lock span {
+  background: url(../img/success.svg);
+}
 .coupon-factory-products-list .cf-product-info > span {
   display: block;
   width: 100%;
+  margin-top: 7px;
   text-align: center;
+}
+.coupon-factory-products-list .cf-product-info .product {
+  border: none !important;
+  padding: 0 !important;
+}
+.coupon-factory-products-list .cf-product-info .product > span {
+  display: block;
+  text-align: center;
+  margin: 7px 0;
 }
 
 /*.coupon-factory {
