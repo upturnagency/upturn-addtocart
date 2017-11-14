@@ -58,10 +58,22 @@ class Product implements Coupon {
     endif;
   }
 
-  public function rendurHTML($cart){
+  public function getBrand(){
+    $terms = get_the_terms( $this->product_id, 'brand');
+		if(!empty($terms)):
+			foreach ( $terms as $term ) {
+				$termID[] = $term->term_id;
+				$termName = $term->name;
+			}
+		endif;
+    return empty($termName) ? "" : $termName;
+  }
+
+  public function rendurHTML($cart, $itemInfo){
     $image = wp_get_attachment_image_src( get_post_thumbnail_id( $this->product_id ), 'thumbnail' );
     $class = $this->condition < $cart ? '' : 'canNotBeUsed';
     $active = $this->buttonIsActive ? 'active' : '';
+
     $product = wc_get_product( $this->product_id );
 
     if($this->condition > $cart){
@@ -75,6 +87,7 @@ class Product implements Coupon {
               '<img src="' . $image[0] . '" data-id="' . $this->product_id . '">' .
               '<strong>Original pris: ' . $product->get_price_html() . '.</strong>' .
               '<span>' . $have_enought_text . '</span>' .
+              $itemInfo . 
             '</a></li>';
 
     return $HTML;

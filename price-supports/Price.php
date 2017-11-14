@@ -56,7 +56,7 @@ class Price implements Coupon {
     endif;
   }
 
-  public function rendurHTML($cart){
+  public function rendurHTML($cart, $itemInfo = null){
     $class = $this->condition < $cart ? '' : 'canNotBeUsed';
     $active = $this->buttonIsActive ? 'active' : '';
 

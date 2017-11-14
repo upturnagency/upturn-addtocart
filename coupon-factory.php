@@ -103,7 +103,7 @@
     }
 
     if(count($product_coupons) > 0){
-      echo '<h4>Gratis produkter</h4>';
+      echo '<h4>Kjøp for litt til - få gratis produkt!</h4>';
       echo '<ul class="coupon-factory-products">';
         $product_coupons = bubble_sort_coupons($product_coupons);
         foreach($product_coupons as $coupon){
@@ -119,7 +119,8 @@
             $amount++;
           }
 
-          echo $coupon->rendurHTML($cart_total);
+          $brand = $coupon->getBrand();
+          echo $coupon->rendurHTML($cart_total, $brand);
         }
       echo '</ul>';
     }?>
