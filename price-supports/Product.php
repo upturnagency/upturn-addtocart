@@ -80,7 +80,7 @@ class Product implements Coupon {
       $have_enought_text = 'Kjøp for kr. <b>' . ($this->condition - $cart) . '</b> mer';
       $lock_image = '<div class="cf-product-lock"><span class="cf-product-lock-image"></span></div>';
     } else {
-      $have_enought_text = 'Klikk for å aktivere';
+      $have_enought_text = 'Klikk for å legge i handlekurven';
     }
 
     $HTML = '<li class="' . $active .  $class . ' cf-product"><a href="#0">' .

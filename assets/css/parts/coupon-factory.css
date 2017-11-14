@@ -31,9 +31,21 @@
 }
 .coupon-factory-products-list .cf-product {
   width: 23%;
-  margin: 0 1%;
+  margin: 1rem 1%;
   display: inline-block;
   position: relative;
+}
+@media screen and (max-width: 996px) {
+  .coupon-factory-products-list .cf-product {
+    width: 30%;
+    margin: 1rem 1.5%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .coupon-factory-products-list .cf-product {
+    width: 46%;
+    margin: 1rem 2%;
+  }
 }
 .coupon-factory-products-list .cf-product.canNotBeUsed {
   opacity: 0.7;
