@@ -77,17 +77,21 @@ class Product implements Coupon {
     $product = wc_get_product( $this->product_id );
 
     if($this->condition > $cart){
-      $have_enought_text = 'Du mangler <b>' . ($this->condition - $cart) . 'kr</b>';
+      $have_enought_text = 'Kjøp for kr. <b>' . ($this->condition - $cart) . '</b> mer';
+      $lock_image = '<div class="cf-product-lock"><span class="cf-product-lock-image"></span></div>';
     } else {
       $have_enought_text = 'Klikk for å aktivere';
     }
 
-    $HTML = '<li class="' . $active .  $class . ' cf-product"><a href="#">' .
-              'Få ' . $product->get_title() . ' gratis.' .
-              '<img src="' . $image[0] . '" data-id="' . $this->product_id . '">' .
-              '<strong>Original pris: ' . $product->get_price_html() . '.</strong>' .
+    $HTML = '<li class="' . $active .  $class . ' cf-product"><a href="#0">' .
               '<span>' . $have_enought_text . '</span>' .
-              $itemInfo . 
+              $lock_image .
+              '<img src="' . $image[0] . '" data-id="' . $this->product_id . '">' .
+              '<div class="cf-product-info">' .
+                '<span>' . $itemInfo . '</span>' .
+                '<span>' . $product->get_title() . '<span>' .
+                '<span>' . $product->get_price_html() . '<span>' .
+              '</div>' .
             '</a></li>';
 
     return $HTML;
