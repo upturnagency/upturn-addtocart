@@ -80,17 +80,17 @@ class Product implements Coupon {
       $have_enought_text = 'Kjøp for kr. <b>' . ($this->condition - $cart) . '</b> mer';
       $lock_image = '<div class="cf-product-lock"><span class="cf-product-lock-image"></span></div>';
     } else {
-      $have_enought_text = 'Klikk for å legge i handlekurven';
+      $atagClass = 'runFunction';
     }
 
-    $HTML = '<li class="' . $active .  $class . ' cf-product"><a href="#0">' .
+    $HTML = '<li class="' . $active .  $class . ' cf-product"><a href="#0" class="' . $atagClass . '">' .
               '<span>' . $have_enought_text . '</span>' .
               $lock_image .
               '<img src="' . $image[0] . '" data-id="' . $this->product_id . '">' .
               '<div class="cf-product-info">' .
                 '<span>' . $itemInfo . '</span>' .
                 '<span>' . $product->get_title() . '</span>' .
-                '<span>' . $product->get_price_html() . '</span>' .
+                do_shortcode('[add_to_cart id="' . $this->product_id . '"]') .
               '</div>' .
             '</a></li>';
 

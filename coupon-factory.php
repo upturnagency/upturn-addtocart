@@ -39,11 +39,11 @@
 
   // Checks if there are any product or discount coupons intitated
   if( have_rows('cf_price_reduction', 'options') || have_rows('cf_product_reduction', 'options')):
-    while ( have_rows('cf_price_reduction', 'options') ) : the_row();
+    /*while ( have_rows('cf_price_reduction', 'options') ) : the_row();
       $condition = get_sub_field('cf_price_cart_total');
       $discount = get_sub_field('cf_price_cart_reduction');
       $discount_coupons[] = new Price($condition, $discount);
-    endwhile;
+    endwhile;*/
 
     while ( have_rows('cf_product_reduction', 'options') ) : the_row();
       $condition = get_sub_field('cf_product_cart_total');
@@ -52,11 +52,10 @@
     endwhile;
   endif;
 
-  //Ajax should start here!
-  // TODO: Implement AJAX.
+  $product_coupons = bubble_sort_coupons($product_coupons);
   ?>
+  
   <div class="coupon-factory"><?php
-
     $coupons_in_cart = $woocommerce->cart->get_coupons();
     $count = 0;
     $coupons_to_handle = array();
@@ -67,21 +66,48 @@
       }
     }
 
-    if(count($coupons_to_handle) > 1){
-      $trace = 0;
-      foreach($coupons_to_handle as $code){
-        if ($trace == 0){
-          $trace++;
-          continue;
-        } else {
-          $woocommerce->cart->remove_coupon( $code );
+    $newProduct = false;
+
+    if(isset($_GET['id']) && !empty($_GET['id'])) {
+      $cf_id = $_GET['id'];
+      foreach($product_coupons as $product){
+        if($product->getProductId() == $cf_id){
+            $product->setButtonState(true);
+            $newProduct = true;
+            break;
         }
       }
     }
 
-    $amount = 0;
+    if(count($coupons_to_handle) > 1 || $newProduct){
+      foreach($coupons_to_handle as $code){
+        $woocommerce->cart->remove_coupon( $code );
+      }
+    }
 
-    if(count($discount_coupons) > 0){
+    if(count($product_coupons) > 0){
+      echo '<div class="coupon-factory-products">';
+        echo '<h4>Kjøp for litt til - få gratis produkt!</h4>';
+        echo '<ul class="coupon-factory-products-list">';
+          foreach($product_coupons as $coupon){
+            if($coupon->getButtonState()){
+              $code = generateCouponCode();
+              $isset = $coupon->setCoupon( $code );
+
+              if($isset){
+                $id = $coupon->getProductId();
+                $woocommerce->cart->add_to_cart( $id );
+                $woocommerce->cart->add_discount( $code );
+              }
+            }
+
+            $brand = $coupon->getBrand();
+            echo $coupon->rendurHTML($cart_total, $brand);
+          }
+      echo '</ul></div>';
+    }
+
+    /*if(count($discount_coupons) > 0){
       echo '<div class="coupon-factory-discount">';
         echo '<h4>Kasse kuponger</h4>';
         echo '<ul class="coupon-factory-discount-list">';
@@ -101,30 +127,6 @@
             echo $coupon->rendurHTML($cart_total);
           }
         echo '</ul></div>';
-    }
-
-    if(count($product_coupons) > 0){
-      echo '<div class="coupon-factory-products">';
-        echo '<h4>Kjøp for litt til - få gratis produkt!</h4>';
-        echo '<ul class="coupon-factory-products-list">';
-          $product_coupons = bubble_sort_coupons($product_coupons);
-          foreach($product_coupons as $coupon){
-            if($coupon->getButtonState() && $amount < 1){
-              $code = generateCouponCode();
-              $isset = $coupon->setCoupon( $code );
-
-              if($isset){
-                $id = $coupon->getProductId();
-                $woocommerce->cart->add_to_cart( $id );
-                $woocommerce->cart->add_discount( $code );
-              }
-              $amount++;
-            }
-
-            $brand = $coupon->getBrand();
-            echo $coupon->rendurHTML($cart_total, $brand);
-          }
-      echo '</ul></div>';
-    }?>
+    }*/?>
   </div>
 <?php ?>

@@ -38,12 +38,14 @@ function appendStylesheetATC(){
 
     if(useUpturnStyle() && is_page($slug)){
         wp_enqueue_style( 'upturn-addtocart-style', $plugin_url . 'assets/css/style.css' );
-        wp_enqueue_style( 'custom-addto-cart-user-style', $plugin_url . 'assets/css/custom.css' );
-    } else {
-        wp_enqueue_style( 'custom-addto-cart-user-style', $plugin_url . 'assets/css/custom.css' );
     }
-}
 
+    if(is_page($slug)){
+        wp_enqueue_script( 'upturn-addto-cart-js', $plugin_url . 'assets/js/main.js', array( 'jquery' ), '1.0.0', true);
+    }
+
+    wp_enqueue_style( 'custom-addto-cart-user-style', $plugin_url . 'assets/css/custom.css' );
+}
 add_action( 'wp_enqueue_scripts', 'appendStylesheetATC' );
 
 function useUpturnStyle() {
