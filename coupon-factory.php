@@ -7,7 +7,7 @@
   require 'price-supports/Coupon.php';
 
   // Classes for coupons
-  require 'price-supports/Price.php';
+  //require 'price-supports/Price.php';
   require 'price-supports/Product.php';
 
   function bubble_sort_coupons(array $array){
@@ -39,13 +39,13 @@
 
   // Checks if there are any product or discount coupons intitated
   /*have_rows('cf_price_reduction', 'options') || vv under*/
-  if( have_rows('cf_product_reduction', 'options')):
-    /*while ( have_rows('cf_price_reduction', 'options') ) : the_row();
-      $condition = get_sub_field('cf_price_cart_total');
-      $discount = get_sub_field('cf_price_cart_reduction');
-      $discount_coupons[] = new Price($condition, $discount);
-    endwhile;*/
+  /*while ( have_rows('cf_price_reduction', 'options') ) : the_row();
+    $condition = get_sub_field('cf_price_cart_total');
+    $discount = get_sub_field('cf_price_cart_reduction');
+    $discount_coupons[] = new Price($condition, $discount);
+  endwhile;*/
 
+  if( have_rows('cf_product_reduction', 'options')):
     while ( have_rows('cf_product_reduction', 'options') ) : the_row();
       $condition = get_sub_field('cf_product_cart_total');
       $product_id = get_sub_field('cf_product_selector');
@@ -58,33 +58,77 @@
 
   <div class="coupon-factory"><?php
     $coupons_in_cart = $woocommerce->cart->get_coupons();
-    $count = 0;
     $coupons_to_handle = array();
+
     foreach($coupons_in_cart as $cartCoup){
       if(substr( $cartCoup->code, 0, 3) == "cf_"){
-        $count++;
-        $coupons_to_handle[] = $cartCoup->code;
+        $coupons_to_handle[] = $cartCoup;
       }
     }
 
-    $newProduct = false;
+    if(count($coupons_to_handle) > 1){
+      do {
+    		$swapped = false;
+    		for( $i = 0; $i < count($coupons_to_handle) - 1; $i++) {
+          $tempProduct = wc_get_product( $coupons_to_handle[$i]->product_ids[0] );
+          $tempProductTwo = wc_get_product( $coupons_to_handle[$i + 1]->product_ids[0] );
+
+    			if($tempProduct->get_price() > $tempProductTwo->get_price()) {
+    				list($coupons_to_handle[$i + 1], $coupons_to_handle[$i]) = array($coupons_to_handle[$i], $coupons_to_handle[$i + 1]);
+    				$swapped = true;
+    			}
+    		}
+    	} while($swapped);
+    }
+
+    $couponIsHigher = true;
 
     if(isset($_GET['id']) && !empty($_GET['id'])) {
       $cf_id = $_GET['id'];
       foreach($product_coupons as $product){
         if($product->getProductId() == $cf_id){
           if($cart_total >= $product->getCondition()){
-            $product->setButtonState(true);
-            $newProduct = true;
-            break;
+            if(count($coupons_to_handle) > 0){
+              $coupon_product = wc_get_product( $coupons_to_handle[0]->product_ids[0] );
+              $current_product = wc_get_product( $product->getProductId() );
+              if($current_product->get_price() >= $coupon_product->get_price() || count($coupons_to_handle) == 0){
+                $couponIsHigher = false;
+                $code = generateCouponCode();
+                $isset = $product->setCoupon( $code );
+
+                if($isset){
+                  $woocommerce->cart->add_discount( $code );
+                  $product->setButtonState(true);
+                }
+              }
+            } else {
+              $couponIsHigher = false;
+              $code = generateCouponCode();
+              $isset = $product->setCoupon( $code );
+
+              if($isset){
+                $woocommerce->cart->add_discount( $code );
+                $product->setButtonState(true);
+              }
+            }
           }
         }
       }
     }
 
-    if(count($coupons_to_handle) > 1 || $newProduct){
-      foreach($coupons_to_handle as $code){
-        $woocommerce->cart->remove_coupon( $code );
+    if($couponIsHigher){
+      $coupon = $coupons_to_handle[0];
+      foreach($product_coupons as $product){
+        if($product->getProductId() == $coupon->product_ids[0]){
+          $product->setButtonState(true);
+          break;
+        }
+      }
+    } 
+
+    if(count($coupons_to_handle) > 1){
+      for($i = 1; $i < count($coupons_to_handle) - 1; $i++) {
+        $woocommerce->cart->remove_coupon( $coupons_to_handle[$i]->code );
       }
     }
 
@@ -93,15 +137,6 @@
         echo '<h4>Kjøp for litt til - få gratis produkt!</h4>';
         echo '<ul class="coupon-factory-products-list">';
           foreach($product_coupons as $coupon){
-            if($coupon->getButtonState()){
-              $code = generateCouponCode();
-              $isset = $coupon->setCoupon( $code );
-
-              if($isset){
-                $woocommerce->cart->add_discount( $code );
-              }
-            }
-
             $brand = $coupon->getBrand();
             echo $coupon->rendurHTML($cart_total, $brand);
           }
