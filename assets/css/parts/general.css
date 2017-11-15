@@ -30,6 +30,35 @@ body, .site, #page {
   width: 100%;
   height: 120px;
 }
+@media screen and (max-width: 768px) {
+  .cross-sell .cross-sell-header.top .added-to-cart .container {
+    height: auto;
+    display: inline-block;
+  }
+  .cross-sell .cross-sell-header.top .added-to-cart .container:first-child {
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+    display: block;
+  }
+  .cross-sell .cross-sell-header.top .added-to-cart .container:first-child .content i {
+    display: none;
+  }
+  .cross-sell .cross-sell-header.top .added-to-cart .container:nth-child(2) {
+    width: auto;
+    float: right;
+  }
+  .cross-sell .cross-sell-header.top .added-to-cart .container:nth-child(3) {
+    width: auto;
+    float: left;
+    margin: 1rem;
+    height: 80px;
+    line-height: 80px;
+  }
+  .cross-sell .cross-sell-header.top .added-to-cart .container:nth-child(3) .content {
+    line-height: 80px;
+  }
+}
 @media screen and (min-width: 768px) {
   .cross-sell .cross-sell-header.top .added-to-cart .container {
     display: inline-block;
@@ -78,9 +107,47 @@ body, .site, #page {
   background-color: #F8F8F8;
   margin-bottom: 2rem;
 }
+@media screen and (max-width: 768px) {
+  .cross-sell .cross-sell-header.bottom {
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    justify-content: space-between;
+  }
+}
 .cross-sell .cross-sell-header.bottom .container {
   width: 100%;
   height: 120px;
+}
+@media screen and (max-width: 768px) {
+  .cross-sell .cross-sell-header.bottom .container {
+    width: auto;
+    height: auto;
+    display: block;
+    width: 100%;
+  }
+  .cross-sell .cross-sell-header.bottom .container:nth-of-type(1) {
+    order: 1;
+    width: 50%;
+    float: left;
+  }
+  .cross-sell .cross-sell-header.bottom .container:nth-of-type(1) div > a {
+    float: left;
+    margin-top: 10px;
+  }
+  .cross-sell .cross-sell-header.bottom .container:nth-of-type(2) {
+    order: 3;
+    margin: 10px 0;
+    text-align: center;
+  }
+  .cross-sell .cross-sell-header.bottom .container:nth-of-type(3) {
+    order: 2;
+    margin-top: 10px;
+    width: 50%;
+    float: right;
+  }
+  .cross-sell .cross-sell-header.bottom .container:nth-of-type(3) div > a {
+    float: right;
+  }
 }
 @media screen and (min-width: 768px) {
   .cross-sell .cross-sell-header.bottom .container {
