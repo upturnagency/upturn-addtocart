@@ -58,12 +58,16 @@
 
   <div class="coupon-factory"><?php
     $coupons_in_cart = $woocommerce->cart->get_coupons();
-    $coupons_to_handle = array();
+    $products_in_cart = $coupons_to_handle = array();
 
     foreach($coupons_in_cart as $cartCoup){
       if(substr( $cartCoup->code, 0, 3) == "cf_"){
         $coupons_to_handle[] = $cartCoup;
       }
+    }
+
+    foreach( $woocommerce->cart->get_cart() as $cart_item ){
+        $products_in_cart[] = $cart_item['product_id'];
     }
 
     if(count($coupons_to_handle) > 1){
@@ -86,7 +90,7 @@
     if(isset($_GET['id']) && !empty($_GET['id'])) {
       $cf_id = $_GET['id'];
       foreach($product_coupons as $product){
-        if($product->getProductId() == $cf_id){
+        if($product->getProductId() == $cf_id && in_array($product->getProductId(), $products_in_cart)){
           if($cart_total >= $product->getCondition()){
             if(count($coupons_to_handle) > 0){
               $coupon_product = wc_get_product( $coupons_to_handle[0]->product_ids[0] );
