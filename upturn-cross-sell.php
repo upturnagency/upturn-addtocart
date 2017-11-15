@@ -4,7 +4,7 @@ Plugin Name: Upturn Add To Cart page
 Plugin URI: upturn.agency
 Description:
 Author: Upturn Agency
-Version: 0.1
+Version: 0.2
 Author URI: https://upturn.agency
 Text Domain: cross-sell
 Domain Path: /lang
