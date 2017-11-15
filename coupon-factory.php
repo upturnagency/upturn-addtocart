@@ -73,7 +73,7 @@
           $tempProduct = wc_get_product( $coupons_to_handle[$i]->product_ids[0] );
           $tempProductTwo = wc_get_product( $coupons_to_handle[$i + 1]->product_ids[0] );
 
-    			if($tempProduct->get_price() > $tempProductTwo->get_price()) {
+    			if($tempProduct->get_price() < $tempProductTwo->get_price()) {
     				list($coupons_to_handle[$i + 1], $coupons_to_handle[$i]) = array($coupons_to_handle[$i], $coupons_to_handle[$i + 1]);
     				$swapped = true;
     			}
@@ -91,7 +91,7 @@
             if(count($coupons_to_handle) > 0){
               $coupon_product = wc_get_product( $coupons_to_handle[0]->product_ids[0] );
               $current_product = wc_get_product( $product->getProductId() );
-              if($current_product->get_price() >= $coupon_product->get_price() || count($coupons_to_handle) == 0){
+              if($current_product->get_price() >= $coupon_product->get_price()){
                 $couponIsHigher = false;
                 $code = generateCouponCode();
                 $isset = $product->setCoupon( $code );
@@ -124,10 +124,10 @@
           break;
         }
       }
-    } 
+    }
 
-    if(count($coupons_to_handle) > 1){
-      for($i = 1; $i < count($coupons_to_handle) - 1; $i++) {
+    if(count($coupons_to_handle) > 0){
+      for($i = $couponIsHigher ? 1 : 0; $i < count($coupons_to_handle); $i++) {
         $woocommerce->cart->remove_coupon( $coupons_to_handle[$i]->code );
       }
     }
