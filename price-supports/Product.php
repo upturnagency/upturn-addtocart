@@ -79,6 +79,8 @@ class Product implements Coupon {
     if($this->condition > $cart){
       $have_enought_text = 'Kjøp for kr. <b>' . ($this->condition - $cart) . '</b> mer';
       $lock_image = '<div class="cf-product-lock"><span class="cf-product-lock-image"></span></div>';
+    } else {
+      $price_display = '<span class="price"><strike>Før ' . $product->get_price() . 'kr </strike> Nå gratis</span>';
     }
 
     if($this->buttonIsActive){
@@ -92,7 +94,8 @@ class Product implements Coupon {
               '<div class="cf-product-info">' .
                 '<span>' . $itemInfo . '</span>' .
                 '<span>' . $product->get_title() . '</span>' .
-                do_shortcode('[add_to_cart id="' . $this->product_id . '"]') .
+                $price_display .
+                do_shortcode('[add_to_cart id="' . $this->product_id . '" show_price="false"]') .
               '</div>' .
             '</li>';
 

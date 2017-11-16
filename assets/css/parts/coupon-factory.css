@@ -110,6 +110,9 @@
   margin-top: 7px;
   text-align: center;
 }
+.coupon-factory-products-list .cf-product-info .price {
+  margin-bottom: 10px;
+}
 .coupon-factory-products-list .cf-product-info .product {
   border: none !important;
   padding: 0 !important;
