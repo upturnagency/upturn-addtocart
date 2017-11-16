@@ -21,11 +21,19 @@
   float: left;
   margin-bottom: 20px;
 }
-.coupon-factory-products h4 {
+.coupon-factory-products .top {
+  padding-bottom: 2rem;
+}
+.coupon-factory-products .top h4 {
   display: block;
   text-align: center;
-  padding-bottom: 2rem;
   font-size: 1.5rem;
+}
+.coupon-factory-products .top .excluded-cats {
+  width: 100%;
+  text-align: center;
+  font-size: .8rem;
+  display: block;
 }
 .coupon-factory-products-list {
   width: auto;

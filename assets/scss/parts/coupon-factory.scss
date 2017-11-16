@@ -19,12 +19,20 @@
     padding: 2rem 0;
     float: left;
     margin-bottom: 20px;
-
-    h4 {
-      display: block;
-      text-align: center;
+    .top{
       padding-bottom: 2rem;
-      font-size: 1.5rem;
+      h4 {
+        display: block;
+        text-align: center;
+        font-size: 1.5rem;
+      }
+
+      .excluded-cats{
+        width: 100%;
+        text-align: center;
+        font-size: .8rem;
+        display: block;
+      }
     }
 
     &-list {

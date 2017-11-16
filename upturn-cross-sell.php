@@ -327,3 +327,8 @@ add_action('upturn_footer', 'addtocart_footer');
 function addtocart_footer(){
     get_footer();
 }
+
+
+function cart_total_exclusions(){
+	print $woocommerce->cart->get_cart();
+}

@@ -1,7 +1,34 @@
 <?php
   // Woocommerce variables
   global $woocommerce;
-  $cart_total = $woocommerce->cart->subtotal;
+
+    /* Exclude some categories from total if they are set */
+    $excluded_cats = get_field('excluded_categories', 'options');
+
+    if($excluded_cats):
+        foreach ( $woocommerce->cart->get_cart() as $cart_item_key => $cart_item ) {
+
+            $product = $cart_item['data'];
+            $price = $cart_item['line_total'];
+            $tax = $cart_item['line_tax'];
+            $product_in_cat = false;
+
+            foreach ( $excluded_cats as $cat) {
+                if ( has_term( $cat->slug, 'product_cat', $product->id ) ):
+                    $sum += $price;
+                    $sum += $tax;
+                endif;
+            }
+        }
+        $excluded_total = $sum;
+        $cart_sum = $woocommerce->cart->subtotal;
+        $cart_total = $cart_sum - $sum;
+	    $excluded_names = implode(", ", array_map(function(WP_Term $term){ return $term->name; }, $excluded_cats));
+    else:
+        $cart_total = $woocommerce->cart->subtotal;
+  endif;
+
+
 
   // Interface for coupon
   require 'price-supports/Coupon.php';
@@ -138,7 +165,12 @@
 
     if(count($product_coupons) > 0){
       echo '<div class="coupon-factory-products">';
+        echo '<div class="top">';
         echo '<h4>Kjøp for litt til - få gratis produkt!</h4>';
+        if($excluded_names):
+            echo '<span class="excluded-cats">Gjelder ikke '.$excluded_names.'</span>';
+        endif;
+        echo '</div>';
         echo '<ul class="coupon-factory-products-list">';
           foreach($product_coupons as $coupon){
             $brand = $coupon->getBrand();

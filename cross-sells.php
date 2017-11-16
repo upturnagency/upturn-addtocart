@@ -180,9 +180,9 @@
             <h1>This isn't the page for you.</h1>
 	    <?php endif; ?>
         <?php
-          if(get_option('upturn-couponFactory') != 'no'){
-              require 'coupon-factory.php';
-          }
+        if(get_option('upturn-couponFactory') != 'no'){
+	        require 'coupon-factory.php';
+        }
         ?>
         <div class="cross-sell-wrap">
             <?php
