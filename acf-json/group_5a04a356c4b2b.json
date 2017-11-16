@@ -7,6 +7,7 @@
             "label": "Price reduction",
             "name": "cf_price_reduction",
             "type": "repeater",
+            "value": null,
             "instructions": "Here you can add the price reductions at given prices",
             "required": 0,
             "conditional_logic": 0,
@@ -26,6 +27,7 @@
                     "label": "Cart total",
                     "name": "cf_price_cart_total",
                     "type": "number",
+                    "value": null,
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -47,6 +49,7 @@
                     "label": "Cart reduction",
                     "name": "cf_price_cart_reduction",
                     "type": "number",
+                    "value": null,
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -70,6 +73,7 @@
             "label": "Product reduction",
             "name": "cf_product_reduction",
             "type": "repeater",
+            "value": null,
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -89,6 +93,7 @@
                     "label": "Cart total",
                     "name": "cf_product_cart_total",
                     "type": "number",
+                    "value": null,
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -110,6 +115,7 @@
                     "label": "Product selector",
                     "name": "cf_product_selector",
                     "type": "post_object",
+                    "value": null,
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -128,6 +134,29 @@
                     "ui": 1
                 }
             ]
+        },
+        {
+            "key": "field_5a0ddd1db3b40",
+            "label": "Excluded categories",
+            "name": "excluded_categories",
+            "type": "taxonomy",
+            "value": null,
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "product_cat",
+            "field_type": "multi_select",
+            "allow_null": 0,
+            "add_term": 1,
+            "save_terms": 0,
+            "load_terms": 0,
+            "return_format": "object",
+            "multiple": 0
         }
     ],
     "location": [
@@ -147,5 +176,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1510257906
+    "modified": 1510858052
 }
