@@ -35,7 +35,7 @@
                         minutes = minutes < 10 ? "0" + minutes : minutes;
                         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-                        display.textContent = minutes + " <?php echo __('minutes', 'cross-sell'); ?> " + seconds + " <?php echo __('seconds', 'cross-sells'); ?>" + ".";
+                        display.textContent = minutes + " <?php echo __('minutter', 'cross-sell'); ?> " + seconds + " <?php echo __('sekunder', 'cross-sells'); ?>" + ".";
 
                         if (--timer < 0) {
                             timer = duration;
@@ -78,7 +78,7 @@
                         <div class="container">
                             <div class="content">
                                 <i class="check"></i>
-                                <span><?php echo sprintf ( _n( '%d item added to cart', '%d items added to cart', $i ), $i); ?> </span>
+                                <span><?php echo sprintf ( _n( '%d produkt lagt til', '%d produkter lagt til', $i ), $i); ?> </span>
                             </div>
                         </div>
                         <div class="container">
@@ -90,8 +90,8 @@
                             <div class="content">
                             <strong><?php echo $loop->post->post_title;?></strong></span>
                             <?php if(!empty($expire_time)):
-                                echo '<br/><span id="cart-countdown">' . __("We'll reserve it for ", "cross-sell"); ?>
-                                <span id="countdown"><?php echo __('checking...', 'cross-sell'); ?></span>
+                                echo '<br/><span id="cart-countdown">' . __("Vi reserverer den til deg i ", "cross-sell"); ?>
+                                <span id="countdown"><?php echo __('sjekker...', 'cross-sell'); ?></span>
                             <?php endif; ?>
                             </div>
 				    <?php endwhile; ?>
@@ -105,14 +105,14 @@
                 <div class="container">
                     <div class="content">
                         <?php if ( get_option( 'upturn-displayGoToShopButton' ) == 'yes' ) : ?>
-                            <a href="<?php echo get_category_link( $catid ); ?>" class="button btn black alt gotoshop"><?php echo __('Go to shop', 'cross-sell'); ?></a>
+                            <a href="<?php echo get_home_url(); ?>" class="button btn black alt gotoshop"><?php echo __('Gå til butikken', 'cross-sell'); ?></a>
                         <?php endif; ?>
                     </div>
                 </div>
                 <div class="container">
                     <div class="content">
-	                <?php echo '<strong>' . __('Cart total:', 'cross-sell') . '</strong>&nbsp;' . $woocommerce->cart->get_cart_total();
-	                echo '&nbsp;('.sprintf ( _n( '%d item', '%d items', WC()->cart->get_cart_contents_count() ), WC()->cart->get_cart_contents_count() ).')';
+	                <?php echo '<strong>' . __('Total:', 'cross-sell') . '</strong>&nbsp;' . $woocommerce->cart->get_cart_total();
+	                echo '&nbsp;('.sprintf ( _n( '%d produkt', '%d produkter', WC()->cart->get_cart_contents_count() ), WC()->cart->get_cart_contents_count() ).')';
                     echo '<br>';
 	                do_action('before_cross_sell_actions');
 	                ?>
@@ -153,10 +153,10 @@
 		                // and add "Continue Shopping" button
 
 		                if ( $current < $min_amount ) {
-			                $added_text = esc_html__('Get free shipping if you order ', 'woocommerce' ) . wc_price( $min_amount - $current ) . esc_html__(' more!', 'woocommerce' );
+			                $added_text = esc_html__('Du er ', 'woocommerce' ) . wc_price( $min_amount - $current ) . esc_html__(' unna gratis frakt!', 'woocommerce' );
 
 		                }else{
-			                $added_text = esc_html__('You get free shipping on your order! ', 'woocommerce' );
+			                $added_text = esc_html__('Du får fri frakt på din ordre! ', 'woocommerce' );
 		                }
 		                print_r($added_text);
 	                }
@@ -167,11 +167,11 @@
                 <div class="container">
                     <div class="content">
 	                <?php if ( get_option( 'upturn-displayGoToCartButton' ) == 'yes' ) : ?>
-                        <a href="<?php echo $woocommerce->cart->get_cart_url(); ?>" class="button btn cart"><?php echo __('Go to cart', 'cross-sell'); ?></a>
+                        <a href="<?php echo $woocommerce->cart->get_cart_url(); ?>" class="button btn cart"><?php echo __('Til handlekurven', 'cross-sell'); ?></a>
 	                <?php endif; ?>
 
 	                <?php if ( get_option( 'upturn-displayCheckoutButton' ) == 'yes' ) : ?>
-                        <a href="<?php echo $woocommerce->cart->get_checkout_url(); ?>" class="button btn alt checkout"><?php echo __('Checkout', 'cross-sell'); ?></a>
+                        <a href="<?php echo $woocommerce->cart->get_checkout_url(); ?>" class="button btn alt checkout"><?php echo __('Til kassen', 'cross-sell'); ?></a>
 	                <?php endif; ?>
                     </div>
                 </div>

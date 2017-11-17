@@ -5,7 +5,7 @@
     /* Exclude some categories from total if they are set */
     $excluded_cats = get_field('excluded_categories', 'options');
 
-    if($excluded_cats):
+    if(isset($excluded_cats)):
         foreach ( $woocommerce->cart->get_cart() as $cart_item_key => $cart_item ) {
 
             $product = $cart_item['data'];
@@ -23,12 +23,11 @@
         $excluded_total = $sum;
         $cart_sum = $woocommerce->cart->subtotal;
         $cart_total = $cart_sum - $sum;
+
 	    $excluded_names = implode(", ", array_map(function(WP_Term $term){ return $term->name; }, $excluded_cats));
     else:
         $cart_total = $woocommerce->cart->subtotal;
   endif;
-
-
 
   // Interface for coupon
   require 'price-supports/Coupon.php';

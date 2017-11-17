@@ -255,6 +255,10 @@ body, .site, #page {
   overflow: initial;
 }
 
+strong {
+  font-weight: bold !important;
+}
+
 .cross-sell h1, .cross-sell h2, .cross-sell h3, .cross-sell h4 {
   margin-top: 0;
 }
@@ -295,10 +299,10 @@ body, .site, #page {
   }
   .cross-sell .cross-sell-header.top .added-to-cart .container:nth-child(2) {
     width: auto;
-    float: right;
+    float: left;
   }
   .cross-sell .cross-sell-header.top .added-to-cart .container:nth-child(3) {
-    width: auto;
+    width: 50%;
     float: left;
     margin: 1rem;
     height: 80px;
@@ -414,7 +418,7 @@ body, .site, #page {
             order: 2;
     margin-top: 10px;
     width: 50%;
-    float: right;
+    float: left;
   }
   .cross-sell .cross-sell-header.bottom .container:nth-of-type(3) div > a {
     float: right;
