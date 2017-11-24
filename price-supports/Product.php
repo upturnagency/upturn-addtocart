@@ -48,14 +48,11 @@ class Product implements Coupon {
     update_post_meta( $new_coupon_id, 'expiry_date', '' ); // set to an hour!
     update_post_meta( $new_coupon_id, 'apply_before_tax', 'yes' );
     update_post_meta( $new_coupon_id, 'free_shipping', 'no' );
+    update_post_meta( $new_coupon_id, 'minimum_amount', $this->condition );
 
     $coupon_post = get_post($new_coupon_id);
 
-    if(!empty($coupon_post)) :
-      return true;
-    else :
-      return false;
-    endif;
+    return !empty($coupon_post);
   }
 
   public function getBrand(){
