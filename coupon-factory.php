@@ -5,7 +5,7 @@
     /* Exclude some categories from total if they are set */
     $excluded_cats = get_field('excluded_categories', 'options');
 
-    if(isset($excluded_cats)):
+    if($excluded_cats):
         foreach ( $woocommerce->cart->get_cart() as $cart_item_key => $cart_item ) {
 
             $product = $cart_item['data'];
