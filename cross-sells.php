@@ -103,13 +103,6 @@
             <div class="cross-sell-header bottom <?php echo $class; ?> clearfix cf">
                 <div class="container">
                     <div class="content">
-                        <?php if ( get_option( 'upturn-displayGoToShopButton' ) == 'yes' ) : ?>
-                            <a href="<?php echo get_home_url(); ?>" class="button btn black alt gotoshop"><?php echo __('Gå til butikken', 'cross-sell'); ?></a>
-                        <?php endif; ?>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="content">
 	                <?php echo '<strong>' . __('Total:', 'cross-sell') . '</strong>&nbsp;' . $woocommerce->cart->get_cart_total();
 	                echo '&nbsp;('.sprintf ( _n( '%d produkt', '%d produkter', WC()->cart->get_cart_contents_count() ), WC()->cart->get_cart_contents_count() ).')';
                     echo '<br>';
@@ -163,17 +156,16 @@
 	                ?>
                     </div>
                 </div>
-                <div class="container">
-                    <div class="content">
-	                <?php if ( get_option( 'upturn-displayGoToCartButton' ) == 'yes' ) : ?>
-                        <a href="<?php echo $woocommerce->cart->get_cart_url(); ?>" class="button btn cart"><?php echo __('Til handlekurven', 'cross-sell'); ?></a>
-	                <?php endif; ?>
+                <?php if ( get_option( 'upturn-displayGoToShopButton' ) == 'yes' ) : ?>
+                    <a href="<?php echo get_home_url(); ?>" class="button btn black alt gotoshop"><?php echo __('Gå til butikken', 'cross-sell'); ?></a>
+                <?php endif; ?>
+                <?php if ( get_option( 'upturn-displayGoToCartButton' ) == 'yes' ) : ?>
+                      <a href="<?php echo $woocommerce->cart->get_cart_url(); ?>" class="button btn cart"><?php echo __('Til handlekurven', 'cross-sell'); ?></a>
+                <?php endif; ?>
 
-	                <?php if ( get_option( 'upturn-displayCheckoutButton' ) == 'yes' ) : ?>
-                        <a href="<?php echo $woocommerce->cart->get_checkout_url(); ?>" class="button btn alt checkout"><?php echo __('Til kassen', 'cross-sell'); ?></a>
-	                <?php endif; ?>
-                    </div>
-                </div>
+                <?php if ( get_option( 'upturn-displayCheckoutButton' ) == 'yes' ) : ?>
+                      <a href="<?php echo $woocommerce->cart->get_checkout_url(); ?>" class="button btn alt checkout"><?php echo __('Til kassen', 'cross-sell'); ?></a>
+                <?php endif; ?>
             </div>
 	    <?php else: ?>
             <h1>This isn't the page for you.</h1>

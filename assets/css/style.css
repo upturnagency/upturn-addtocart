@@ -267,6 +267,97 @@ strong {
 }
 .cross-sell .cross-sell-header {
   width: 100%;
+    /*&.bottom{
+        width: 100%;
+        border: 1px solid #D7D7D7;
+        display:table;
+        padding: 0 2rem;
+        background-color: #F8F8F8;
+        margin-bottom: 2rem;
+
+        @media screen and (max-width: 768px) {
+          display: flex;
+          -webkit-flex-flow: row wrap;
+          justify-content: space-between;
+        }
+
+        .container {
+          width: 100%;
+          height: 120px;
+
+          @media screen and (max-width: 768px) {
+            width: auto;
+            height: auto;
+            display: block;
+            width: 100%;
+
+            &:nth-of-type(1){
+              order: 1;
+              width: 50%;
+              float: left;
+
+              div > a{
+                float: left;
+                margin-top: 10px;
+              }
+            }
+
+            &:nth-of-type(2){
+              order: 3;
+              margin: 10px 0;
+              text-align: center;
+            }
+
+            &:nth-of-type(3){
+              order: 2;
+              margin-top: 10px;
+              width: 50%;
+              float: left;
+
+              div > a {
+                float: right;
+              }
+            }
+          }
+
+          @media screen and (min-width: 768px) {
+            &:before {
+              content: '\200B';
+              display: inline-block;
+              height: 100%;
+              vertical-align: middle;
+            }
+            display: inline-block;
+            vertical-align: middle;
+            &:nth-child(1) {
+              width: 33%;
+              text-align: left;
+            }
+            &:nth-child(2) {
+              width: 33%;
+              text-align: center;
+            }
+            &:nth-child(3) {
+              width: 33%;
+              text-align: right;
+            }
+          }
+
+          .content {
+            width: 100%;
+            img {
+              margin: 1rem 1rem;
+            }
+            @media screen and (min-width: 768px) {
+              position: relative;
+              top: -50%;
+              transform: translateY(-50%);
+              margin-top: 0;
+              margin-bottom: 0;
+            }
+          }
+        }
+    }*/
 }
 .cross-sell .cross-sell-header.top {
   margin-top: 2rem;
@@ -347,7 +438,6 @@ strong {
     margin: 0;
     float: right;
     width: calc(50% - 100px);
-    padding: .5rem;
     height: 80px;
   }
   .cross-sell .cross-sell-header.top .added-to-cart .container:nth-child(3) div {
@@ -365,90 +455,76 @@ strong {
 .cross-sell .cross-sell-header.bottom {
   width: 100%;
   border: 1px solid #D7D7D7;
-  display: table;
-  padding: 0 2rem;
   background-color: #F8F8F8;
   margin-bottom: 2rem;
 }
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
   .cross-sell .cross-sell-header.bottom {
-    display: flex;
-    -webkit-flex-flow: row wrap;
-    justify-content: space-between;
+    position: relative;
+    height: 70px;
+    display: block;
   }
 }
 .cross-sell .cross-sell-header.bottom .container {
-  width: 100%;
-  height: 120px;
-}
-@media screen and (max-width: 768px) {
-  .cross-sell .cross-sell-header.bottom .container {
-    width: auto;
-    height: auto;
-    display: block;
-    width: 100%;
-  }
-  .cross-sell .cross-sell-header.bottom .container:nth-of-type(1) {
-    order: 1;
-    width: 50%;
-    float: left;
-  }
-  .cross-sell .cross-sell-header.bottom .container:nth-of-type(1) div > a {
-    float: left;
-    margin-top: 10px;
-  }
-  .cross-sell .cross-sell-header.bottom .container:nth-of-type(2) {
-    order: 3;
-    margin: 10px 0;
-    text-align: center;
-  }
-  .cross-sell .cross-sell-header.bottom .container:nth-of-type(3) {
-    order: 2;
-    margin-top: 10px;
-    width: 50%;
-    float: left;
-  }
-  .cross-sell .cross-sell-header.bottom .container:nth-of-type(3) div > a {
-    float: right;
-  }
+  display: block;
+  margin: .5rem;
+  padding: 0 .5rem;
 }
 @media screen and (min-width: 768px) {
   .cross-sell .cross-sell-header.bottom .container {
-    display: inline-block;
-    vertical-align: middle;
-  }
-  .cross-sell .cross-sell-header.bottom .container:before {
-    content: '\200B';
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-  }
-  .cross-sell .cross-sell-header.bottom .container:nth-child(1) {
-    width: 33%;
-    text-align: left;
-  }
-  .cross-sell .cross-sell-header.bottom .container:nth-child(2) {
-    width: 33%;
-    text-align: center;
-  }
-  .cross-sell .cross-sell-header.bottom .container:nth-child(3) {
-    width: 33%;
-    text-align: right;
+    position: absolute;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    max-width: 250px;
   }
 }
 .cross-sell .cross-sell-header.bottom .container .content {
-  width: 100%;
+  display: inline-block;
+  width: auto;
+  line-height: 1.7rem;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
-.cross-sell .cross-sell-header.bottom .container .content img {
-  margin: 1rem 1rem;
+.cross-sell .cross-sell-header.bottom a {
+  display: block;
+  margin-bottom: 1rem;
+  width: 80%;
+}
+@media screen and (min-width: 525px) {
+  .cross-sell .cross-sell-header.bottom a {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .cross-sell .cross-sell-header.bottom a {
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 @media screen and (min-width: 768px) {
-  .cross-sell .cross-sell-header.bottom .container .content {
-    position: relative;
-    top: -50%;
-    transform: translateY(-50%);
-    margin-top: 0;
-    margin-bottom: 0;
+  .cross-sell .cross-sell-header.bottom a.gotoshop {
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 5px;
+    margin: 10px;
+    width: calc(50% - 145px);
+    max-width: 250px;
+  }
+  .cross-sell .cross-sell-header.bottom a.cart, .cross-sell .cross-sell-header.bottom a.checkout {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 5px;
+    margin: 10px;
+    width: calc(50% - 145px);
+    max-width: 250px;
   }
 }
 .cross-sell i.check {

@@ -16,6 +16,12 @@ $XL:    1400px;
   margin-bottom: 0;
 }
 
+@mixin halign {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 @mixin MQ($canvas) {
   @if $canvas == S {
     @media only screen and (min-width: $S) { @content; }

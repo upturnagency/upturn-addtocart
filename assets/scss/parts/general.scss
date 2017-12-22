@@ -103,7 +103,6 @@ strong{
               margin: 0;
               float: right;
               width: calc(50% - 100px);
-              padding: .5rem;
               height: 80px;
 
               div {
@@ -119,7 +118,78 @@ strong{
       }
     }
 
-    &.bottom{
+    &.bottom {
+      width: 100%;
+      border: 1px solid #D7D7D7;
+      background-color: #F8F8F8;
+      margin-bottom: 2rem;
+
+      @media screen and (min-width: 768px) {
+        position: relative;
+        height: 70px;
+        display: block;
+      }
+
+      .container {
+        display: block;
+        margin: .5rem;
+        padding: 0 .5rem;
+
+        @media screen and (min-width: 768px) {
+          position: absolute;
+          @include halign;
+          top: 0;
+          max-width: 250px;
+        }
+
+        .content {
+          display: inline-block;
+          width: auto;
+          line-height: 1.7rem;
+          @include halign;
+        }
+      }
+
+      a {
+        display: block;
+        margin-bottom: 1rem;
+        width: 80%;
+
+        @media screen and (min-width: 525px) {
+          width: 50%;
+        }
+
+        @media screen and (max-width: 768px) {
+          padding: 1rem 2rem;
+          border-radius: 10px;
+          @include halign;
+        }
+
+        @media screen and (min-width: 768px) {
+          &.gotoshop {
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            top: 5px;
+            margin: 10px;
+            width: calc(50% - 145px);
+            max-width: 250px;
+          }
+
+          &.cart, &.checkout {
+            display: inline-block;
+            position: absolute;
+            right: 0;
+            top: 5px;
+            margin: 10px;
+            width: calc(50% - 145px);
+            max-width: 250px;
+          }
+        }
+      }
+    }
+
+    /*&.bottom{
         width: 100%;
         border: 1px solid #D7D7D7;
         display:table;
@@ -209,13 +279,12 @@ strong{
             }
           }
         }
-    }
+    }*/
   }
 
 
   i.check{
     content: "";
-    //background: url(../img/success.svg);
     height: 40px;
     display: inline-block;
     width: 100%;

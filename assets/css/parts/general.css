@@ -1,23 +1,23 @@
 /*
 Error: Undefined mixin 'valign'.
-        on line 111 of scss/parts/general.scss, in `valign'
-        from line 111 of scss/parts/general.scss
+        on line 110 of scss/parts/general.scss, in `valign'
+        from line 110 of scss/parts/general.scss
 
-106:               padding: .5rem;
-107:               height: 80px;
-108: 
-109:               div {
-110:                 height: auto;
-111:                 @include valign;
-112:                 strong {
-113:                   display: inline-block;
-114:                 }
-115:               }
-116:             }
+105:               width: calc(50% - 100px);
+106:               height: 80px;
+107: 
+108:               div {
+109:                 height: auto;
+110:                 @include valign;
+111:                 strong {
+112:                   display: inline-block;
+113:                 }
+114:               }
+115:             }
 
 Backtrace:
-scss/parts/general.scss:111:in `valign'
-scss/parts/general.scss:111
+scss/parts/general.scss:110:in `valign'
+scss/parts/general.scss:110
 /Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:351:in `block in visit_mixin'
 /Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/stack.rb:98:in `block in with_mixin'
 /Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/stack.rb:115:in `with_frame'
@@ -146,4 +146,4 @@ scss/parts/general.scss:111
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined mixin 'valign'.\A         on line 111 of scss/parts/general.scss, in `valign'\A         from line 111 of scss/parts/general.scss\A \A 106:               padding: .5rem;\A 107:               height: 80px;\A 108: \A 109:               div {\A 110:                 height: auto;\A 111:                 @include valign;\A 112:                 strong {\A 113:                   display: inline-block;\A 114:                 }\A 115:               }\A 116:             }"; }
+  content: "Error: Undefined mixin 'valign'.\A         on line 110 of scss/parts/general.scss, in `valign'\A         from line 110 of scss/parts/general.scss\A \A 105:               width: calc(50% - 100px);\A 106:               height: 80px;\A 107: \A 108:               div {\A 109:                 height: auto;\A 110:                 @include valign;\A 111:                 strong {\A 112:                   display: inline-block;\A 113:                 }\A 114:               }\A 115:             }"; }
