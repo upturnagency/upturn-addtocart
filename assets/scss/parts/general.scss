@@ -20,93 +20,105 @@ strong{
     display: table;
     clear: both;
   }
+
   .cross-sell-header{
     width: 100%;
-    &.top{
+    &.top {
       margin-top: 2rem;
+
       .added-to-cart{
         width: 100%;
         border: 1px solid #D7D7D7;
         border-bottom: 0;
-        display:table;
-        .container {
-          width: 100%;
-          height: 120px;
-          @media screen and (max-width: 768px) {
-            height: auto;
-            display: inline-block;
 
-            &:first-child{
-              width: 100%;
-              text-align: center;
-              margin-top: 1rem;
-              display: block;
+        @media screen and (min-width: 768px) {
+          height: 100px;
+          display: block;
+          padding: 10px;
+          overflow: hidden;
+        }
+
+        .container {
+          display: block;
+          width: 100%;
+          text-align: center;
+
+          @media screen and (min-width: 768px) {
+            display: inline-block;
+          }
+
+          &:nth-child(1){
+            margin: .75rem 0;
+            @media screen and (min-width: 768px) {
+              margin: 0;
+              float: left;
+              width: calc(50% - 100px);
+
               .content {
-                i {
-                  display: none;
+                height: 80px;
+                line-height: 80px;
+                text-align: right;
+              }
+            }
+          }
+
+          &:nth-child(2), &:nth-child(3){
+            display: inline-block;
+          }
+
+          &:nth-child(2){
+            width: 100px;
+            margin: 1rem;
+            margin-top: 0;
+            @media screen and (min-width: 768px) {
+              width: 200px;
+              margin: 0;
+
+              .content {
+                text-align: center;
+
+                img {
+                  max-height: 80px;
+                  width: auto;
                 }
               }
             }
+          }
 
-            &:nth-child(2){
-              width: auto;
-              float: left;
-            }
+          &:nth-child(3){
+            width: calc(100% - (100px + 2rem));
+            float: right;
+            padding: 1rem;
 
-            &:nth-child(3){
-              width: 50%;
-              float: left;
-              margin: 1rem;
-              height: 80px;
-              line-height: 80px;
+            div {
+              text-align: left;
+              margin: 0;
 
-              .content {
-                line-height: 80px;
+              strong {
+                display: block;
               }
             }
-          }
 
-          @media screen and (min-width: 768px) {
-            &:before {
-              content: '\200B';
-              display: inline-block;
-              height: 100%;
-              vertical-align: middle;
-            }
-            display: inline-block;
-            vertical-align: middle;
-
-            &:nth-child(1) {
-              width: 40%;
-              text-align: right;
-            }
-            &:nth-child(2) {
-              width: 20%;
-              text-align: center;
-            }
-            &:nth-child(3) {
-              width: 40%;
-              text-align: left;
-            }
-          }
-
-          .content {
-            width: 100%;
-            img {
-              margin: 1rem 1rem;
-              max-height: 80px;
-            }
             @media screen and (min-width: 768px) {
-              position: relative;
-              top: -50%;
-              transform: translateY(-50%);
-              margin-top: 0;
-              margin-bottom: 0;
+              margin: 0;
+              float: right;
+              width: calc(50% - 100px);
+              padding: .5rem;
+              height: 80px;
+
+              div {
+                height: auto;
+                @include valign;
+                strong {
+                  display: inline-block;
+                }
+              }
             }
           }
         }
       }
     }
+
     &.bottom{
         width: 100%;
         border: 1px solid #D7D7D7;
@@ -114,6 +126,7 @@ strong{
         padding: 0 2rem;
         background-color: #F8F8F8;
         margin-bottom: 2rem;
+
         @media screen and (max-width: 768px) {
           display: flex;
           -webkit-flex-flow: row wrap;

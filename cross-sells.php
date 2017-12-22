@@ -77,7 +77,6 @@
 					    $image = wp_get_attachment_image_src( get_post_thumbnail_id( $loop->post->ID ), 'thumbnail' );?>
                         <div class="container">
                             <div class="content">
-                                <i class="check"></i>
                                 <span><?php echo sprintf ( _n( '%d produkt lagt til', '%d produkter lagt til', $i ), $i); ?> </span>
                             </div>
                         </div>
