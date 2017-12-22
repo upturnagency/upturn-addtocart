@@ -126,7 +126,7 @@ strong{
 
       @media screen and (min-width: 768px) {
         position: relative;
-        height: 70px;
+        height: 100px;
         display: block;
       }
 
@@ -138,7 +138,8 @@ strong{
         @media screen and (min-width: 768px) {
           position: absolute;
           @include halign;
-          top: 0;
+          @include valign;
+          transform: translateY(-50%) translateX(-50%);
           max-width: 250px;
         }
 
@@ -167,23 +168,42 @@ strong{
 
         @media screen and (min-width: 768px) {
           &.gotoshop {
+            @include valign;
             display: inline-block;
             position: absolute;
-            left: 0;
-            top: 5px;
-            margin: 10px;
+            left: 15px;
             width: calc(50% - 145px);
             max-width: 250px;
+
+            @media screen and (min-width: 1024px) {
+              left: 75px;
+            }
           }
 
           &.cart, &.checkout {
             display: inline-block;
             position: absolute;
-            right: 0;
-            top: 5px;
-            margin: 10px;
+            right: 15px;
             width: calc(50% - 145px);
             max-width: 250px;
+            margin: 0;
+
+            @media screen and (min-width: 1024px) {
+              right: 75px;
+            }
+          }
+
+          &.cart-with-checkout {
+            top: 12px;
+          }
+
+          &.checkout-with-cart {
+            bottom: 12px;
+          }
+
+          &.checkout-without-cart, &.cart-without-checkout {
+            @include valign;
+            position: absolute;
           }
         }
       }

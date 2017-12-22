@@ -159,12 +159,14 @@
                 <?php if ( get_option( 'upturn-displayGoToShopButton' ) == 'yes' ) : ?>
                     <a href="<?php echo get_home_url(); ?>" class="button btn black alt gotoshop"><?php echo __('Gå til butikken', 'cross-sell'); ?></a>
                 <?php endif; ?>
-                <?php if ( get_option( 'upturn-displayGoToCartButton' ) == 'yes' ) : ?>
-                      <a href="<?php echo $woocommerce->cart->get_cart_url(); ?>" class="button btn cart"><?php echo __('Til handlekurven', 'cross-sell'); ?></a>
+                <?php if ( get_option( 'upturn-displayGoToCartButton' ) == 'yes' ) :
+                  $class_cart = get_option( 'upturn-displayCheckoutButton' ) == 'yes' ? 'cart-with-checkout' : 'cart-without-checkout'; ?>
+                      <a href="<?php echo $woocommerce->cart->get_cart_url(); ?>" class="button btn cart <?php echo $class_cart; ?>"><?php echo __('Til handlekurven', 'cross-sell'); ?></a>
                 <?php endif; ?>
 
-                <?php if ( get_option( 'upturn-displayCheckoutButton' ) == 'yes' ) : ?>
-                      <a href="<?php echo $woocommerce->cart->get_checkout_url(); ?>" class="button btn alt checkout"><?php echo __('Til kassen', 'cross-sell'); ?></a>
+                <?php if ( get_option( 'upturn-displayCheckoutButton' ) == 'yes' ) :
+                  $class_checkout = get_option( 'upturn-displayGoToCartButton' ) == 'yes' ? 'checkout-with-cart' : 'checkout-without-cart'; ?>
+                      <a href="<?php echo $woocommerce->cart->get_checkout_url(); ?>" class="button btn alt checkout <?php echo $class_checkout; ?>"><?php echo __('Til kassen', 'cross-sell'); ?></a>
                 <?php endif; ?>
             </div>
 	    <?php else: ?>

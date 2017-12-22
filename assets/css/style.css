@@ -461,7 +461,7 @@ strong {
 @media screen and (min-width: 768px) {
   .cross-sell .cross-sell-header.bottom {
     position: relative;
-    height: 70px;
+    height: 100px;
     display: block;
   }
 }
@@ -476,7 +476,12 @@ strong {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    top: 0;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: 0;
+    margin-bottom: 0;
+    transform: translateY(-50%) translateX(-50%);
     max-width: 250px;
   }
 }
@@ -509,22 +514,52 @@ strong {
 }
 @media screen and (min-width: 768px) {
   .cross-sell .cross-sell-header.bottom a.gotoshop {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: 0;
+    margin-bottom: 0;
     display: inline-block;
     position: absolute;
-    left: 0;
-    top: 5px;
-    margin: 10px;
+    left: 15px;
     width: calc(50% - 145px);
     max-width: 250px;
   }
+}
+@media screen and (min-width: 768px) and (min-width: 1024px) {
+  .cross-sell .cross-sell-header.bottom a.gotoshop {
+    left: 75px;
+  }
+}
+@media screen and (min-width: 768px) {
   .cross-sell .cross-sell-header.bottom a.cart, .cross-sell .cross-sell-header.bottom a.checkout {
     display: inline-block;
     position: absolute;
-    right: 0;
-    top: 5px;
-    margin: 10px;
+    right: 15px;
     width: calc(50% - 145px);
     max-width: 250px;
+    margin: 0;
+  }
+}
+@media screen and (min-width: 768px) and (min-width: 1024px) {
+  .cross-sell .cross-sell-header.bottom a.cart, .cross-sell .cross-sell-header.bottom a.checkout {
+    right: 75px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .cross-sell .cross-sell-header.bottom a.cart-with-checkout {
+    top: 12px;
+  }
+  .cross-sell .cross-sell-header.bottom a.checkout-with-cart {
+    bottom: 12px;
+  }
+  .cross-sell .cross-sell-header.bottom a.checkout-without-cart, .cross-sell .cross-sell-header.bottom a.cart-without-checkout {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: 0;
+    margin-bottom: 0;
+    position: absolute;
   }
 }
 .cross-sell i.check {
