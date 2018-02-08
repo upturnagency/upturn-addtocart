@@ -14,9 +14,10 @@
             $product_in_cat = false;
 
             foreach ( $excluded_cats as $cat) {
-                if ( has_term( $cat->slug, 'product_cat', $product->id ) ):
+                if ( has_term( $cat->slug, 'product_cat', $product->get_id())):
                     $sum += $price;
                     $sum += $tax;
+                    ?><p><?php echo $product->get_id(); ?></p><?php
                 endif;
             }
         }
@@ -32,8 +33,7 @@
   // Interface for coupon
   require 'price-supports/Coupon.php';
 
-  // Classes for coupons
-  //require 'price-supports/Price.php';
+  // Class for coupons
   require 'price-supports/Product.php';
 
   function bubble_sort_coupons(array $array){
@@ -60,16 +60,7 @@
     return $coupongString;
   }
 
-  // Object arrays for price and product
   $product_coupons = $discount_coupons = array();
-
-  // Checks if there are any product or discount coupons intitated
-  /*have_rows('cf_price_reduction', 'options') || vv under*/
-  /*while ( have_rows('cf_price_reduction', 'options') ) : the_row();
-    $condition = get_sub_field('cf_price_cart_total');
-    $discount = get_sub_field('cf_price_cart_reduction');
-    $discount_coupons[] = new Price($condition, $discount);
-  endwhile;*/
 
   if( have_rows('cf_product_reduction', 'options')):
     while ( have_rows('cf_product_reduction', 'options') ) : the_row();
@@ -176,28 +167,6 @@
             echo $coupon->rendurHTML($cart_total, $brand);
           }
       echo '</ul></div>';
-    }
-
-    /*if(count($discount_coupons) > 0){
-      echo '<div class="coupon-factory-discount">';
-        echo '<h4>Kasse kuponger</h4>';
-        echo '<ul class="coupon-factory-discount-list">';
-          $discount_coupons = bubble_sort_coupons($discount_coupons);
-          foreach($discount_coupons as $coupon){
-            if($coupon->getButtonState() && $amount < 1){
-              $code = generateCouponCode();
-              $isset = $coupon->setCoupon( $code );
-
-              if($isset){
-                $woocommerce->cart->add_discount( $code );
-              }
-              echo 'innside';
-              $amount++;
-            }
-
-            echo $coupon->rendurHTML($cart_total);
-          }
-        echo '</ul></div>';
-    }*/?>
+    } ?>
   </div>
 <?php ?>

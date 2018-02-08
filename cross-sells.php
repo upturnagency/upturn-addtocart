@@ -5,7 +5,13 @@
 
 	    $id = $_GET['id'];
 	    $time = $_GET['t'];
-	    $expire_time = get_option('upturn_expire_time') * 60;
+      try {
+        if (is_numeric(get_option('upturn_expire_time'))):
+          $expire_time = get_option('upturn_expire_time') * 60;
+        endif;
+      } catch (Exception $e){
+        // The variable might not be initialized.
+      }
 	    $timeleft = $time + $expire_time;
 	    $current = time();
 
