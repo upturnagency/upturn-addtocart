@@ -17,7 +17,6 @@
                 if ( has_term( $cat->slug, 'product_cat', $product->get_id())):
                     $sum += $price;
                     $sum += $tax;
-                    ?><p><?php echo $product->get_id(); ?></p><?php
                 endif;
             }
         }
